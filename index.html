@@ -213,6 +213,7 @@ footer { text-align: center; font-size: 11px; color: var(--muted); margin: 1.5re
     <button class="tab" onclick="showTab('coppa',this)">🥤 Cup</button>
     <button class="tab" onclick="showTab('andamento',this)">📈 Trend</button>
     <button class="tab" onclick="showTab('curiosita',this)">💡 Stats</button>
+    <button class="tab" onclick="showTab('h2h',this)">⚔️ H2H</button>
   </div>
 
   <div class="section active" id="tab-classifica">
@@ -265,6 +266,20 @@ footer { text-align: center; font-size: 11px; color: var(--muted); margin: 1.5re
     </div>
   </div>
 
+  <div class="section" id="tab-h2h">
+    <div class="card" style="margin-bottom:10px">
+      <div class="card-header">Curiosità Head to Head</div>
+      <div class="card-body" id="h2h-curiosita-body"></div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        Tabella H2H completa
+        <span style="font-size:10px">V1 · N · V2 · gol</span>
+      </div>
+      <div class="card-body" id="h2h-table-body"></div>
+    </div>
+  </div>
+
   <footer id="footer-meta">Fantalega 21I22 · 2025/26</footer>
 </div>
 
@@ -282,54 +297,76 @@ const USERS = {
 
 const MATCHES_G30 = [
   {ora:'🔴 LIVE 18:30',cls:'time-live',casa:'Cagliari',trasferta:'Napoli',giocatori:[
-    {nome:'Willy',squadra:'R B Salisburro',giocatori:['Caprile (P)','Palestra (D)','Krstovic (A)']},
-    {nome:'Bobo',squadra:'FcZeroTituli',giocatori:['Buongiorno (D)','Di Lorenzo (D)']},
+    {nome:'Davide',squadra:'Santini United',giocatori:['De Bruyne (C)','Rrahmani (D)']},
+    {nome:'Ale',squadra:'fc kiricocho2puntozero',giocatori:['Di Lorenzo (D)']},
+    {nome:'Bobo',squadra:'FcZeroTituli',giocatori:['Buongiorno (D)','Zambo Anguissa (C)','Hojlund (A)']},
+    {nome:'Willy',squadra:'R B Salisburro',giocatori:['Caprile (P)','Palestra (D)','Spinazzola (D)']},
     {nome:'Denny',squadra:'I Ridartati dei Caraibi',giocatori:['Meret (P)','McTominay (C)','Elmas (C)']},
-    {nome:'Davide',squadra:'Santini United',giocatori:['De Bruyne (C)']},
-    {nome:'Bamu',squadra:'PORCELLONA FC',giocatori:['Lobotka (C)']},
-    {nome:'Salvo',squadra:'monza',giocatori:['Calhanoglu (C)','Barella (C)','Kean (A)','Scamacca (A)']}
+    {nome:'Bamu',squadra:'PORCELLONA FC',giocatori:['Lobotka (C)']}
   ]},
   {ora:'20:45',cls:'time-oggi',casa:'Genoa',trasferta:'Udinese',giocatori:[
     {nome:'Mike',squadra:'ac pizzo',giocatori:['Leali (P)']},
     {nome:'Ale',squadra:'fc kiricocho2puntozero',giocatori:['Vasquez (D)','Davis K. (A)']},
-    {nome:'Willy',squadra:'R B Salisburro',giocatori:['Samardzic (C)']}
+    {nome:'Bobo',squadra:'FcZeroTituli',giocatori:['Zaniolo (C)']},
   ]},
   {ora:'Sab 15:00',cls:'time-weekend',casa:'Parma',trasferta:'Cremonese',giocatori:[
+    {nome:'Davide',squadra:'Santini United',giocatori:['Strefezza (C)']},
     {nome:'Mike',squadra:'ac pizzo',giocatori:['Valeri (D)','Da Cunha (C)']},
-    {nome:'Bamu',squadra:'PORCELLONA FC',giocatori:['Delprato (D)','Isaksen (C)']},
-    {nome:'Willy',squadra:'R B Salisburro',giocatori:["Bernabè (C)",'Vardy (A)']},
-    {nome:'Denny',squadra:'I Ridartati dei Caraibi',giocatori:['Vojvoda (D)']}
+    {nome:'Willy',squadra:'R B Salisburro',giocatori:["Bernabè (C)"]},
+    {nome:'Bamu',squadra:'PORCELLONA FC',giocatori:['Delprato (D) ⚠️ SQUALIFICATO']}
   ]},
   {ora:'Sab 18:00',cls:'time-weekend',casa:'Milan',trasferta:'Torino',giocatori:[
-    {nome:'Mike',squadra:'ac pizzo',giocatori:['Gabbia (D)','Pavlovic (D)','Modric (C)','Loftus-Cheek (C)','Saelemaekers (C)','Leao (A)']},
+    {nome:'Mike',squadra:'ac pizzo',giocatori:['Gabbia (D) ❌ out','Pavlovic (D)','Modric (C)','Loftus-Cheek (C) ❌ out','Saelemaekers (C)','Leao (A) ❌ out']},
+    {nome:'Salvo',squadra:'monza',giocatori:['Maignan (P)','Fullkrug (A)','Casadei (C)']},
     {nome:'Ale',squadra:'fc kiricocho2puntozero',giocatori:['Nkunku (A)']},
-    {nome:'Denny',squadra:'I Ridartati dei Caraibi',giocatori:['Pulisic (C)','Fofana (C)','Rabiot (C)']},
-    {nome:'Salvo',squadra:'monza',giocatori:['Maignan (P)','Fullkrug (A)']}
+    {nome:'Denny',squadra:'I Ridartati dei Caraibi',giocatori:['Pulisic (C) ⚠️ a rischio','Rabiot (C)','Fofana Y. (C)']},
+    {nome:'Bamu',squadra:'PORCELLONA FC',giocatori:['Tomori (D)','Vlasic (C)']}
   ]},
   {ora:'Sab 20:45',cls:'time-weekend',casa:'Juventus',trasferta:'Sassuolo',giocatori:[
-    {nome:'Mike',squadra:'ac pizzo',giocatori:['Conceicao (C)','Yildiz (A)']},
-    {nome:'Ale',squadra:'fc kiricocho2puntozero',giocatori:['Locatelli (C)','Thuram K. (C)']},
-    {nome:'Bamu',squadra:'PORCELLONA FC',giocatori:['Di Gregorio (P)','David (A)']},
-    {nome:'Willy',squadra:'R B Salisburro',giocatori:['Bremer (D)']}
+    {nome:'Mike',squadra:'ac pizzo',giocatori:['Kalulu (D)','Conceicao (C)','Yildiz (A)']},
+    {nome:'Ale',squadra:'fc kiricocho2puntozero',giocatori:['Locatelli (C)','Thuram K. (C) ⚠️ dubbio']},
+    {nome:'Bobo',squadra:'FcZeroTituli',giocatori:['McKennie (C)']},
+    {nome:'Willy',squadra:'R B Salisburro',giocatori:['Bremer (D)','Berardi (A)']},
+    {nome:'Bamu',squadra:'PORCELLONA FC',giocatori:['Di Gregorio (P)','David (A) 🪑 verso panchina']}
+  ]},
+  {ora:'Dom 12:30',cls:'time-weekend',casa:'Como',trasferta:'Pisa',giocatori:[
+    {nome:'Davide',squadra:'Santini United',giocatori:['Butez (P)','Paz N. (C)','Douvikas (A)']},
+    {nome:'Mike',squadra:'ac pizzo',giocatori:['Da Cunha (C)']},
+    {nome:'Bobo',squadra:'FcZeroTituli',giocatori:['Ramon (D)']},
+    {nome:'Willy',squadra:'R B Salisburro',giocatori:['Baturina (C)']},
+    {nome:'Denny',squadra:'I Ridartati dei Caraibi',giocatori:['Vojvoda (D)']}
+  ]},
+  {ora:'Dom 15:00',cls:'time-weekend',casa:'Atalanta',trasferta:'Verona',giocatori:[
+    {nome:'Salvo',squadra:'monza',giocatori:['Scamacca (A)','Pasalic (C)','De Roon (C)']},  
+    {nome:'Ale',squadra:'fc kiricocho2puntozero',giocatori:['Carnesecchi (P)','Zappacosta (D)']},
+    {nome:'Bobo',squadra:'FcZeroTituli',giocatori:['Zalewski (C)','De Ketelaere (A)']},
+    {nome:'Willy',squadra:'R B Salisburro',giocatori:['Scalvini (D)','Krstovic (A)']},
+    {nome:'Bamu',squadra:'PORCELLONA FC',giocatori:['Hien (D)']}
   ]},
   {ora:'Dom 15:00',cls:'time-weekend',casa:'Bologna',trasferta:'Lazio',giocatori:[
-    {nome:'Mike',squadra:'ac pizzo',giocatori:['Saelemaekers (C)','Castro S. (A)','Zaccagni (C)']},
-    {nome:'Ale',squadra:'fc kiricocho2puntozero',giocatori:['Skorupski (P)','Zortea (D)','Bernardeschi (C)','Ferguson B. (C)']},
-    {nome:'Bamu',squadra:'PORCELLONA FC',giocatori:['Gila (D)','Isaksen (C)','Castellanos (A)']},
+    {nome:'Davide',squadra:'Santini United',giocatori:['Cataldi (C)','Taylor K. (C)']},
+    {nome:'Mike',squadra:'ac pizzo',giocatori:['Castro S. (A)','Zaccagni (C) ❌ out']},
+    {nome:'Ale',squadra:'fc kiricocho2puntozero',giocatori:['Skorupski (P) ❌ out','Zortea (D)','Bernardeschi (C)','Ferguson B. (C)']},
+    {nome:'Bobo',squadra:'FcZeroTituli',giocatori:['Maldini (C)']},
+    {nome:'Willy',squadra:'R B Salisburro',giocatori:['Orsolini (C)']},
     {nome:'Denny',squadra:'I Ridartati dei Caraibi',giocatori:['Basic (C)','Cancellieri (A)']},
-    {nome:'Salvo',squadra:'monza',giocatori:['Barella (C)','Pasalic (C)']}
+    {nome:'Bamu',squadra:'PORCELLONA FC',giocatori:['Gila (D)','Isaksen (C)','Odgaard (C)','Castellanos (A)']}
   ]},
   {ora:'Dom 18:00',cls:'time-weekend',casa:'Roma',trasferta:'Lecce',giocatori:[
-    {nome:'Mike',squadra:'ac pizzo',giocatori:["N'Dicka (D)",'Esposito F.P. (A)']},
-    {nome:'Ale',squadra:'fc kiricocho2puntozero',giocatori:['Dovbyk (A)','Ferguson E. (A)','Soulè (A)','Malen (A)']},
-    {nome:'Bamu',squadra:'PORCELLONA FC',giocatori:['Angelino (D)','Dybala (A)']},
-    {nome:'Willy',squadra:'R B Salisburro',giocatori:['Svilar (P)','El Shaarawy (C)']}
+    {nome:'Mike',squadra:'ac pizzo',giocatori:["N'Dicka (D)"]},
+    {nome:'Ale',squadra:'fc kiricocho2puntozero',giocatori:['Malen (A)','Dovbyk (A)','Ferguson E. (A)','Soule (A)']},
+    {nome:'Bobo',squadra:'FcZeroTituli',giocatori:['Wesley (D)']},
+    {nome:'Willy',squadra:'R B Salisburro',giocatori:['Svilar (P)','El Shaarawy (C)']},
+    {nome:'Bamu',squadra:'PORCELLONA FC',giocatori:['Angelino (D)','Dybala (A)']}
   ]},
   {ora:'Dom 20:45',cls:'time-weekend',casa:'Fiorentina',trasferta:'Inter',giocatori:[
-    {nome:'Ale',squadra:'fc kiricocho2puntozero',giocatori:['Dimarco (D)','Mkhitaryan (C)']},
-    {nome:'Denny',squadra:'I Ridartati dei Caraibi',giocatori:['Acerbi (D)','Akanji (D)','Bastoni (D)','Bisseck (D)']},
+    {nome:'Davide',squadra:'Santini United',giocatori:['Gosens (D)','Gudmundsson (C)','Thuram (A)']},
+    {nome:'Salvo',squadra:'monza',giocatori:['Calhanoglu (C)','Barella (C)','Kean (A)']},
+    {nome:'Mike',squadra:'ac pizzo',giocatori:['Esposito F.P. (A)']},
+    {nome:'Ale',squadra:'fc kiricocho2puntozero',giocatori:['Dimarco (D)','Mkhitaryan (C)','Mandragora (C)']},
+    {nome:'Bobo',squadra:'FcZeroTituli',giocatori:['Zielinski (C)','Martinez L. (A) ⚠️ dubbio']},
     {nome:'Willy',squadra:'R B Salisburro',giocatori:['Dumfries (D)']},
-    {nome:'Salvo',squadra:'monza',giocatori:['Calhanoglu (C)','De Roon (C)']}
+    {nome:'Denny',squadra:'I Ridartati dei Caraibi',giocatori:['Acerbi (D)','Akanji (D)','Bastoni (D)','Bisseck (D)']}
   ]}
 ];
 
@@ -582,6 +619,56 @@ function buildCuriosity(data) {
   document.getElementById('curiosita-body').innerHTML = html;
 }
 
+function buildH2HCuriosity(data) {
+  if (!data.h2h_curiosita) return;
+  let html = '';
+  data.h2h_curiosita.forEach(c => {
+    html += `<div class="curiosity-item">
+      <div class="curiosity-icon">${c.icon}</div>
+      <div class="curiosity-content">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px">
+          <div class="curiosity-title" style="margin:0">${c.titolo}</div>
+          <span style="font-size:10px;padding:2px 7px;border-radius:8px;background:var(--surface);color:var(--muted);font-weight:700;white-space:nowrap">${c.tag}</span>
+        </div>
+        <div class="curiosity-text">${c.testo}</div>
+      </div>
+    </div>`;
+  });
+  document.getElementById('h2h-curiosita-body').innerHTML = html;
+}
+
+function buildH2HTable(data) {
+  if (!data.h2h_table) return;
+  const PLAYER_COLORS = {
+    'Mike':'#378ADD','Ale':'#1D9E75','Bobo':'#7F77DD','Willy':'#EF9F27',
+    'Davide':'#BA7517','Denny':'#534AB7','Bamu':'#639922','Salvo':'#854F0B'
+  };
+  let html = '';
+  data.h2h_table.forEach(r => {
+    const c1 = PLAYER_COLORS[r.t1]||'var(--muted)';
+    const c2 = PLAYER_COLORS[r.t2]||'var(--muted)';
+    const tot = r.v1 + r.n + r.v2;
+    const dom1 = r.v1 > r.v2;
+    const dom2 = r.v2 > r.v1;
+    const pari = r.v1 === r.v2;
+    html += `<div style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:6px;padding:8px 12px;border-bottom:1px solid var(--border)">
+      <div>
+        <span style="font-size:12px;font-weight:700;color:${c1};opacity:${dom2?0.5:1}">${r.t1}</span>
+        <div style="font-size:11px;color:var(--muted)">${r.v1}V · ${r.g1} gol</div>
+      </div>
+      <div style="text-align:center">
+        <div style="font-family:'Oswald',sans-serif;font-size:14px;font-weight:700;color:${pari?'var(--muted)':(dom1?c1:c2)}">${r.v1}-${r.n}-${r.v2}</div>
+        <div style="font-size:10px;color:var(--muted)">${tot} part.</div>
+      </div>
+      <div style="text-align:right">
+        <span style="font-size:12px;font-weight:700;color:${c2};opacity:${dom1?0.5:1}">${r.t2}</span>
+        <div style="font-size:11px;color:var(--muted)">${r.v2}V · ${r.g2} gol</div>
+      </div>
+    </div>`;
+  });
+  document.getElementById('h2h-table-body').innerHTML = html;
+}
+
 async function loadData() {
   try {
     const res = await fetch('data.json?v=' + Date.now());
@@ -593,6 +680,8 @@ async function loadData() {
     buildCupResults(data);
     buildAndamento(data);
     buildCuriosity(data);
+    buildH2HCuriosity(data);
+    buildH2HTable(data);
   } catch(e) {
     document.getElementById('meta-badge').textContent = 'Dati locali';
     const fallback = {

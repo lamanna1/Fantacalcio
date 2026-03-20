@@ -674,5 +674,309 @@
       "titolo": "Il culo del calendario",
       "testo": "Ale alla giornata 20 ha incrociato Bobo nel momento peggiore per Bobo (65pt) e nel momento migliore per lui (85.5pt). Quattro gol di scarto. A volte la fortuna del calendario fa la differenza."
     }
+  ],
+  "h2h_curiosita": [
+    {
+      "icon": "👑",
+      "titolo": "Ale non perde mai contro Davide",
+      "testo": "4 partite, 4 vittorie di Ale. Davide non ha mai battuto Ale in tutta la stagione — e senza pareggi. Il confronto più squilibrato della lega.",
+      "tag": "Ale vs Davide"
+    },
+    {
+      "icon": "🤝",
+      "titolo": "Denny e Bamu: amici per la pelle",
+      "testo": "3 pareggi e 1 vittoria Bamu in 4 partite. Denny non ha MAI battuto Bamu. La sfida meno combattuta della lega — quando si incontrano quasi sempre finisce pari.",
+      "tag": "Denny vs Bamu"
+    },
+    {
+      "icon": "⚡",
+      "titolo": "Mike vs Davide: mai un pareggio",
+      "testo": "4 partite, 0 pareggi: Davide vince 3 volte, Mike 1. Quando si incontrano qualcuno vince sempre — e di solito è Davide.",
+      "tag": "Mike vs Davide"
+    },
+    {
+      "icon": "🔥",
+      "titolo": "Denny vs Davide: la partita da gol",
+      "testo": "18 gol totali in 4 partite — media 4.5 a partita. Il derby più spettacolare della lega. Quando si incrociano aspettati sempre un risultato tennistico.",
+      "tag": "Denny vs Davide"
+    },
+    {
+      "icon": "❌",
+      "titolo": "Bamu non ha mai battuto Ale",
+      "testo": "0 vittorie, 2 pareggi, 2 sconfitte in 4 partite. Ale ha segnato 8 gol contro Bamu, Bamu solo 2. Un dominio netto.",
+      "tag": "Bamu vs Ale"
+    },
+    {
+      "icon": "📊",
+      "titolo": "Salvo: nessun pareggio con nessuno",
+      "testo": "Contro Mike, Ale e Bobo — 0 pareggi in 4 partite ciascuno. Salvo non pareggia mai: o vince o perde. Il risultato più raro nelle sue partite.",
+      "tag": "Salvo"
+    },
+    {
+      "icon": "💪",
+      "titolo": "Ale domina Davide con 10 gol",
+      "testo": "Ale ha segnato 10 gol contro Davide in 4 partite, subendone solo 5. Il rapporto reti più squilibrato tra due squadre della lega.",
+      "tag": "Ale vs Davide"
+    },
+    {
+      "icon": "🎯",
+      "titolo": "Willy non batte mai Mike",
+      "testo": "1V-1N-2P — Willy ha vinto solo 1 volta su 4 contro Mike. E Mike ha segnato 9 gol contro Willy contro i 5 subiti. Sfida storicamente favorevole a Mike.",
+      "tag": "Mike vs Willy"
+    }
+  ],
+  "h2h_table": [
+    {
+      "t1": "Mike",
+      "t2": "Ale",
+      "v1": 2,
+      "n": 1,
+      "v2": 1,
+      "g1": 7,
+      "g2": 5
+    },
+    {
+      "t1": "Mike",
+      "t2": "Bobo",
+      "v1": 1,
+      "n": 1,
+      "v2": 1,
+      "g1": 4,
+      "g2": 4
+    },
+    {
+      "t1": "Mike",
+      "t2": "Willy",
+      "v1": 2,
+      "n": 1,
+      "v2": 1,
+      "g1": 9,
+      "g2": 5
+    },
+    {
+      "t1": "Mike",
+      "t2": "Davide",
+      "v1": 1,
+      "n": 0,
+      "v2": 3,
+      "g1": 6,
+      "g2": 9
+    },
+    {
+      "t1": "Mike",
+      "t2": "Denny",
+      "v1": 2,
+      "n": 0,
+      "v2": 2,
+      "g1": 8,
+      "g2": 7
+    },
+    {
+      "t1": "Mike",
+      "t2": "Bamu",
+      "v1": 2,
+      "n": 1,
+      "v2": 1,
+      "g1": 5,
+      "g2": 4
+    },
+    {
+      "t1": "Mike",
+      "t2": "Salvo",
+      "v1": 2,
+      "n": 0,
+      "v2": 2,
+      "g1": 6,
+      "g2": 6
+    },
+    {
+      "t1": "Ale",
+      "t2": "Bobo",
+      "v1": 2,
+      "n": 1,
+      "v2": 1,
+      "g1": 8,
+      "g2": 4
+    },
+    {
+      "t1": "Ale",
+      "t2": "Willy",
+      "v1": 1,
+      "n": 2,
+      "v2": 1,
+      "g1": 4,
+      "g2": 4
+    },
+    {
+      "t1": "Ale",
+      "t2": "Davide",
+      "v1": 4,
+      "n": 0,
+      "v2": 0,
+      "g1": 10,
+      "g2": 5
+    },
+    {
+      "t1": "Ale",
+      "t2": "Denny",
+      "v1": 1,
+      "n": 1,
+      "v2": 1,
+      "g1": 6,
+      "g2": 6
+    },
+    {
+      "t1": "Ale",
+      "t2": "Bamu",
+      "v1": 2,
+      "n": 2,
+      "v2": 0,
+      "g1": 8,
+      "g2": 2
+    },
+    {
+      "t1": "Ale",
+      "t2": "Salvo",
+      "v1": 2,
+      "n": 0,
+      "v2": 2,
+      "g1": 7,
+      "g2": 4
+    },
+    {
+      "t1": "Bobo",
+      "t2": "Willy",
+      "v1": 1,
+      "n": 1,
+      "v2": 2,
+      "g1": 5,
+      "g2": 8
+    },
+    {
+      "t1": "Bobo",
+      "t2": "Davide",
+      "v1": 1,
+      "n": 1,
+      "v2": 2,
+      "g1": 6,
+      "g2": 7
+    },
+    {
+      "t1": "Bobo",
+      "t2": "Denny",
+      "v1": 2,
+      "n": 1,
+      "v2": 1,
+      "g1": 6,
+      "g2": 5
+    },
+    {
+      "t1": "Bobo",
+      "t2": "Bamu",
+      "v1": 2,
+      "n": 1,
+      "v2": 1,
+      "g1": 6,
+      "g2": 5
+    },
+    {
+      "t1": "Bobo",
+      "t2": "Salvo",
+      "v1": 3,
+      "n": 0,
+      "v2": 1,
+      "g1": 9,
+      "g2": 5
+    },
+    {
+      "t1": "Willy",
+      "t2": "Davide",
+      "v1": 1,
+      "n": 2,
+      "v2": 1,
+      "g1": 7,
+      "g2": 6
+    },
+    {
+      "t1": "Willy",
+      "t2": "Denny",
+      "v1": 2,
+      "n": 0,
+      "v2": 2,
+      "g1": 6,
+      "g2": 5
+    },
+    {
+      "t1": "Willy",
+      "t2": "Bamu",
+      "v1": 2,
+      "n": 1,
+      "v2": 1,
+      "g1": 7,
+      "g2": 2
+    },
+    {
+      "t1": "Willy",
+      "t2": "Salvo",
+      "v1": 1,
+      "n": 1,
+      "v2": 1,
+      "g1": 3,
+      "g2": 4
+    },
+    {
+      "t1": "Davide",
+      "t2": "Denny",
+      "v1": 1,
+      "n": 2,
+      "v2": 1,
+      "g1": 10,
+      "g2": 8
+    },
+    {
+      "t1": "Davide",
+      "t2": "Bamu",
+      "v1": 1,
+      "n": 0,
+      "v2": 2,
+      "g1": 4,
+      "g2": 5
+    },
+    {
+      "t1": "Davide",
+      "t2": "Salvo",
+      "v1": 2,
+      "n": 1,
+      "v2": 1,
+      "g1": 6,
+      "g2": 4
+    },
+    {
+      "t1": "Denny",
+      "t2": "Bamu",
+      "v1": 0,
+      "n": 3,
+      "v2": 1,
+      "g1": 4,
+      "g2": 5
+    },
+    {
+      "t1": "Denny",
+      "t2": "Salvo",
+      "v1": 1,
+      "n": 2,
+      "v2": 1,
+      "g1": 6,
+      "g2": 3
+    },
+    {
+      "t1": "Bamu",
+      "t2": "Salvo",
+      "v1": 2,
+      "n": 1,
+      "v2": 1,
+      "g1": 4,
+      "g2": 4
+    }
   ]
 }
