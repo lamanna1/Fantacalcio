@@ -621,14 +621,24 @@ function buildCuriosity(data) {
 
 function buildH2HCuriosity(data) {
   if (!data.h2h_curiosita) return;
+  const PC = {
+    'Mike':'#378ADD','Ale':'#1D9E75','Bobo':'#7F77DD','Willy':'#EF9F27',
+    'Davide':'#BA7517','Denny':'#534AB7','Bamu':'#639922','Salvo':'#854F0B'
+  };
   let html = '';
   data.h2h_curiosita.forEach(c => {
+    const c1 = PC[c.t1]||'var(--muted)';
+    const c2 = PC[c.t2]||'var(--muted)';
+    const dom1 = c.v1 > c.v2;
+    const dom2 = c.v2 > c.v1;
     html += `<div class="curiosity-item">
       <div class="curiosity-icon">${c.icon}</div>
       <div class="curiosity-content">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px">
-          <div class="curiosity-title" style="margin:0">${c.titolo}</div>
-          <span style="font-size:10px;padding:2px 7px;border-radius:8px;background:var(--surface);color:var(--muted);font-weight:700;white-space:nowrap">${c.tag}</span>
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;flex-wrap:wrap">
+          <span style="font-size:13px;font-weight:700;color:${c1};opacity:${dom2?0.6:1}">${c.t1}</span>
+          <span style="font-family:'Oswald',sans-serif;font-size:13px;font-weight:700;color:var(--muted)">${c.v1}-${c.n}-${c.v2}</span>
+          <span style="font-size:13px;font-weight:700;color:${c2};opacity:${dom1?0.6:1}">${c.t2}</span>
+          <span style="font-size:10px;color:var(--muted)">${c.g1}-${c.g2} gol · ${c.tot} part.</span>
         </div>
         <div class="curiosity-text">${c.testo}</div>
       </div>
