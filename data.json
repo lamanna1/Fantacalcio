@@ -1,0 +1,81 @@
+{
+  "meta": {
+    "stagione": "2025/26",
+    "giornata_attuale": 28,
+    "ultimo_aggiornamento": "20/03/2026"
+  },
+  "classifica": [
+    {"pos":1,"nome":"fc kiricocho2puntozero","user":"alessandrogobbo90","g":27,"v":13,"n":7,"p":7,"gf":48,"gs":32,"pt":46,"tot":1977.5,"trend":"up"},
+    {"pos":2,"nome":"ac pizzo","user":"mikepizzo","g":27,"v":12,"n":4,"p":11,"gf":45,"gs":40,"pt":40,"tot":1965,"trend":"stable"},
+    {"pos":3,"nome":"FcZeroTituli","user":"Bobo88","g":27,"v":11,"n":6,"p":10,"gf":40,"gs":42,"pt":39,"tot":1937,"trend":"up"},
+    {"pos":4,"nome":"R B Salisburro","user":"Germano Mosconi","g":27,"v":10,"n":8,"p":9,"gf":40,"gs":35,"pt":38,"tot":1930,"trend":"down"},
+    {"pos":5,"nome":"Santini United","user":"dalama","g":27,"v":10,"n":6,"p":11,"gf":47,"gs":46,"pt":36,"tot":1970.5,"trend":"stable"},
+    {"pos":6,"nome":"I Ridartati dei Caraibi","user":"Denny","g":27,"v":8,"n":9,"p":10,"gf":41,"gs":44,"pt":33,"tot":1933,"trend":"down"},
+    {"pos":7,"nome":"PORCELLONA FC","user":"andrebamuj33","g":27,"v":8,"n":9,"p":10,"gf":27,"gs":38,"pt":33,"tot":1860,"trend":"stable"},
+    {"pos":8,"nome":"monza","user":"intermerda2009","g":27,"v":9,"n":5,"p":13,"gf":30,"gs":41,"pt":32,"tot":1862.5,"trend":"down"}
+  ],
+  "andamento": {
+    "note": "Classifica per fasce di giornate",
+    "fasi": [
+      {"label":"G1-9","primo":"ac pizzo","secondo":"R B Salisburro","ultimo":"monza"},
+      {"label":"G10-18","primo":"R B Salisburro","secondo":"ac pizzo","ultimo":"monza"},
+      {"label":"G19-23","primo":"R B Salisburro","secondo":"fc kiricocho2puntozero","ultimo":"monza"},
+      {"label":"G24-27","primo":"fc kiricocho2puntozero","secondo":"ac pizzo","ultimo":"monza"}
+    ]
+  },
+  "summer_cup": {
+    "in_corso": true,
+    "gruppi": {
+      "A": {
+        "squadre": ["Santini United","R B Salisburro","PORCELLONA FC","monza"],
+        "risultati": [
+          {"g":1,"partite":[{"casa":"PORCELLONA FC","gol_c":2,"gol_t":0,"trasferta":"Santini United","pt_c":73,"pt_t":64.5},{"casa":"monza","gol_c":0,"gol_t":2,"trasferta":"R B Salisburro","pt_c":57,"pt_t":76.5}]},
+          {"g":2,"partite":[{"casa":"R B Salisburro","gol_c":1,"gol_t":2,"trasferta":"PORCELLONA FC","pt_c":69.5,"pt_t":72.5},{"casa":"Santini United","gol_c":0,"gol_t":1,"trasferta":"monza","pt_c":60,"pt_t":68.5}]},
+          {"g":3,"partite":[{"casa":"R B Salisburro","gol_c":0,"gol_t":2,"trasferta":"Santini United","pt_c":64.5,"pt_t":73},{"casa":"monza","gol_c":1,"gol_t":0,"trasferta":"PORCELLONA FC","pt_c":70.5,"pt_t":63.5}]},
+          {"g":4,"partite":[{"casa":"Santini United","gol_c":3,"gol_t":1,"trasferta":"PORCELLONA FC","pt_c":82,"pt_t":69.5},{"casa":"R B Salisburro","gol_c":0,"gol_t":1,"trasferta":"monza","pt_c":59.5,"pt_t":71}]}
+        ]
+      },
+      "B": {
+        "squadre": ["fc kiricocho2puntozero","ac pizzo","I Ridartati dei Caraibi","FcZeroTituli"],
+        "risultati": [
+          {"g":1,"partite":[{"casa":"I Ridartati dei Caraibi","gol_c":2,"gol_t":1,"trasferta":"FcZeroTituli","pt_c":76.5,"pt_t":68},{"casa":"fc kiricocho2puntozero","gol_c":3,"gol_t":1,"trasferta":"ac pizzo","pt_c":81,"pt_t":67.5}]},
+          {"g":2,"partite":[{"casa":"ac pizzo","gol_c":2,"gol_t":0,"trasferta":"I Ridartati dei Caraibi","pt_c":74,"pt_t":64},{"casa":"FcZeroTituli","gol_c":2,"gol_t":3,"trasferta":"fc kiricocho2puntozero","pt_c":73.5,"pt_t":79}]},
+          {"g":3,"partite":[{"casa":"ac pizzo","gol_c":2,"gol_t":1,"trasferta":"FcZeroTituli","pt_c":77,"pt_t":70.5},{"casa":"fc kiricocho2puntozero","gol_c":3,"gol_t":1,"trasferta":"I Ridartati dei Caraibi","pt_c":82,"pt_t":66}]},
+          {"g":4,"partite":[{"casa":"FcZeroTituli","gol_c":1,"gol_t":1,"trasferta":"I Ridartati dei Caraibi","pt_c":66.5,"pt_t":70},{"casa":"ac pizzo","gol_c":3,"gol_t":2,"trasferta":"fc kiricocho2puntozero","pt_c":82.5,"pt_t":72.5}]}
+        ]
+      }
+    }
+  },
+  "giornata_28": {
+    "partite_serie_a": [
+      {"ora":"18:30","stato":"live","casa":"Cagliari","trasferta":"Napoli"},
+      {"ora":"20:45","stato":"oggi","casa":"Genoa","trasferta":"Udinese"},
+      {"ora":"Sab 15:00","stato":"weekend","casa":"Parma","trasferta":"Cremonese"},
+      {"ora":"Sab 18:00","stato":"weekend","casa":"Milan","trasferta":"Torino"},
+      {"ora":"Sab 20:45","stato":"weekend","casa":"Juventus","trasferta":"Sassuolo"},
+      {"ora":"Dom 12:30","stato":"weekend","casa":"Como","trasferta":"Pisa"},
+      {"ora":"Dom 15:00","stato":"weekend","casa":"Atalanta","trasferta":"Verona"},
+      {"ora":"Dom 15:00","stato":"weekend","casa":"Bologna","trasferta":"Lazio"},
+      {"ora":"Dom 18:00","stato":"weekend","casa":"Roma","trasferta":"Lecce"},
+      {"ora":"Dom 20:45","stato":"weekend","casa":"Fiorentina","trasferta":"Inter"}
+    ],
+    "fantapartite": [
+      {"casa":"I Ridartati dei Caraibi","trasferta":"fc kiricocho2puntozero"},
+      {"casa":"R B Salisburro","trasferta":"monza"},
+      {"casa":"FcZeroTituli","trasferta":"ac pizzo"},
+      {"casa":"Santini United","trasferta":"PORCELLONA FC"}
+    ]
+  },
+  "curiosita_stagione": [
+    {"icon":"🔥","titolo":"Il sorpasso del secolo","testo":"Ale era 4° alla giornata 9. Dalla giornata 20 in poi non si è più fermato. Ora è primo con 6 punti di vantaggio su Mike e li sta aumentando."},
+    {"icon":"👑","titolo":"Willy: un regno durato 5 giornate","testo":"Dalla giornata 19 alla 23 R B Salisburro era in testa. Poi Ale ha fatto 0-4 a Bobo con 85.5pt e ha scavalcato tutti. Il trono era caldo ma non abbastanza."},
+    {"icon":"⚡","titolo":"Il punteggio più alto della stagione","testo":"Giornata 17: Santini United fa 94.5pt e batte Denny 2-5. Fino ad allora non si era mai visto un punteggio simile in lega. Ale stava solo riscaldando i motori."},
+    {"icon":"💀","titolo":"monza e i 13 ko","testo":"Salvo ha perso 13 partite su 27 — la metà esatta. Peggior attacco con 30 gol fatti. Alla giornata 21 ha toccato il fondo con 57pt. La stagione è ancora lunga, ma non abbastanza."},
+    {"icon":"🎲","titolo":"Denny: campione in carica al 6° posto","testo":"Il campione uscente è sesto a -13 dal leader. Ha alternato grandi prove (2-5 su Denny alla g17, ma dall'altra parte) a crolli inspiegabili. La difesa del titolo è complicata."},
+    {"icon":"💸","titolo":"De Bruyne a 1 credito","testo":"Bamu ha preso De Bruyne a 1 solo credito al mercato di riparazione. Il belga ha già fatto 86 fantapunti. Miglior acquisto della sessione invernale, senza discussione."},
+    {"icon":"📉","titolo":"Ferguson E.: 135 crediti per 15 fantapunti","testo":"Ale ha speso 135 crediti su Ferguson E. alla prima asta. Al momento il rendimento è deludente. Il colpo più rischioso della stagione sta ancora cercando la forma."},
+    {"icon":"🏆","titolo":"Ale domina anche la Summer Cup","testo":"Nel Gruppo B Ale è primo con 3 vittorie e 1 pareggio. Se dovesse vincere anche la Summer Cup oltre al campionato, sarebbe la stagione perfetta."},
+    {"icon":"😤","titolo":"Bamu e il paradosso","testo":"PORCELLONA FC è 7° ma ha De Bruyne (1 credito), David (139 crediti, 43 fantapunti) e Dybala in rosa. Squadra forte sulla carta, risultati sotto le aspettative."},
+    {"icon":"🍀","titolo":"Il culo del calendario","testo":"Ale alla giornata 20 ha incrociato Bobo nel momento peggiore per Bobo (65pt) e nel momento migliore per lui (85.5pt). Quattro gol di scarto. A volte la fortuna del calendario fa la differenza."}
+  ]
+}

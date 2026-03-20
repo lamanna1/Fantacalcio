@@ -428,6 +428,11 @@
 </head>
 <body>
 
+<div style="background:#0f3460;padding:8px 16px;text-align:center;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(245,197,24,0.2)">
+  <a href="index.html" style="display:inline-flex;align-items:center;gap:8px;background:rgba(245,197,24,0.15);border:1px solid rgba(245,197,24,0.35);color:#F5C518;font-family:Lato,sans-serif;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:7px 18px;border-radius:20px;text-decoration:none">
+    ⚽ Dashboard Stagione 25/26 →
+  </a>
+</div>
 <div class="header">
   <div class="eyebrow">⚽ Lega Fantacalcio</div>
   <h1>Albo d'Oro</h1>
@@ -446,6 +451,8 @@
     <button class="tab" onclick="showTab('stats',this)">Trofei</button>
     <button class="tab" onclick="showTab('birre',this)">🍺 Birre</button>
     <button class="tab" onclick="showTab('curiose',this)">💡 Curiosità</button>
+    <button class="tab" onclick="showTab('stagione',this)">⚽ 25/26</button>
+    <button class="tab" onclick="showTab('live',this)">⚽ Live</button>
   </div>
 
   <!-- ===== SERIE A ===== -->
@@ -1077,7 +1084,60 @@
     </div>
   </div>
 
-  <footer>Lega Fantacalcio · 2018–2025</footer>
+
+  <!-- ===== STAGIONE 25/26 ===== -->
+  <div class="section" id="tab-stagione">
+    <div class="section-title">⚽ Stagione 2025/26 — Live</div>
+
+    <!-- CLASSIFICA G27 -->
+    <div class="stat-box" style="margin-bottom:10px">
+      <div class="stat-box-title">Classifica Serie A · Giornata 27</div>
+      <div style="overflow-x:auto">
+      <table style="width:100%;font-size:11px;border-collapse:collapse;min-width:340px">
+        <thead><tr style="color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid var(--border)">
+          <td style="padding:5px 3px;width:20px">#</td>
+          <td style="padding:5px 6px">Squadra</td>
+          <td style="padding:5px 3px;text-align:center">V</td>
+          <td style="padding:5px 3px;text-align:center">N</td>
+          <td style="padding:5px 3px;text-align:center">P</td>
+          <td style="padding:5px 3px;text-align:center;font-weight:700">Pt</td>
+          <td style="padding:5px 3px;text-align:right">Tot</td>
+        </tr></thead>
+        <tbody>
+          <tr style="border-bottom:0.5px solid var(--border)"><td style="padding:6px 3px;font-weight:700;color:#1D9E75">1</td><td style="padding:6px 6px;font-weight:700;font-size:12px">fc kiricocho2puntozero<br><span style="font-weight:400;color:var(--muted);font-size:10px">alessandrogobbo90</span></td><td style="padding:6px 3px;text-align:center;color:var(--muted)">13</td><td style="padding:6px 3px;text-align:center;color:var(--muted)">7</td><td style="padding:6px 3px;text-align:center;color:var(--muted)">7</td><td style="padding:6px 3px;text-align:center;font-weight:700;color:#1D9E75">46</td><td style="padding:6px 3px;text-align:right;font-weight:700;color:#1D9E75">1977.5</td></tr>
+          <tr style="border-bottom:0.5px solid var(--border)"><td style="padding:6px 3px;font-weight:700;color:#378ADD">2</td><td style="padding:6px 6px;font-weight:700;font-size:12px">ac pizzo<br><span style="font-weight:400;color:var(--muted);font-size:10px">mikepizzo</span></td><td style="padding:6px 3px;text-align:center;color:var(--muted)">12</td><td style="padding:6px 3px;text-align:center;color:var(--muted)">4</td><td style="padding:6px 3px;text-align:center;color:var(--muted)">11</td><td style="padding:6px 3px;text-align:center;font-weight:700;color:#378ADD">40</td><td style="padding:6px 3px;text-align:right">1965</td></tr>
+          <tr style="border-bottom:0.5px solid var(--border)"><td style="padding:6px 3px;font-weight:700;color:#7F77DD">3</td><td style="padding:6px 6px;font-weight:700;font-size:12px">FcZeroTituli<br><span style="font-weight:400;color:var(--muted);font-size:10px">Bobo88</span></td><td style="padding:6px 3px;text-align:center;color:var(--muted)">11</td><td style="padding:6px 3px;text-align:center;color:var(--muted)">6</td><td style="padding:6px 3px;text-align:center;color:var(--muted)">10</td><td style="padding:6px 3px;text-align:center;font-weight:700;color:#7F77DD">39</td><td style="padding:6px 3px;text-align:right">1937</td></tr>
+          <tr style="border-bottom:0.5px solid var(--border)"><td style="padding:6px 3px;font-weight:700;color:#EF9F27">4</td><td style="padding:6px 6px;font-weight:700;font-size:12px">R B Salisburro<br><span style="font-weight:400;color:var(--muted);font-size:10px">Germano Mosconi</span></td><td style="padding:6px 3px;text-align:center;color:var(--muted)">10</td><td style="padding:6px 3px;text-align:center;color:var(--muted)">8</td><td style="padding:6px 3px;text-align:center;color:var(--muted)">9</td><td style="padding:6px 3px;text-align:center;font-weight:700;color:#EF9F27">38</td><td style="padding:6px 3px;text-align:right">1930</td></tr>
+          <tr style="border-bottom:0.5px solid var(--border)"><td style="padding:6px 3px;font-weight:700;color:var(--muted)">5</td><td style="padding:6px 6px;font-weight:700;font-size:12px">Santini United<br><span style="font-weight:400;color:var(--muted);font-size:10px">dalama</span></td><td style="padding:6px 3px;text-align:center;color:var(--muted)">10</td><td style="padding:6px 3px;text-align:center;color:var(--muted)">6</td><td style="padding:6px 3px;text-align:center;color:var(--muted)">11</td><td style="padding:6px 3px;text-align:center;font-weight:700;color:var(--muted)">36</td><td style="padding:6px 3px;text-align:right">1970.5</td></tr>
+          <tr style="border-bottom:0.5px solid var(--border)"><td style="padding:6px 3px;font-weight:700;color:var(--muted)">6</td><td style="padding:6px 6px;font-weight:700;font-size:12px">I Ridartati dei Caraibi<br><span style="font-weight:400;color:var(--muted);font-size:10px">Denny</span></td><td style="padding:6px 3px;text-align:center;color:var(--muted)">8</td><td style="padding:6px 3px;text-align:center;color:var(--muted)">9</td><td style="padding:6px 3px;text-align:center;color:var(--muted)">10</td><td style="padding:6px 3px;text-align:center;font-weight:700;color:var(--muted)">33</td><td style="padding:6px 3px;text-align:right">1933</td></tr>
+          <tr style="border-bottom:0.5px solid var(--border)"><td style="padding:6px 3px;font-weight:700;color:var(--muted)">7</td><td style="padding:6px 6px;font-weight:700;font-size:12px">PORCELLONA FC<br><span style="font-weight:400;color:var(--muted);font-size:10px">andrebamuj33</span></td><td style="padding:6px 3px;text-align:center;color:var(--muted)">8</td><td style="padding:6px 3px;text-align:center;color:var(--muted)">9</td><td style="padding:6px 3px;text-align:center;color:var(--muted)">10</td><td style="padding:6px 3px;text-align:center;font-weight:700;color:var(--muted)">33</td><td style="padding:6px 3px;text-align:right;color:#E24B4A;font-weight:700">1860</td></tr>
+          <tr><td style="padding:6px 3px;font-weight:700;color:#E24B4A">8</td><td style="padding:6px 6px;font-weight:700;font-size:12px">monza<br><span style="font-weight:400;color:var(--muted);font-size:10px">intermerda2009</span></td><td style="padding:6px 3px;text-align:center;color:var(--muted)">9</td><td style="padding:6px 3px;text-align:center;color:var(--muted)">5</td><td style="padding:6px 3px;text-align:center;color:var(--muted)">13</td><td style="padding:6px 3px;text-align:center;font-weight:700;color:#E24B4A">32</td><td style="padding:6px 3px;text-align:right">1862.5</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+
+    <!-- GIORNATA 30 -->
+    <div class="stat-box" style="margin-bottom:10px">
+      <div class="stat-box-title">Giornata 30 — Partite &amp; Giocatori</div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:10px">Giocatori coinvolti per ogni fantallegista</div>
+
+      <div id="matches-g30"></div>
+    </div>
+
+    <!-- ROSE COLLASSABILI -->
+    <div class="stat-box" style="margin-bottom:10px">
+      <div class="stat-box-title">Rose Post Mercato Invernale</div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:8px">Tocca per espandere · <span style="color:#1D9E75">verde</span> = affare (pagato meno del valore) · <span style="color:#E24B4A">rosso</span> = pagato caro (speso molto più del valore)</div>
+      <div id="rose-container"></div>
+    </div>
+
+    <div style="background:var(--surface);border-radius:var(--radius);padding:10px 14px;font-size:11px;color:var(--muted);text-align:center;margin-top:4px">
+      Classifica aggiornata alla giornata 27 · Rose post mercato invernale febbraio 2026
+    </div>
+  </div>
+
+  <footer>Lega Fantacalcio · 2018–2025 · Stagione 25/26 in corso</footer>
 
 </div>
 
@@ -1089,6 +1149,260 @@ function showTab(id, btn) {
   btn.classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+function toggleRose(header) {
+  const body = header.nextElementSibling;
+  const arrow = header.querySelector('.arrow');
+  if (body.style.display === 'none') {
+    body.style.display = 'block';
+    if(arrow) arrow.textContent = '▲';
+  } else {
+    body.style.display = 'none';
+    if(arrow) arrow.textContent = '▼';
+  }
+}
+
+const COLORS = {
+  'mikepizzo': '#378ADD',
+  'alessandrogobbo90': '#1D9E75',
+  'Bobo88': '#7F77DD',
+  'Germano Mosconi': '#EF9F27',
+  'dalama': '#BA7517',
+  'Denny': '#534AB7',
+  'andrebamuj33': '#639922',
+  'intermerda2009': '#854F0B'
+};
+
+const MATCHES_G30 = [
+  { time: '🔴 LIVE 18:30', home: 'Cagliari', away: 'Napoli', players: [
+    { owner: 'Germano Mosconi', user: 'Willy', items: ['Caprile (P)', 'Palestra (D)', 'Krstovic (A)'] },
+    { owner: 'Bobo88', user: 'Bobo', items: ['Buongiorno (D)', 'Di Lorenzo (D)'] },
+    { owner: 'Denny', user: 'Denny', items: ['Meret (P)', 'McTominay (C)', 'Elmas (C)'] },
+    { owner: 'andrebamuj33', user: 'Bamu', items: ['De Bruyne (C)', 'Lobotka (C)'] },
+    { owner: 'intermerda2009', user: 'Salvo', items: ['Calhanoglu (C)', 'Barella (C)', 'Kean (A)', 'Scamacca (A)'] }
+  ]},
+  { time: '20:45', home: 'Genoa', away: 'Udinese', players: [
+    { owner: 'mikepizzo', user: 'Mike', items: ['Leali (P)'] },
+    { owner: 'alessandrogobbo90', user: 'Ale', items: ['Vasquez (D)', 'Davis K. (A)'] },
+    { owner: 'Germano Mosconi', user: 'Willy', items: ['Samardzic (C)'] }
+  ]},
+  { time: 'Sab 15:00', home: 'Parma', away: 'Cremonese', players: [
+    { owner: 'mikepizzo', user: 'Mike', items: ['Valeri (D)', 'Da Cunha (C)'] },
+    { owner: 'andrebamuj33', user: 'Bamu', items: ['Delprato (D)', 'Isaksen (C)'] },
+    { owner: 'Germano Mosconi', user: 'Willy', items: ['Bernabe (C)', 'Vardy (A)'] },
+    { owner: 'Denny', user: 'Denny', items: ['Vojvoda (D)'] }
+  ]},
+  { time: 'Sab 18:00', home: 'Milan', away: 'Torino', players: [
+    { owner: 'mikepizzo', user: 'Mike', items: ['Gabbia (D)', 'Pavlovic (D)', 'Modric (C)', 'Loftus-Cheek (C)', 'Saelemaekers (C)', 'Leao (A)'] },
+    { owner: 'alessandrogobbo90', user: 'Ale', items: ['Nkunku (A)'] },
+    { owner: 'Denny', user: 'Denny', items: ['Pulisic (C)', 'Fofana (C)', 'Rabiot (C)'] },
+    { owner: 'intermerda2009', user: 'Salvo', items: ['Maignan (P)', 'Fullkrug (A)'] }
+  ]},
+  { time: 'Sab 20:45', home: 'Juventus', away: 'Sassuolo', players: [
+    { owner: 'mikepizzo', user: 'Mike', items: ['Conceicao (C)', 'Yildiz (A)'] },
+    { owner: 'alessandrogobbo90', user: 'Ale', items: ['Locatelli (C)', 'Thuram K. (C)'] },
+    { owner: 'andrebamuj33', user: 'Bamu', items: ['Di Gregorio (P)', 'David (A)'] },
+    { owner: 'Germano Mosconi', user: 'Willy', items: ['Bremer (D)'] }
+  ]},
+  { time: 'Dom 15:00', home: 'Bologna', away: 'Lazio', players: [
+    { owner: 'mikepizzo', user: 'Mike', items: ['Saelemaekers (C)', 'Castro S. (A)', 'Zaccagni (C)'] },
+    { owner: 'alessandrogobbo90', user: 'Ale', items: ['Skorupski (P)', 'Zortea (D)', 'Bernardeschi (C)', 'Ferguson B. (C)'] },
+    { owner: 'andrebamuj33', user: 'Bamu', items: ['Gila (D)', 'Isaksen (C)', 'Castellanos (A)'] },
+    { owner: 'Denny', user: 'Denny', items: ['Basic (C)', 'Cancellieri (A)'] },
+    { owner: 'intermerda2009', user: 'Salvo', items: ['Barella (C)', 'Pasalic (C)'] }
+  ]},
+  { time: 'Dom 18:00', home: 'Roma', away: 'Lecce', players: [
+    { owner: 'mikepizzo', user: 'Mike', items: ['N\'Dicka (D)', 'Esposito F.P. (A)'] },
+    { owner: 'alessandrogobbo90', user: 'Ale', items: ['Dovbyk (A)', 'Ferguson E. (A)', 'Soule (A)', 'Malen (A)'] },
+    { owner: 'andrebamuj33', user: 'Bamu', items: ['Angelino (D)', 'Dybala (A)'] },
+    { owner: 'Germano Mosconi', user: 'Willy', items: ['Svilar (P)', 'El Shaarawy (C)', 'Orsolini (C)'] }
+  ]},
+  { time: 'Dom 20:45', home: 'Fiorentina', away: 'Inter', players: [
+    { owner: 'alessandrogobbo90', user: 'Ale', items: ['Dimarco (D)', 'Mkhitaryan (C)'] },
+    { owner: 'Denny', user: 'Denny', items: ['Acerbi (D)', 'Akanji (D)', 'Bastoni (D)', 'Bisseck (D)'] },
+    { owner: 'Germano Mosconi', user: 'Willy', items: ['Dumfries (D)'] },
+    { owner: 'intermerda2009', user: 'Salvo', items: ['Calhanoglu (C)', 'De Roon (C)'] }
+  ]}
+];
+
+const ROSE_DATA = [
+  { name: 'ac pizzo', user: 'mikepizzo', crediti: 15, color: '#378ADD', players: [
+    {r:'P',n:'Bijlow',t:'Genoa',q:11,f:15,v:1},{r:'P',n:'Leali',t:'Genoa',q:8,f:1,v:11},{r:'P',n:'Provedel',t:'Lazio',q:15,f:41,v:6},
+    {r:'D',n:'Bellanova',t:'Atalanta',q:6,f:12,v:21},{r:'D',n:'Dodo',t:'Fiorentina',q:9,f:37,v:25},{r:'D',n:'Estupinan',t:'Milan',q:4,f:12,v:10},
+    {r:'D',n:'Gabbia',t:'Milan',q:7,f:17,v:1},{r:'D',n:'Kalulu',t:'Juventus',q:13,f:62,v:3},{r:'D',n:"N'Dicka",t:'Roma',q:12,f:51,v:9},
+    {r:'D',n:'Pavlovic',t:'Milan',q:16,f:43,v:12},{r:'D',n:'Valeri',t:'Parma',q:10,f:21,v:12},
+    {r:'C',n:'Conceicao',t:'Juventus',q:16,f:44,v:26},{r:'C',n:'Da Cunha',t:'Como',q:16,f:49,v:1},
+    {r:'C',n:'Loftus-Cheek',t:'Milan',q:13,f:18,v:9},{r:'C',n:'Modric',t:'Milan',q:21,f:87,v:12},
+    {r:'C',n:'Politano',t:'Napoli',q:12,f:27,v:2},{r:'C',n:'Ricci S.',t:'Milan',q:13,f:13,v:6},
+    {r:'C',n:'Saelemaekers',t:'Milan',q:17,f:71,v:15},{r:'C',n:'Zaccagni',t:'Lazio',q:13,f:46,v:70},
+    {r:'A',n:'Castro S.',t:'Bologna',q:22,f:61,v:9},{r:'A',n:'Esposito F.P.',t:'Inter',q:22,f:44,v:2},
+    {r:'A',n:'Leao',t:'Milan',q:27,f:173,v:161},{r:'A',n:'Rodriguez Je.',t:'Como',q:14,f:23,v:1},
+    {r:'A',n:'Vitinha O.',t:'Genova',q:16,f:41,v:1},{r:'A',n:'Yildiz',t:'Juventus',q:30,f:247,v:70}
+  ]},
+  { name: 'fc kiricocho2puntozero', user: 'alessandrogobbo90', crediti: 23, color: '#1D9E75', players: [
+    {r:'P',n:'Carnesecchi',t:'Atalanta',q:18,f:73,v:30},{r:'P',n:'Okoye',t:'Udinese',q:11,f:10,v:1},{r:'P',n:'Sportiello',t:'Atalanta',q:1,f:1,v:1},
+    {r:'D',n:'Bartesaghi',t:'Milan',q:13,f:21,v:1},{r:'D',n:'Belghali',t:'Verona',q:9,f:12,v:1},
+    {r:'D',n:'Dimarco',t:'Inter',q:32,f:282,v:39},{r:'D',n:'Joao Mario',t:'Bologna',q:3,f:10,v:19},
+    {r:'D',n:'Kelly L.',t:'Juventus',q:10,f:20,v:7},{r:'D',n:'Muharemovic',t:'Sassuolo',q:8,f:15,v:1},
+    {r:'D',n:'Zappacosta',t:'Atalanta',q:11,f:22,v:8},{r:'D',n:'Zemura',t:'Udinese',q:4,f:8,v:1},
+    {r:'C',n:'Bernardeschi',t:'Bologna',q:8,f:18,v:5},{r:'C',n:'Ederson D.S.',t:'Atalanta',q:12,f:27,v:19},
+    {r:'C',n:'Locatelli',t:'Juventus',q:15,f:55,v:10},{r:'C',n:'Malinovskyi',t:'Genoa',q:16,f:52,v:18},
+    {r:'C',n:'Mandragora',t:'Fiorentina',q:18,f:76,v:4},{r:'C',n:'Pellegrini Lo.',t:'Roma',q:14,f:35,v:1},
+    {r:'C',n:'Thuram K.',t:'Juventus',q:14,f:49,v:19},{r:'C',n:'Vergara',t:'Napoli',q:11,f:26,v:2},
+    {r:'A',n:'Adams C.',t:'Torino',q:16,f:35,v:1},{r:'A',n:'Davis K.',t:'Udinese',q:26,f:90,v:30},
+    {r:'A',n:'Ferguson E.',t:'Roma',q:13,f:15,v:135},{r:'A',n:'Malen',t:'Roma',q:20,f:266,v:54},
+    {r:'A',n:'Nkunku',t:'Milan',q:18,f:37,v:34},{r:'A',n:'Soule',t:'Roma',q:21,f:96,v:22}
+  ]},
+  { name: 'FcZeroTituli', user: 'Bobo88', crediti: 8, color: '#7F77DD', players: [
+    {r:'P',n:'Falcone',t:'Lecce',q:15,f:36,v:1},{r:'P',n:'Muric',t:'Sassuolo',q:10,f:11,v:1},{r:'P',n:'Ravaglia F.',t:'Bologna',q:6,f:1,v:1},
+    {r:'D',n:'Buongiorno',t:'Napoli',q:9,f:17,v:20},{r:'D',n:'Cambiaso',t:'Juventus',q:10,f:18,v:4},
+    {r:'D',n:'Di Lorenzo',t:'Napoli',q:10,f:36,v:1},{r:'D',n:'Juan Jesus',t:'Napoli',q:4,f:16,v:1},
+    {r:'D',n:'Mina',t:'Cagliari',q:6,f:12,v:6},{r:'D',n:'Norton-Cuffy',t:'Genoa',q:9,f:20,v:2},
+    {r:'D',n:'Ramon',t:'Como',q:12,f:30,v:11},{r:'D',n:'Wesley',t:'Roma',q:15,f:44,v:32},
+    {r:'C',n:'Ekkelenkamp',t:'Udinese',q:13,f:24,v:4},{r:'C',n:'Maldini',t:'Lazio',q:8,f:21,v:7},
+    {r:'C',n:'McKennie',t:'Juventus',q:18,f:124,v:12},{r:'C',n:'Sucic P.',t:'Inter',q:10,f:13,v:6},
+    {r:'C',n:'Zalewski',t:'Atalanta',q:16,f:32,v:15},{r:'C',n:'Zambo Anguissa',t:'Napoli',q:17,f:63,v:40},
+    {r:'C',n:'Zaniolo',t:'Udinese',q:20,f:84,v:3},{r:'C',n:'Zielinski',t:'Inter',q:23,f:57,v:49},
+    {r:'A',n:'De Ketelaere',t:'Atalanta',q:15,f:59,v:5},{r:'A',n:'Hojlund',t:'Napoli',q:27,f:207,v:83},
+    {r:'A',n:'Lukaku',t:'Napoli',q:15,f:36,v:6},{r:'A',n:'Martinez L.',t:'Inter',q:33,f:355,v:165},
+    {r:'A',n:'Raspadori',t:'Atalanta',q:14,f:50,v:13},{r:'A',n:'Sulemana K.',t:'Atalanta',q:11,f:11,v:1}
+  ]},
+  { name: 'R B Salisburro', user: 'Germano Mosconi', crediti: 57, color: '#EF9F27', players: [
+    {r:'P',n:'Caprile',t:'Cagliari',q:11,f:26,v:2},{r:'P',n:'Gollini',t:'Roma',q:1,f:1,v:1},{r:'P',n:'Svilar',t:'Roma',q:17,f:95,v:33},
+    {r:'D',n:'Bremer',t:'Juventus',q:20,f:74,v:26},{r:'D',n:'Doig',t:'Sassuolo',q:7,f:11,v:1},
+    {r:'D',n:'Dumfries',t:'Inter',q:10,f:22,v:45},{r:'D',n:'Holm',t:'Juventus',q:10,f:8,v:1},
+    {r:'D',n:'Miranda J.',t:'Bologna',q:8,f:12,v:1},{r:'D',n:'Palestra',t:'Cagliari',q:16,f:83,v:5},
+    {r:'D',n:'Scalvini',t:'Atalanta',q:14,f:15,v:10},{r:'D',n:'Spinazzola',t:'Napoli',q:20,f:51,v:3},
+    {r:'C',n:'Baldanzi',t:'Genoa',q:6,f:20,v:1},{r:'C',n:'Baturina',t:'Como',q:21,f:61,v:1},
+    {r:'C',n:'Bernabe',t:'Parma',q:16,f:27,v:1},{r:'C',n:'Brescianini',t:'Fiorentina',q:13,f:23,v:5},
+    {r:'C',n:'Gaetano',t:'Cagliari',q:12,f:13,v:1},{r:'C',n:'Karlstrom',t:'Udinese',q:9,f:18,v:1},
+    {r:'C',n:'Orsolini',t:'Bologna',q:20,f:159,v:80},{r:'C',n:'Zaragoza',t:'Roma',q:7,f:13,v:2},
+    {r:'A',n:'Berardi',t:'Sassuolo',q:26,f:100,v:99},{r:'A',n:'Kilicsoy',t:'Cagliari',q:17,f:29,v:11},
+    {r:'A',n:'Krstovic',t:'Atalanta',q:25,f:63,v:29},{r:'A',n:'Orban G.',t:'Verona',q:18,f:32,v:1},
+    {r:'A',n:'Solomon',t:'Fiorentina',q:10,f:23,v:1},{r:'A',n:'Vardy',t:'Cremonese',q:16,f:29,v:21}
+  ]},
+  { name: 'Santini United', user: 'dalama', crediti: 37, color: '#BA7517', players: [
+    {r:'P',n:'Butez',t:'Como',q:16,f:75,v:11},{r:'P',n:'Martinez Jo.',t:'Inter',q:1,f:1,v:1},{r:'P',n:'Sommer',t:'Inter',q:14,f:70,v:38},
+    {r:'D',n:'Carlos Augusto',t:'Inter',q:12,f:16,v:7},{r:'D',n:'Diego Carlos',t:'Como',q:8,f:15,v:1},
+    {r:'D',n:'Gosens',t:'Fiorentina',q:9,f:17,v:26},{r:'D',n:'Kempf',t:'Como',q:18,f:28,v:2},
+    {r:'D',n:'Mancini',t:'Roma',q:11,f:43,v:5},{r:'D',n:'Ostigard',t:'Genoa',q:16,f:45,v:2},
+    {r:'D',n:'Rrahmani',t:'Napoli',q:9,f:27,v:5},{r:'D',n:'Valle',t:'Como',q:10,f:17,v:1},
+    {r:'C',n:'Cataldi',t:'Lazio',q:14,f:26,v:1},{r:'C',n:'De Bruyne',t:'Napoli',q:18,f:86,v:1},
+    {r:'C',n:'Gudmundsson',t:'Fiorentina',q:16,f:74,v:72},{r:'C',n:'Kone I.',t:'Sassuolo',q:17,f:59,v:1},
+    {r:'C',n:'Matic',t:'Sassuolo',q:9,f:15,v:1},{r:'C',n:'Paz N.',t:'Como',q:26,f:230,v:95},
+    {r:'C',n:'Strefezza',t:'Parma',q:12,f:32,v:1},{r:'C',n:'Taylor K.',t:'Lazio',q:14,f:33,v:19},
+    {r:'A',n:'Bonny',t:'Inter',q:18,f:20,v:2},{r:'A',n:'Douvikas',t:'Como',q:25,f:112,v:10},
+    {r:'A',n:'Durosinmi',t:'Pisa',q:13,f:24,v:11},{r:'A',n:'Esposito Se.',t:'Cagliari',q:17,f:57,v:1},
+    {r:'A',n:'Morata',t:'Como',q:3,f:10,v:7},{r:'A',n:'Thuram',t:'Inter',q:27,f:203,v:180}
+  ]},
+  { name: 'I Ridartati dei Caraibi', user: 'Denny', crediti: 103, color: '#534AB7', players: [
+    {r:'P',n:'Audero',t:'Cremonese',q:11,f:7,v:1},{r:'P',n:'Meret',t:'Napoli',q:8,f:18,v:26},{r:'P',n:'Milinkovic-Savic',t:'Napoli',q:16,f:21,v:20},
+    {r:'D',n:'Acerbi',t:'Inter',q:4,f:9,v:1},{r:'D',n:'Akanji',t:'Inter',q:14,f:62,v:11},
+    {r:'D',n:'Bastoni',t:'Inter',q:15,f:55,v:19},{r:'D',n:'Bisseck',t:'Inter',q:16,f:40,v:8},
+    {r:'D',n:'Celik',t:'Roma',q:14,f:16,v:1},{r:'D',n:'Gutierrez',t:'Napoli',q:9,f:13,v:14},
+    {r:'D',n:'Vasquez',t:'Genoa',q:11,f:29,v:1},{r:'D',n:'Vojvoda',t:'Como',q:13,f:23,v:1},
+    {r:'C',n:'Basic',t:'Lazio',q:10,f:14,v:1},{r:'C',n:'Elmas',t:'Napoli',q:8,f:29,v:1},
+    {r:'C',n:'Fofana Y.',t:'Milan',q:11,f:28,v:1},{r:'C',n:'McTominay',t:'Napoli',q:24,f:198,v:98},
+    {r:'C',n:'Mkhitaryan',t:'Inter',q:14,f:21,v:1},{r:'C',n:'Pulisic',t:'Milan',q:28,f:207,v:96},
+    {r:'C',n:'Rabiot',t:'Milan',q:23,f:142,v:27},{r:'C',n:'Thorstvedt',t:'Sassuolo',q:14,f:30,v:1},
+    {r:'A',n:'Cancellieri',t:'Lazio',q:12,f:15,v:1},{r:'A',n:'Colombo',t:'Genoa',q:15,f:51,v:1},
+    {r:'A',n:'Moreo',t:'Pisa',q:19,f:25,v:1},{r:'A',n:'Openda',t:'Juventus',q:6,f:11,v:1},
+    {r:'A',n:'Ratkov',t:'Lazio',q:12,f:12,v:1},{r:'A',n:'Zapata D.',t:'Torino',q:8,f:17,v:1}
+  ]},
+  { name: 'PORCELLONA FC', user: 'andrebamuj33', crediti: 45, color: '#639922', players: [
+    {r:'P',n:'Di Gregorio',t:'Juventus',q:12,f:20,v:37},{r:'P',n:'Perin',t:'Juventus',q:6,f:36,v:2},{r:'P',n:'Pinsoglio',t:'Juventus',q:1,f:1,v:1},
+    {r:'D',n:'Coco',t:'Torino',q:11,f:13,v:1},{r:'D',n:'De Winter',t:'Milan',q:9,f:14,v:6},
+    {r:'D',n:'Delprato',t:'Parma',q:9,f:20,v:7},{r:'D',n:'Gila',t:'Lazio',q:9,f:17,v:6},
+    {r:'D',n:'Hien',t:'Atalanta',q:7,f:11,v:5},{r:'D',n:'Lazaro',t:'Torino',q:5,f:12,v:15},
+    {r:'D',n:'Solet',t:'Udinese',q:12,f:41,v:15},{r:'D',n:'Tomori',t:'Milan',q:9,f:32,v:9},
+    {r:'C',n:'Isaksen',t:'Lazio',q:16,f:39,v:25},{r:'C',n:'Lobotka',t:'Napoli',q:10,f:25,v:7},
+    {r:'C',n:'Miretti',t:'Juventus',q:11,f:16,v:1},{r:'C',n:'Odgaard',t:'Bologna',q:16,f:25,v:17},
+    {r:'C',n:'Perrone',t:'Como',q:16,f:44,v:1},{r:'C',n:'Tramoni M.',t:'Pisa',q:8,f:16,v:17},
+    {r:'C',n:'Vandeputte',t:'Cremonese',q:12,f:13,v:21},{r:'C',n:'Vlasic',t:'Torino',q:17,f:81,v:9},
+    {r:'A',n:'Bonazzoli',t:'Cremonese',q:19,f:19,v:1},{r:'A',n:'David',t:'Juventus',q:13,f:43,v:139},
+    {r:'A',n:'Dybala',t:'Roma',q:13,f:30,v:58},{r:'A',n:'Nzola',t:'Sassuolo',q:10,f:11,v:3},
+    {r:'A',n:'Pinamonti',t:'Sassuolo',q:14,f:49,v:21},{r:'A',n:'Vlahovic',t:'Juventus',q:12,f:24,v:1}
+  ]},
+  { name: 'monza', user: 'intermerda2009', crediti: 8, color: '#854F0B', players: [
+    {r:'P',n:'Maignan',t:'Milan',q:18,f:94,v:41},{r:'P',n:'Suzuki',t:'Parma',q:5,f:2,v:1},{r:'P',n:'Terracciano',t:'Milan',q:1,f:1,v:1},
+    {r:'D',n:'Angori',t:'Pisa',q:9,f:13,v:9},{r:'D',n:'Baschirotto',t:'Cremonese',q:11,f:13,v:1},
+    {r:'D',n:'Canestrelli',t:'Pisa',q:5,f:12,v:1},{r:'D',n:'Luperto',t:'Cremonese',q:8,f:11,v:6},
+    {r:'D',n:'Maripan',t:'Torino',q:10,f:8,v:1},{r:'D',n:'Martin',t:'Genoa',q:12,f:12,v:16},
+    {r:'D',n:'Pezzella Giu.',t:'Cremonese',q:3,f:10,v:1},{r:'D',n:'Zappa',t:'Cagliari',q:7,f:8,v:2},
+    {r:'C',n:'Atta',t:'Udinese',q:17,f:58,v:39},{r:'C',n:'Barella',t:'Inter',q:15,f:45,v:26},
+    {r:'C',n:'Calhanoglu',t:'Inter',q:25,f:203,v:64},{r:'C',n:'Casadei',t:'Torino',q:11,f:21,v:15},
+    {r:'C',n:'De Roon',t:'Atalanta',q:8,f:27,v:1},{r:'C',n:'Kone M.',t:'Roma',q:15,f:44,v:23},
+    {r:'C',n:'Mazzitelli',t:'Cagliari',q:14,f:12,v:1},{r:'C',n:'Pasalic',t:'Atalanta',q:13,f:29,v:35},
+    {r:'A',n:'Fullkrug',t:'Milan',q:12,f:26,v:10},{r:'A',n:'Kean',t:'Fiorentina',q:19,f:122,v:149},
+    {r:'A',n:'Lauriente',t:'Sassuolo',q:21,f:39,v:2},{r:'A',n:'Pellegrino M.',t:'Parma',q:20,f:74,v:5},
+    {r:'A',n:'Scamacca',t:'Atalanta',q:24,f:101,v:33},{r:'A',n:'Simeone',t:'Torino',q:19,f:58,v:4}
+  ]}
+];
+
+function getRColor(q, v) {
+  if (v === 0) return 'var(--muted)';
+  if (v <= 1) return '#1D9E75';
+  const ratio = v / Math.max(q, 1);
+  if (ratio >= 3) return '#E24B4A';
+  if (ratio >= 1.5) return '#BA7517';
+  if (v < q) return '#1D9E75';
+  return 'var(--text)';
+}
+
+function buildMatches() {
+  const container = document.getElementById('matches-g30');
+  if (!container) return;
+  let html = '';
+  MATCHES_G30.forEach(m => {
+    html += '<div style="border-bottom:0.5px solid var(--border);padding:8px 0;margin-bottom:4px">';
+    html += '<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">';
+    html += '<span style="font-size:12px;font-weight:700;color:var(--text)">' + m.home + '</span>';
+    const isLive = m.time.includes('LIVE');
+    html += '<span style="font-size:10px;padding:2px 7px;border-radius:8px;font-weight:700;background:' + (isLive ? 'rgba(226,75,74,0.15)' : 'var(--surface)') + ';color:' + (isLive ? '#E24B4A' : 'var(--muted)') + '">' + m.time + '</span>';
+    html += '<span style="font-size:12px;font-weight:700;color:var(--text)">' + m.away + '</span>';
+    html += '</div>';
+    m.players.forEach(p => {
+      const c = COLORS[p.owner] || 'var(--muted)';
+      html += '<div style="font-size:11px;margin-bottom:3px"><span style="font-weight:700;color:' + c + '">' + p.user + '</span> — <span style="color:var(--muted)">' + p.items.join(', ') + '</span></div>';
+    });
+    html += '</div>';
+  });
+  container.innerHTML = html;
+}
+
+function buildRose() {
+  const container = document.getElementById('rose-container');
+  if (!container) return;
+  let html = '';
+  ROSE_DATA.forEach(team => {
+    html += '<div style="border-bottom:0.5px solid var(--border)">';
+    html += '<div onclick="var b=this.nextElementSibling;b.style.display=b.style.display===\'none\'?\'block\':\'none\'" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:9px 0">';
+    html += '<span style="font-size:13px;font-weight:700;color:' + team.color + '">' + team.name + ' <span style="font-size:10px;color:var(--muted);font-weight:400">· ' + team.user + ' · ' + team.crediti + ' cr. rimasti</span></span>';
+    html += '<span style="font-size:11px;color:var(--muted)">▼</span>';
+    html += '</div>';
+    html += '<div style="display:none;padding-bottom:8px">';
+    html += '<table style="width:100%;font-size:11px;border-collapse:collapse">';
+    html += '<tr style="color:var(--muted);font-size:10px"><td style="padding:2px 3px;width:16px">R</td><td style="padding:2px 3px">Giocatore</td><td style="padding:2px 3px;text-align:center">Q</td><td style="padding:2px 3px;text-align:center">FV</td><td style="padding:2px 3px;text-align:right">Acq</td></tr>';
+    const roleColors = {P:'#EF9F27',D:'#1D9E75',C:'#378ADD',A:'#E24B4A'};
+    team.players.forEach(p => {
+      const vc = getRColor(p.q, p.v);
+      html += '<tr style="border-bottom:0.5px solid var(--border)">';
+      html += '<td style="padding:4px 3px;font-weight:700;color:' + (roleColors[p.r]||'var(--muted)') + '">' + p.r + '</td>';
+      html += '<td style="padding:4px 3px;font-weight:500">' + p.n + ' <span style="color:var(--muted);font-weight:400;font-size:10px">· ' + p.t + '</span></td>';
+      html += '<td style="padding:4px 3px;text-align:center;color:var(--muted)">' + p.q + '</td>';
+      html += '<td style="padding:4px 3px;text-align:center;color:var(--muted)">' + p.f + '</td>';
+      html += '<td style="padding:4px 3px;text-align:right;font-weight:700;color:' + vc + '">' + p.v + '</td>';
+      html += '</tr>';
+    });
+    html += '</table></div></div>';
+  });
+  container.innerHTML = html;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  buildMatches();
+  buildRose();
+});
 </script>
 </body>
 </html>

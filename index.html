@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fantalega 21I22 — Dashboard 25/26</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #f4f4f0; --card: #ffffff; --surface: #f0efe9;
+  --border: rgba(0,0,0,0.1); --text: #1a1a1a; --muted: #6b6b6b;
+  --radius: 12px; --radius-sm: 8px;
+  --gold: #F5C518;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16161a; --card: #1e1e24; --surface: #252530;
+    --border: rgba(255,255,255,0.08); --text: #e8e8e0; --muted: #888880;
+  }
+}
+body { font-family: 'Lato', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #0f0c29, #1a1a3e, #0f3460);
+  padding: 1.5rem 1rem 1.2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(45deg, transparent, transparent 12px, rgba(245,197,24,0.03) 12px, rgba(245,197,24,0.03) 24px);
+}
+.header-nav {
+  display: flex; align-items: center; justify-content: space-between;
+  max-width: 680px; margin: 0 auto 12px; position: relative;
+}
+.nav-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(245,197,24,0.15); border: 1px solid rgba(245,197,24,0.3);
+  color: #F5C518; font-size: 11px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; padding: 6px 12px; border-radius: 20px;
+  text-decoration: none; transition: background 0.2s;
+}
+.nav-btn:hover { background: rgba(245,197,24,0.25); }
+.header h1 {
+  font-family: 'Oswald', sans-serif; font-size: 24px; font-weight: 700;
+  color: #F5C518; letter-spacing: 3px; text-transform: uppercase; position: relative;
+}
+.header .sub { font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; position: relative; }
+.header .giornata-badge {
+  display: inline-block; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.7); font-size: 11px; font-weight: 700; letter-spacing: 1px;
+  padding: 3px 12px; border-radius: 20px; margin-top: 8px; position: relative;
+}
+
+/* TABS */
+.wrap { max-width: 680px; margin: 0 auto; padding: 0 14px; }
+.tabs {
+  display: flex; gap: 3px; background: var(--surface); padding: 4px;
+  border-radius: var(--radius); margin: 14px 0; border: 1px solid var(--border);
+  position: sticky; top: 6px; z-index: 10;
+}
+.tab {
+  flex: 1; padding: 8px 4px; text-align: center; font-family: 'Lato', sans-serif;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.3px; text-transform: uppercase;
+  cursor: pointer; border-radius: var(--radius-sm); color: var(--muted);
+  transition: all 0.18s; border: none; background: transparent;
+}
+.tab.active { background: var(--card); color: var(--text); border: 1px solid var(--border); }
+.section { display: none; }
+.section.active { display: block; }
+
+/* CARDS */
+.card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius); margin-bottom: 10px; overflow: hidden;
+}
+.card-header {
+  padding: 9px 14px; background: var(--surface); border-bottom: 1px solid var(--border);
+  font-family: 'Oswald', sans-serif; font-size: 12px; font-weight: 600;
+  letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.card-body { padding: 0; }
+
+/* CLASSIFICA */
+.class-row {
+  display: grid; grid-template-columns: 24px 1fr 28px 28px 28px 36px 60px;
+  align-items: center; padding: 8px 12px; border-bottom: 1px solid var(--border);
+  gap: 4px;
+}
+.class-row:last-child { border-bottom: none; }
+.class-pos { font-weight: 700; font-size: 13px; }
+.class-name { font-size: 12px; font-weight: 700; min-width: 0; }
+.class-name span { font-size: 10px; color: var(--muted); font-weight: 400; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.class-num { font-size: 11px; color: var(--muted); text-align: center; }
+.class-pt { font-size: 14px; font-weight: 700; text-align: center; }
+.class-tot { font-size: 11px; text-align: right; }
+.trend-up::after { content: '▲'; font-size: 9px; color: #1D9E75; margin-left: 3px; }
+.trend-down::after { content: '▼'; font-size: 9px; color: #E24B4A; margin-left: 3px; }
+
+/* GIORNATA */
+.match-block { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+.match-block:last-child { border-bottom: none; }
+.match-header { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; }
+.match-teams { font-size: 13px; font-weight: 700; }
+.match-time {
+  font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 8px;
+}
+.time-live { background: rgba(226,75,74,0.15); color: #E24B4A; animation: pulse 1.5s infinite; }
+.time-oggi { background: rgba(245,197,24,0.15); color: #BA7517; }
+.time-weekend { background: var(--surface); color: var(--muted); }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.6} }
+.match-player { font-size: 11px; margin-bottom: 3px; }
+.match-player .owner { font-weight: 700; }
+
+/* SUMMER CUP */
+.cup-match {
+  display: flex; align-items: center; padding: 7px 12px;
+  border-bottom: 1px solid var(--border); gap: 8px; font-size: 12px;
+}
+.cup-match:last-child { border-bottom: none; }
+.cup-score {
+  font-family: 'Oswald', sans-serif; font-size: 15px; font-weight: 700;
+  min-width: 36px; text-align: center;
+}
+.cup-team { flex: 1; font-weight: 700; font-size: 11px; }
+.cup-team.right { text-align: right; }
+.cup-pt { font-size: 10px; color: var(--muted); }
+
+/* STANDINGS GROUP */
+.group-title {
+  font-family: 'Oswald', sans-serif; font-size: 11px; font-weight: 600;
+  letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted);
+  padding: 8px 12px 4px;
+}
+.group-row {
+  display: grid; grid-template-columns: 20px 1fr 24px 24px 24px 24px 32px;
+  align-items: center; padding: 6px 12px; border-bottom: 1px solid var(--border);
+  font-size: 11px; gap: 4px;
+}
+.group-row:last-child { border-bottom: none; }
+.group-row .name { font-weight: 700; font-size: 12px; }
+
+/* ANDAMENTO */
+.fase-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 14px; border-bottom: 1px solid var(--border);
+}
+.fase-row:last-child { border-bottom: none; }
+.fase-label {
+  font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 600;
+  min-width: 56px; color: var(--muted);
+}
+.fase-info { flex: 1; }
+.fase-1 { font-size: 12px; font-weight: 700; }
+.fase-2 { font-size: 11px; color: var(--muted); }
+
+/* CURIOSITA */
+.curiosity-item {
+  display: flex; gap: 10px; padding: 11px 14px;
+  border-bottom: 1px solid var(--border); align-items: flex-start;
+}
+.curiosity-item:last-child { border-bottom: none; }
+.curiosity-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.curiosity-content {}
+.curiosity-title { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
+.curiosity-text { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+/* FORMAZIONI */
+.fanta-match {
+  padding: 10px 14px; border-bottom: 1px solid var(--border);
+}
+.fanta-match:last-child { border-bottom: none; }
+.fanta-match-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 8px;
+}
+.fanta-team { font-size: 12px; font-weight: 700; }
+.fanta-vs { font-size: 10px; color: var(--muted); font-weight: 700; }
+.fanta-players { font-size: 11px; color: var(--muted); line-height: 1.6; }
+
+footer { text-align: center; font-size: 11px; color: var(--muted); margin: 1.5rem 0; letter-spacing: 1px; text-transform: uppercase; }
+
+.stat-pill {
+  display: inline-block; padding: 2px 8px; border-radius: 8px;
+  font-size: 10px; font-weight: 700; margin-left: 6px;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-nav">
+    <a href="palmares.html" class="nav-btn">🏆 Albo d'Oro</a>
+    <div style="position:relative">
+      <div class="header h1" style="font-family:'Oswald',sans-serif;font-size:20px;font-weight:700;color:#F5C518;letter-spacing:2px;text-transform:uppercase">FANTALEGA 21I22</div>
+    </div>
+    <div style="width:90px"></div>
+  </div>
+  <h1>Dashboard 25/26</h1>
+  <div class="sub">Stagione in corso</div>
+  <div class="giornata-badge" id="meta-badge">Caricamento...</div>
+</div>
+
+<div class="wrap">
+  <div class="tabs">
+    <button class="tab active" onclick="showTab('classifica',this)">📊 Class.</button>
+    <button class="tab" onclick="showTab('giornata',this)">⚽ G.28</button>
+    <button class="tab" onclick="showTab('coppa',this)">🥤 Cup</button>
+    <button class="tab" onclick="showTab('andamento',this)">📈 Trend</button>
+    <button class="tab" onclick="showTab('curiosita',this)">💡 Stats</button>
+  </div>
+
+  <div class="section active" id="tab-classifica">
+    <div class="card">
+      <div class="card-header">
+        Serie A · Classifica
+        <span style="font-size:10px">G · V · N · P · Pt · Tot</span>
+      </div>
+      <div class="card-body" id="classifica-body"></div>
+    </div>
+  </div>
+
+  <div class="section" id="tab-giornata">
+    <div class="card" style="margin-bottom:10px">
+      <div class="card-header">Fantapartite · Giornata 28</div>
+      <div class="card-body" id="fantapartite-body"></div>
+    </div>
+    <div class="card">
+      <div class="card-header">Serie A · Giornata 30 · Partite &amp; Giocatori</div>
+      <div class="card-body" id="matches-body"></div>
+    </div>
+  </div>
+
+  <div class="section" id="tab-coppa">
+    <div class="card" style="margin-bottom:10px">
+      <div class="card-header">Summer Cup · Classifica Gruppi</div>
+      <div class="card-body" id="cup-standings"></div>
+    </div>
+    <div class="card">
+      <div class="card-header">Summer Cup · Risultati</div>
+      <div class="card-body" id="cup-results"></div>
+    </div>
+  </div>
+
+  <div class="section" id="tab-andamento">
+    <div class="card" style="margin-bottom:10px">
+      <div class="card-header">Chi era primo in ogni fase</div>
+      <div class="card-body" id="andamento-body"></div>
+    </div>
+    <div class="card">
+      <div class="card-header">Statistiche stagione</div>
+      <div class="card-body" id="stats-body"></div>
+    </div>
+  </div>
+
+  <div class="section" id="tab-curiosita">
+    <div class="card">
+      <div class="card-header">Curiosità &amp; Statistiche</div>
+      <div class="card-body" id="curiosita-body"></div>
+    </div>
+  </div>
+
+  <footer id="footer-meta">Fantalega 21I22 · 2025/26</footer>
+</div>
+
+<script>
+const COLORS = {
+  'ac pizzo':'#378ADD','fc kiricocho2puntozero':'#1D9E75','FcZeroTituli':'#7F77DD',
+  'R B Salisburro':'#EF9F27','Santini United':'#BA7517','I Ridartati dei Caraibi':'#534AB7',
+  'PORCELLONA FC':'#639922','monza':'#854F0B'
+};
+const USERS = {
+  'ac pizzo':'mikepizzo','fc kiricocho2puntozero':'alessandrogobbo90','FcZeroTituli':'Bobo88',
+  'R B Salisburro':'Germano Mosconi','Santini United':'dalama','I Ridartati dei Caraibi':'Denny',
+  'PORCELLONA FC':'andrebamuj33','monza':'intermerda2009'
+};
+
+const MATCHES_G30 = [
+  {ora:'🔴 LIVE 18:30',cls:'time-live',casa:'Cagliari',trasferta:'Napoli',giocatori:[
+    {nome:'Willy',squadra:'R B Salisburro',giocatori:['Caprile (P)','Palestra (D)','Krstovic (A)']},
+    {nome:'Bobo',squadra:'FcZeroTituli',giocatori:['Buongiorno (D)','Di Lorenzo (D)']},
+    {nome:'Denny',squadra:'I Ridartati dei Caraibi',giocatori:['Meret (P)','McTominay (C)','Elmas (C)']},
+    {nome:'Bamu',squadra:'PORCELLONA FC',giocatori:['De Bruyne (C)','Lobotka (C)']},
+    {nome:'Salvo',squadra:'monza',giocatori:['Calhanoglu (C)','Barella (C)','Kean (A)','Scamacca (A)']}
+  ]},
+  {ora:'20:45',cls:'time-oggi',casa:'Genoa',trasferta:'Udinese',giocatori:[
+    {nome:'Mike',squadra:'ac pizzo',giocatori:['Leali (P)']},
+    {nome:'Ale',squadra:'fc kiricocho2puntozero',giocatori:['Vasquez (D)','Davis K. (A)']},
+    {nome:'Willy',squadra:'R B Salisburro',giocatori:['Samardzic (C)']}
+  ]},
+  {ora:'Sab 15:00',cls:'time-weekend',casa:'Parma',trasferta:'Cremonese',giocatori:[
+    {nome:'Mike',squadra:'ac pizzo',giocatori:['Valeri (D)','Da Cunha (C)']},
+    {nome:'Bamu',squadra:'PORCELLONA FC',giocatori:['Delprato (D)','Isaksen (C)']},
+    {nome:'Willy',squadra:'R B Salisburro',giocatori:["Bernabè (C)",'Vardy (A)']},
+    {nome:'Denny',squadra:'I Ridartati dei Caraibi',giocatori:['Vojvoda (D)']}
+  ]},
+  {ora:'Sab 18:00',cls:'time-weekend',casa:'Milan',trasferta:'Torino',giocatori:[
+    {nome:'Mike',squadra:'ac pizzo',giocatori:['Gabbia (D)','Pavlovic (D)','Modric (C)','Loftus-Cheek (C)','Saelemaekers (C)','Leao (A)']},
+    {nome:'Ale',squadra:'fc kiricocho2puntozero',giocatori:['Nkunku (A)']},
+    {nome:'Denny',squadra:'I Ridartati dei Caraibi',giocatori:['Pulisic (C)','Fofana (C)','Rabiot (C)']},
+    {nome:'Salvo',squadra:'monza',giocatori:['Maignan (P)','Fullkrug (A)']}
+  ]},
+  {ora:'Sab 20:45',cls:'time-weekend',casa:'Juventus',trasferta:'Sassuolo',giocatori:[
+    {nome:'Mike',squadra:'ac pizzo',giocatori:['Conceicao (C)','Yildiz (A)']},
+    {nome:'Ale',squadra:'fc kiricocho2puntozero',giocatori:['Locatelli (C)','Thuram K. (C)']},
+    {nome:'Bamu',squadra:'PORCELLONA FC',giocatori:['Di Gregorio (P)','David (A)']},
+    {nome:'Willy',squadra:'R B Salisburro',giocatori:['Bremer (D)']}
+  ]},
+  {ora:'Dom 15:00',cls:'time-weekend',casa:'Bologna',trasferta:'Lazio',giocatori:[
+    {nome:'Mike',squadra:'ac pizzo',giocatori:['Saelemaekers (C)','Castro S. (A)','Zaccagni (C)']},
+    {nome:'Ale',squadra:'fc kiricocho2puntozero',giocatori:['Skorupski (P)','Zortea (D)','Bernardeschi (C)','Ferguson B. (C)']},
+    {nome:'Bamu',squadra:'PORCELLONA FC',giocatori:['Gila (D)','Isaksen (C)','Castellanos (A)']},
+    {nome:'Denny',squadra:'I Ridartati dei Caraibi',giocatori:['Basic (C)','Cancellieri (A)']},
+    {nome:'Salvo',squadra:'monza',giocatori:['Barella (C)','Pasalic (C)']}
+  ]},
+  {ora:'Dom 18:00',cls:'time-weekend',casa:'Roma',trasferta:'Lecce',giocatori:[
+    {nome:'Mike',squadra:'ac pizzo',giocatori:["N'Dicka (D)",'Esposito F.P. (A)']},
+    {nome:'Ale',squadra:'fc kiricocho2puntozero',giocatori:['Dovbyk (A)','Ferguson E. (A)','Soulè (A)','Malen (A)']},
+    {nome:'Bamu',squadra:'PORCELLONA FC',giocatori:['Angelino (D)','Dybala (A)']},
+    {nome:'Willy',squadra:'R B Salisburro',giocatori:['Svilar (P)','El Shaarawy (C)']}
+  ]},
+  {ora:'Dom 20:45',cls:'time-weekend',casa:'Fiorentina',trasferta:'Inter',giocatori:[
+    {nome:'Ale',squadra:'fc kiricocho2puntozero',giocatori:['Dimarco (D)','Mkhitaryan (C)']},
+    {nome:'Denny',squadra:'I Ridartati dei Caraibi',giocatori:['Acerbi (D)','Akanji (D)','Bastoni (D)','Bisseck (D)']},
+    {nome:'Willy',squadra:'R B Salisburro',giocatori:['Dumfries (D)']},
+    {nome:'Salvo',squadra:'monza',giocatori:['Calhanoglu (C)','De Roon (C)']}
+  ]}
+];
+
+const FANTAPARTITE_G28 = [
+  {casa:'I Ridartati dei Caraibi',trasferta:'fc kiricocho2puntozero'},
+  {casa:'R B Salisburro',trasferta:'monza'},
+  {casa:'FcZeroTituli',trasferta:'ac pizzo'},
+  {casa:'Santini United',trasferta:'PORCELLONA FC'}
+];
+
+function showTab(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function buildClassifica(data) {
+  const posColors = ['#F5C518','#A8B2BE','#CD7F32','#EF9F27','var(--muted)','var(--muted)','var(--muted)','#E24B4A'];
+  let html = '';
+  data.classifica.forEach((t, i) => {
+    const c = COLORS[t.nome] || 'var(--muted)';
+    const tc = posColors[i] || 'var(--muted)';
+    const trendClass = t.trend === 'up' ? 'trend-up' : t.trend === 'down' ? 'trend-down' : '';
+    html += `<div class="class-row">
+      <div class="class-pos" style="color:${tc}">${t.pos}</div>
+      <div class="class-name ${trendClass}" style="color:${c}">${t.nome}<span>${t.user}</span></div>
+      <div class="class-num">${t.v}</div>
+      <div class="class-num">${t.n}</div>
+      <div class="class-num">${t.p}</div>
+      <div class="class-pt" style="color:${c}">${t.pt}</div>
+      <div class="class-tot" style="color:${i===0?c:(t.tot<=1900?'#E24B4A':'var(--muted)')}">${t.tot}</div>
+    </div>`;
+  });
+  document.getElementById('classifica-body').innerHTML = html;
+}
+
+function buildFantapartite() {
+  let html = '';
+  FANTAPARTITE_G28.forEach(p => {
+    const cc = COLORS[p.casa] || 'var(--muted)';
+    const tc = COLORS[p.trasferta] || 'var(--muted)';
+    html += `<div class="fanta-match">
+      <div class="fanta-match-header">
+        <span class="fanta-team" style="color:${cc}">${p.casa}</span>
+        <span class="fanta-vs">VS</span>
+        <span class="fanta-team" style="color:${tc}">${p.trasferta}</span>
+      </div>
+      <div class="fanta-players" style="font-size:10px;color:var(--muted)">
+        ${USERS[p.casa] || ''} · ${USERS[p.trasferta] || ''}
+      </div>
+    </div>`;
+  });
+  document.getElementById('fantapartite-body').innerHTML = html;
+}
+
+function buildMatches() {
+  let html = '';
+  MATCHES_G30.forEach(m => {
+    html += `<div class="match-block">
+      <div class="match-header">
+        <span class="match-teams">${m.casa}</span>
+        <span class="match-time ${m.cls}">${m.ora}</span>
+        <span class="match-teams">${m.trasferta}</span>
+      </div>`;
+    m.giocatori.forEach(p => {
+      const c = COLORS[p.squadra] || 'var(--muted)';
+      html += `<div class="match-player"><span class="owner" style="color:${c}">${p.nome}</span> — <span style="color:var(--muted)">${p.giocatori.join(', ')}</span></div>`;
+    });
+    html += '</div>';
+  });
+  document.getElementById('matches-body').innerHTML = html;
+}
+
+function calcGroupStandings(group) {
+  const teams = {};
+  group.squadre.forEach(t => { teams[t] = {g:0,v:0,n:0,p:0,gf:0,gs:0,pt:0}; });
+  group.risultati.forEach(round => {
+    round.partite.forEach(match => {
+      const c = match.casa, tr = match.trasferta;
+      const gc = match.gol_c, gt = match.gol_t;
+      teams[c].g++; teams[tr].g++;
+      teams[c].gf += gc; teams[c].gs += gt;
+      teams[tr].gf += gt; teams[tr].gs += gc;
+      if (gc > gt) { teams[c].v++; teams[c].pt+=3; teams[tr].p++; }
+      else if (gc < gt) { teams[tr].v++; teams[tr].pt+=3; teams[c].p++; }
+      else { teams[c].n++; teams[tr].n++; teams[c].pt++; teams[tr].pt++; }
+    });
+  });
+  return Object.entries(teams).map(([nome,s]) => ({nome,...s})).sort((a,b) => b.pt-a.pt || (b.gf-b.gs)-(a.gf-a.gs));
+}
+
+function buildCupStandings(data) {
+  let html = '';
+  ['A','B'].forEach(g => {
+    const group = data.summer_cup.gruppi[g];
+    const standings = calcGroupStandings(group);
+    html += `<div class="group-title">Gruppo ${g}</div>`;
+    standings.forEach((t,i) => {
+      const c = COLORS[t.nome] || 'var(--muted)';
+      html += `<div class="group-row" style="background:${i<2?'rgba(29,158,117,0.04)':''}">
+        <div style="font-weight:700;color:${i<2?'#1D9E75':'var(--muted)'}">${i+1}</div>
+        <div class="name" style="color:${c}">${t.nome}</div>
+        <div style="text-align:center;color:var(--muted)">${t.g}</div>
+        <div style="text-align:center;color:var(--muted)">${t.v}</div>
+        <div style="text-align:center;color:var(--muted)">${t.n}</div>
+        <div style="text-align:center;color:var(--muted)">${t.p}</div>
+        <div style="text-align:center;font-weight:700;color:${c}">${t.pt}</div>
+      </div>`;
+    });
+    if (g === 'A') html += '<div style="height:4px;background:var(--border)"></div>';
+  });
+  document.getElementById('cup-standings').innerHTML = html;
+}
+
+function buildCupResults(data) {
+  let html = '';
+  ['A','B'].forEach(g => {
+    const group = data.summer_cup.gruppi[g];
+    html += `<div class="group-title">Gruppo ${g}</div>`;
+    group.risultati.forEach(round => {
+      round.partite.forEach(m => {
+        const cc = COLORS[m.casa]||'var(--muted)', tc = COLORS[m.trasferta]||'var(--muted)';
+        const winner = m.gol_c > m.gol_t ? 'casa' : m.gol_c < m.gol_t ? 'trasf' : 'pari';
+        html += `<div class="cup-match">
+          <span class="cup-team" style="color:${cc};opacity:${winner==='trasf'?0.5:1}">${m.casa}</span>
+          <div>
+            <div class="cup-score">${m.gol_c}–${m.gol_t}</div>
+            <div class="cup-pt">${m.pt_c} · ${m.pt_t}</div>
+          </div>
+          <span class="cup-team right" style="color:${tc};opacity:${winner==='casa'?0.5:1}">${m.trasferta}</span>
+        </div>`;
+      });
+    });
+    if (g === 'A') html += '<div style="height:4px;background:var(--border)"></div>';
+  });
+  document.getElementById('cup-results').innerHTML = html;
+}
+
+function buildAndamento(data) {
+  const faseColors = {'#1':'#F5C518','#2':'#A8B2BE','ultimo':'#E24B4A'};
+  let html = '';
+  data.andamento.fasi.forEach(f => {
+    const c1 = COLORS[f.primo]||'var(--muted)', c2 = COLORS[f.secondo]||'var(--muted)', cu = COLORS[f.ultimo]||'var(--muted)';
+    html += `<div class="fase-row">
+      <div class="fase-label">${f.label}</div>
+      <div class="fase-info">
+        <div class="fase-1">🥇 <span style="color:${c1}">${f.primo}</span></div>
+        <div class="fase-2">🥈 <span style="color:${c2}">${f.secondo}</span> · 🔴 <span style="color:${cu}">${f.ultimo}</span></div>
+      </div>
+    </div>`;
+  });
+  document.getElementById('andamento-body').innerHTML = html;
+  buildStats(data);
+}
+
+function buildStats(data) {
+  const cl = data.classifica;
+  const bestAtt = [...cl].sort((a,b)=>b.gf-a.gf)[0];
+  const worstAtt = [...cl].sort((a,b)=>a.gf-b.gf)[0];
+  const bestDef = [...cl].sort((a,b)=>a.gs-b.gs)[0];
+  const worstDef = [...cl].sort((a,b)=>b.gs-a.gs)[0];
+  const bestTot = [...cl].sort((a,b)=>b.tot-a.tot)[0];
+  const worstTot = [...cl].sort((a,b)=>a.tot-b.tot)[0];
+
+  const rows = [
+    {label:'Miglior attacco', val:`${bestAtt.gf} gol`, team:bestAtt.nome, icon:'⚽'},
+    {label:'Peggior attacco', val:`${worstAtt.gf} gol`, team:worstAtt.nome, icon:'😴'},
+    {label:'Miglior difesa', val:`${bestDef.gs} gol subiti`, team:bestDef.nome, icon:'🛡️'},
+    {label:'Peggior difesa', val:`${worstDef.gs} gol subiti`, team:worstDef.nome, icon:'🧨'},
+    {label:'Più punti totali', val:`${bestTot.tot}`, team:bestTot.nome, icon:'📊'},
+    {label:'Meno punti totali', val:`${worstTot.tot}`, team:worstTot.nome, icon:'📉'},
+  ];
+  let html = '';
+  rows.forEach(r => {
+    const c = COLORS[r.team]||'var(--muted)';
+    html += `<div style="display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--border)">
+      <span style="font-size:16px">${r.icon}</span>
+      <div style="flex:1">
+        <div style="font-size:11px;color:var(--muted)">${r.label}</div>
+        <div style="font-size:13px;font-weight:700;color:${c}">${r.team}</div>
+      </div>
+      <div style="font-size:12px;font-weight:700;color:${c}">${r.val}</div>
+    </div>`;
+  });
+  document.getElementById('stats-body').innerHTML = html;
+}
+
+function buildCuriosity(data) {
+  let html = '';
+  data.curiosita_stagione.forEach(c => {
+    html += `<div class="curiosity-item">
+      <div class="curiosity-icon">${c.icon}</div>
+      <div class="curiosity-content">
+        <div class="curiosity-title">${c.titolo}</div>
+        <div class="curiosity-text">${c.testo}</div>
+      </div>
+    </div>`;
+  });
+  document.getElementById('curiosita-body').innerHTML = html;
+}
+
+async function loadData() {
+  try {
+    const res = await fetch('data.json?v=' + Date.now());
+    const data = await res.json();
+    document.getElementById('meta-badge').textContent = `Giornata ${data.meta.giornata_attuale} · Agg. ${data.meta.ultimo_aggiornamento}`;
+    document.getElementById('footer-meta').textContent = `Fantalega 21I22 · ${data.meta.stagione} · Aggiornato ${data.meta.ultimo_aggiornamento}`;
+    buildClassifica(data);
+    buildCupStandings(data);
+    buildCupResults(data);
+    buildAndamento(data);
+    buildCuriosity(data);
+  } catch(e) {
+    document.getElementById('meta-badge').textContent = 'Dati locali';
+    const fallback = {
+      meta:{stagione:'2025/26',giornata_attuale:28,ultimo_aggiornamento:'20/03/2026'},
+      classifica:[
+        {pos:1,nome:'fc kiricocho2puntozero',user:'alessandrogobbo90',g:27,v:13,n:7,p:7,gf:48,gs:32,pt:46,tot:1977.5,trend:'up'},
+        {pos:2,nome:'ac pizzo',user:'mikepizzo',g:27,v:12,n:4,p:11,gf:45,gs:40,pt:40,tot:1965,trend:'stable'},
+        {pos:3,nome:'FcZeroTituli',user:'Bobo88',g:27,v:11,n:6,p:10,gf:40,gs:42,pt:39,tot:1937,trend:'up'},
+        {pos:4,nome:'R B Salisburro',user:'Germano Mosconi',g:27,v:10,n:8,p:9,gf:40,gs:35,pt:38,tot:1930,trend:'down'},
+        {pos:5,nome:'Santini United',user:'dalama',g:27,v:10,n:6,p:11,gf:47,gs:46,pt:36,tot:1970.5,trend:'stable'},
+        {pos:6,nome:'I Ridartati dei Caraibi',user:'Denny',g:27,v:8,n:9,p:10,gf:41,gs:44,pt:33,tot:1933,trend:'down'},
+        {pos:7,nome:'PORCELLONA FC',user:'andrebamuj33',g:27,v:8,n:9,p:10,gf:27,gs:38,pt:33,tot:1860,trend:'stable'},
+        {pos:8,nome:'monza',user:'intermerda2009',g:27,v:9,n:5,p:13,gf:30,gs:41,pt:32,tot:1862.5,trend:'down'}
+      ],
+      andamento:{fasi:[
+        {label:'G1-9',primo:'ac pizzo',secondo:'R B Salisburro',ultimo:'monza'},
+        {label:'G10-18',primo:'R B Salisburro',secondo:'ac pizzo',ultimo:'monza'},
+        {label:'G19-23',primo:'R B Salisburro',secondo:'fc kiricocho2puntozero',ultimo:'monza'},
+        {label:'G24-27',primo:'fc kiricocho2puntozero',secondo:'ac pizzo',ultimo:'monza'}
+      ]},
+      summer_cup:{in_corso:true,gruppi:{
+        A:{squadre:['Santini United','R B Salisburro','PORCELLONA FC','monza'],risultati:[
+          {g:1,partite:[{casa:'PORCELLONA FC',gol_c:2,gol_t:0,trasferta:'Santini United',pt_c:73,pt_t:64.5},{casa:'monza',gol_c:0,gol_t:2,trasferta:'R B Salisburro',pt_c:57,pt_t:76.5}]},
+          {g:2,partite:[{casa:'R B Salisburro',gol_c:1,gol_t:2,trasferta:'PORCELLONA FC',pt_c:69.5,pt_t:72.5},{casa:'Santini United',gol_c:0,gol_t:1,trasferta:'monza',pt_c:60,pt_t:68.5}]},
+          {g:3,partite:[{casa:'R B Salisburro',gol_c:0,gol_t:2,trasferta:'Santini United',pt_c:64.5,pt_t:73},{casa:'monza',gol_c:1,gol_t:0,trasferta:'PORCELLONA FC',pt_c:70.5,pt_t:63.5}]},
+          {g:4,partite:[{casa:'Santini United',gol_c:3,gol_t:1,trasferta:'PORCELLONA FC',pt_c:82,pt_t:69.5},{casa:'R B Salisburro',gol_c:0,gol_t:1,trasferta:'monza',pt_c:59.5,pt_t:71}]}
+        ]},
+        B:{squadre:['fc kiricocho2puntozero','ac pizzo','I Ridartati dei Caraibi','FcZeroTituli'],risultati:[
+          {g:1,partite:[{casa:'I Ridartati dei Caraibi',gol_c:2,gol_t:1,trasferta:'FcZeroTituli',pt_c:76.5,pt_t:68},{casa:'fc kiricocho2puntozero',gol_c:3,gol_t:1,trasferta:'ac pizzo',pt_c:81,pt_t:67.5}]},
+          {g:2,partite:[{casa:'ac pizzo',gol_c:2,gol_t:0,trasferta:'I Ridartati dei Caraibi',pt_c:74,pt_t:64},{casa:'FcZeroTituli',gol_c:2,gol_t:3,trasferta:'fc kiricocho2puntozero',pt_c:73.5,pt_t:79}]},
+          {g:3,partite:[{casa:'ac pizzo',gol_c:2,gol_t:1,trasferta:'FcZeroTituli',pt_c:77,pt_t:70.5},{casa:'fc kiricocho2puntozero',gol_c:3,gol_t:1,trasferta:'I Ridartati dei Caraibi',pt_c:82,pt_t:66}]},
+          {g:4,partite:[{casa:'FcZeroTituli',gol_c:1,gol_t:1,trasferta:'I Ridartati dei Caraibi',pt_c:66.5,pt_t:70},{casa:'ac pizzo',gol_c:3,gol_t:2,trasferta:'fc kiricocho2puntozero',pt_c:82.5,pt_t:72.5}]}
+        ]}
+      }},
+      curiosita_stagione:[
+        {icon:'🔥',titolo:'Il sorpasso del secolo',testo:'Ale era 4° alla giornata 9. Dalla giornata 20 in poi non si è più fermato. Ora è primo con 6 punti di vantaggio su Mike.'},
+        {icon:'👑',titolo:'Willy: un regno durato 5 giornate',testo:'Dalla giornata 19 alla 23 R B Salisburro era in testa. Poi Ale ha fatto 0-4 a Bobo con 85.5pt e ha scavalcato tutti.'},
+        {icon:'⚡',titolo:'Il punteggio più alto della stagione',testo:'Giornata 17: Santini United fa 94.5pt e batte Denny 2-5. Ale stava solo riscaldando i motori.'},
+        {icon:'💀',titolo:'monza e i 13 ko',testo:'Salvo ha perso 13 partite su 27. Peggior attacco con 30 gol fatti. Alla giornata 21 ha toccato il fondo con 57pt.'},
+        {icon:'💸',titolo:'De Bruyne a 1 credito',testo:'Bamu ha preso De Bruyne a 1 credito al mercato invernale. Il belga ha già fatto 86 fantapunti. Miglior acquisto della sessione.'},
+        {icon:'📉',titolo:'Ferguson E.: 135 crediti per 15 fantapunti',testo:'Ale ha speso 135 crediti su Ferguson E. alla prima asta. Rendimento deludente. Il colpo più rischioso della stagione.'}
+      ]
+    };
+    buildClassifica(fallback);
+    buildCupStandings(fallback);
+    buildCupResults(fallback);
+    buildAndamento(fallback);
+    buildCuriosity(fallback);
+  }
+  buildFantapartite();
+  buildMatches();
+}
+
+document.addEventListener('DOMContentLoaded', loadData);
+</script>
+</body>
+</html>
