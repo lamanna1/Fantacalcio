@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Albo d'Oro — Lega Fantacalcio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #F5C518;
+    --bg: #f4f4f0;
+    --card: #ffffff;
+    --surface: #f0efe9;
+    --border: rgba(0,0,0,0.1);
+    --text: #1a1a1a;
+    --muted: #6b6b6b;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #16161a;
+      --card: #1e1e24;
+      --surface: #252530;
+      --border: rgba(255,255,255,0.08);
+      --text: #e8e8e0;
+      --muted: #888880;
+    }
+  }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 0 0 3rem;
+  }
+
+  .wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #0f0c29, #1a1a3e, #0f3460);
+    padding: 2.5rem 1.5rem 2rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(45deg, transparent, transparent 12px, rgba(245,197,24,0.03) 12px, rgba(245,197,24,0.03) 24px);
+  }
+  .header .eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    position: relative;
+    margin-bottom: 6px;
+  }
+  .header h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: #F5C518;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    position: relative;
+    line-height: 1;
+  }
+  .header .sub {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 6px;
+    position: relative;
+  }
+  .era-badges {
+    margin-top: 14px;
+    position: relative;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .era-badge {
+    display: inline-block;
+    background: rgba(245,197,24,0.12);
+    border: 1px solid rgba(245,197,24,0.25);
+    color: #F5C518;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-weight: 700;
+  }
+
+  /* TABS */
+  .tabs {
+    display: flex;
+    gap: 4px;
+    background: var(--surface);
+    padding: 4px;
+    border-radius: var(--radius);
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border);
+    position: sticky;
+    top: 8px;
+    z-index: 10;
+  }
+  .tab {
+    flex: 1;
+    padding: 9px 4px;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    color: var(--muted);
+    transition: all 0.18s;
+    border: none;
+    background: transparent;
+  }
+  .tab.active {
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .tab:hover:not(.active) { color: var(--text); }
+
+  /* SECTIONS */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .section-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* SEASON BLOCKS */
+  .season-block {
+    margin-bottom: 10px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--card);
+  }
+  .season-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+  }
+  .season-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--text);
+  }
+  .era-pill {
+    font-size: 10px;
+    padding: 2px 9px;
+    border-radius: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .era6 { background: rgba(127,119,221,0.15); color: #7F77DD; border: 1px solid rgba(127,119,221,0.25); }
+  .era8 { background: rgba(29,158,117,0.15); color: #1D9E75; border: 1px solid rgba(29,158,117,0.25); }
+
+  .podium-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  @media (max-width: 480px) {
+    .podium-row { grid-template-columns: 1fr 1fr; }
+    .podium-cell:nth-child(2) { border-right: none; }
+    .podium-cell:nth-child(3) { border-top: 1px solid var(--border); }
+    .podium-cell:nth-child(4) { border-top: 1px solid var(--border); }
+  }
+  .podium-cell {
+    padding: 10px 12px;
+    border-right: 1px solid var(--border);
+  }
+  .podium-cell:last-child { border-right: none; }
+  .pos-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .pos-1 { color: #F5C518; }
+  .pos-2 { color: #A8B2BE; }
+  .pos-3 { color: #CD7F32; }
+  .pos-last { color: #E24B4A; }
+  .team-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .user-name {
+    font-size: 11px;
+    color: var(--muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 1px;
+  }
+
+  /* COPPE */
+  .cup-block {
+    margin-bottom: 10px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--card);
+  }
+  .cup-header {
+    padding: 10px 14px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .cup-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--text);
+  }
+  .cup-badge {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .badge-winter { background: rgba(55,138,221,0.12); color: #378ADD; border: 1px solid rgba(55,138,221,0.2); }
+  .badge-summer { background: rgba(239,159,39,0.12); color: #BA7517; border: 1px solid rgba(239,159,39,0.2); }
+  .badge-special { background: rgba(127,119,221,0.12); color: #7F77DD; border: 1px solid rgba(127,119,221,0.2); }
+
+  .cup-row {
+    display: flex;
+    align-items: center;
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--border);
+    gap: 10px;
+  }
+  .cup-row:last-child { border-bottom: none; }
+  .cup-season { font-size: 11px; color: var(--muted); min-width: 54px; font-weight: 700; }
+  .cup-winner { font-size: 12px; font-weight: 700; color: var(--text); flex: 1; }
+  .cup-user { font-size: 11px; color: var(--muted); }
+
+  /* PLAYER ROWS */
+  .player-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .player-row:last-child { border-bottom: none; }
+  .avatar {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .player-name { font-size: 12px; font-weight: 700; color: var(--text); flex: 1; min-width: 0; }
+  .player-name.muted { color: var(--muted); }
+  .bar-wrap { width: 60px; height: 6px; background: var(--surface); border-radius: 3px; overflow: hidden; flex-shrink: 0; }
+  .bar-fill { height: 100%; border-radius: 3px; }
+  .count {
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    min-width: 20px;
+    text-align: right;
+  }
+  .beers { font-size: 13px; margin-left: 2px; }
+
+  .stat-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.9rem 1rem;
+    margin-bottom: 1rem;
+  }
+  .stat-box-title {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  /* WIN RATE */
+  .wr-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .wr-row:last-child { border-bottom: none; }
+  .wr-name { font-size: 12px; font-weight: 700; color: var(--text); flex: 1; }
+  .wr-detail { font-size: 11px; color: var(--muted); min-width: 70px; text-align: right; }
+  .wr-bar-wrap { width: 60px; height: 5px; background: var(--surface); border-radius: 3px; overflow: hidden; }
+  .wr-bar { height: 100%; border-radius: 3px; }
+  .wr-pct { font-family: 'Oswald', sans-serif; font-size: 15px; font-weight: 600; min-width: 36px; text-align: right; }
+
+  /* ERA TITLE */
+  .era-block { margin-bottom: 1.5rem; }
+  .era-block-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .era-block-sub { font-size: 11px; color: var(--muted); font-weight: 400; font-family: 'Lato', sans-serif; }
+
+  .note {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 6px;
+    padding: 0 2px;
+    font-style: italic;
+  }
+
+  footer {
+    text-align: center;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 2rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="eyebrow">⚽ Lega Fantacalcio</div>
+  <h1>Albo d'Oro</h1>
+  <div class="sub">Dal 2018 al 2025</div>
+  <div class="era-badges">
+    <span class="era-badge">Era 6 · 2018–2021</span>
+    <span class="era-badge">Era 8 · 2021–2025</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="tabs">
+    <button class="tab active" onclick="showTab('campionato',this)">Serie A</button>
+    <button class="tab" onclick="showTab('coppe',this)">Coppe</button>
+    <button class="tab" onclick="showTab('stats',this)">Trofei</button>
+    <button class="tab" onclick="showTab('birre',this)">🍺 Birre</button>
+  </div>
+
+  <!-- ===== SERIE A ===== -->
+  <div class="section active" id="tab-campionato">
+    <div class="section-title">Campionato Serie A</div>
+
+    <div class="season-block">
+      <div class="season-header">
+        <span class="season-label">2024/25</span>
+        <span class="era-pill era8">Era 8</span>
+      </div>
+      <div class="podium-row">
+        <div class="podium-cell"><div class="pos-label pos-1">🥇 1°</div><div class="team-name">I Ridartati dei Caraibi</div><div class="user-name">Denny</div></div>
+        <div class="podium-cell"><div class="pos-label pos-2">🥈 2°</div><div class="team-name">FcZeroTituli</div><div class="user-name">Bobo88</div></div>
+        <div class="podium-cell"><div class="pos-label pos-3">🥉 3°</div><div class="team-name">fc kiricocho 2punto0</div><div class="user-name">alessandrogobbo90</div></div>
+        <div class="podium-cell"><div class="pos-label pos-last">💸 Ultimo</div><div class="team-name">Bamu Saint Man</div><div class="user-name">andrebamuj33</div></div>
+      </div>
+    </div>
+
+    <div class="season-block">
+      <div class="season-header">
+        <span class="season-label">2023/24</span>
+        <span class="era-pill era8">Era 8</span>
+      </div>
+      <div class="podium-row">
+        <div class="podium-cell"><div class="pos-label pos-1">🥇 1°</div><div class="team-name">fc kiricocho</div><div class="user-name">alessandrogobbo90</div></div>
+        <div class="podium-cell"><div class="pos-label pos-2">🥈 2°</div><div class="team-name">Cuinnuti Ca City</div><div class="user-name">andrebamuj33</div></div>
+        <div class="podium-cell"><div class="pos-label pos-3">🥉 3°</div><div class="team-name">ac pizzo</div><div class="user-name">mikepizzo</div></div>
+        <div class="podium-cell"><div class="pos-label pos-last">💸 Ultimo</div><div class="team-name">monza</div><div class="user-name">intermerda2009</div></div>
+      </div>
+    </div>
+
+    <div class="season-block">
+      <div class="season-header">
+        <span class="season-label">2022/23</span>
+        <span class="era-pill era8">Era 8</span>
+      </div>
+      <div class="podium-row">
+        <div class="podium-cell"><div class="pos-label pos-1">🥇 1°</div><div class="team-name">fc kiricocho</div><div class="user-name">alessandrogobbo90</div></div>
+        <div class="podium-cell"><div class="pos-label pos-2">🥈 2°</div><div class="team-name">monza</div><div class="user-name">intermerda2009</div></div>
+        <div class="podium-cell"><div class="pos-label pos-3">🥉 3°</div><div class="team-name">Cuinnuti Ca City</div><div class="user-name">andrebamuj33</div></div>
+        <div class="podium-cell"><div class="pos-label pos-last">💸 Ultimo</div><div class="team-name">PERDER Bremen</div><div class="user-name">Denny</div></div>
+      </div>
+    </div>
+
+    <div class="season-block">
+      <div class="season-header">
+        <span class="season-label">2021/22</span>
+        <span class="era-pill era8">Era 8</span>
+        <span style="font-size:10px;color:var(--muted);margin-left:auto;font-style:italic">Prima stagione a 8</span>
+      </div>
+      <div class="podium-row">
+        <div class="podium-cell"><div class="pos-label pos-1">🥇 1°</div><div class="team-name">The Walking Dead</div><div class="user-name">Denny</div></div>
+        <div class="podium-cell"><div class="pos-label pos-2">🥈 2°</div><div class="team-name">–</div><div class="user-name">Salvo</div></div>
+        <div class="podium-cell"><div class="pos-label pos-3">🥉 3°</div><div class="team-name">–</div><div class="user-name">Willi</div></div>
+        <div class="podium-cell"><div class="pos-label pos-last">💸 Ultimo</div><div class="team-name">–</div><div class="user-name">dalama</div></div>
+      </div>
+    </div>
+
+    <div class="season-block">
+      <div class="season-header">
+        <span class="season-label">2020/21</span>
+        <span class="era-pill era6">Era 6</span>
+      </div>
+      <div class="podium-row">
+        <div class="podium-cell"><div class="pos-label pos-1">🥇 1°</div><div class="team-name">ac pizzo</div><div class="user-name">mikepizzo</div></div>
+        <div class="podium-cell"><div class="pos-label pos-2">🥈 2°</div><div class="team-name">ac salute</div><div class="user-name">alessandrogobbo90</div></div>
+        <div class="podium-cell"><div class="pos-label pos-3">🥉 3°</div><div class="team-name">monza</div><div class="user-name">intermerda2009</div></div>
+        <div class="podium-cell"><div class="pos-label pos-last">💸 Ultimo</div><div class="team-name">Paris Saint Gennaro</div><div class="user-name">dalama</div></div>
+      </div>
+    </div>
+
+    <div class="season-block">
+      <div class="season-header">
+        <span class="season-label">2019/20</span>
+        <span class="era-pill era6">Era 6</span>
+      </div>
+      <div class="podium-row">
+        <div class="podium-cell"><div class="pos-label pos-1">🥇 1°</div><div class="team-name">AC salute</div><div class="user-name">alessandrogobbo90</div></div>
+        <div class="podium-cell"><div class="pos-label pos-2">🥈 2°</div><div class="team-name">Piu No Kessie</div><div class="user-name">dalama</div></div>
+        <div class="podium-cell"><div class="pos-label pos-3">🥉 3°</div><div class="team-name">AC Jakser</div><div class="user-name">andrebamuj33</div></div>
+        <div class="podium-cell"><div class="pos-label pos-last">💸 Ultimo</div><div class="team-name">HERTA VERN...</div><div class="user-name">AleWilly86</div></div>
+      </div>
+    </div>
+
+    <div class="season-block">
+      <div class="season-header">
+        <span class="season-label">2018/19</span>
+        <span class="era-pill era6">Era 6</span>
+        <span style="font-size:10px;color:var(--muted);margin-left:auto;font-style:italic">Prima stagione</span>
+      </div>
+      <div class="podium-row">
+        <div class="podium-cell"><div class="pos-label pos-1">🥇 1°</div><div class="team-name">ac pizzo</div><div class="user-name">mikepizzo</div></div>
+        <div class="podium-cell"><div class="pos-label pos-2">🥈 2°</div><div class="team-name">FCRoyalVeg</div><div class="user-name">Bobo088</div></div>
+        <div class="podium-cell"><div class="pos-label pos-3">🥉 3°</div><div class="team-name">sport desio 1990</div><div class="user-name">alessandrogobbo90</div></div>
+        <div class="podium-cell"><div class="pos-label pos-last">💸 Ultimo</div><div class="team-name">BamuFC</div><div class="user-name">andrebamuj33</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== COPPE ===== -->
+  <div class="section" id="tab-coppe">
+    <div class="section-title">Coppe &amp; Competizioni</div>
+
+    <div class="cup-block">
+      <div class="cup-header">
+        <span class="cup-name">Winter Cup</span>
+        <span class="cup-badge badge-winter">Coppa Invernale</span>
+      </div>
+      <div class="cup-row"><span class="cup-season">24/25</span><span>🏆</span><span class="cup-winner">ac pizzo</span><span class="cup-user">mikepizzo</span></div>
+      <div class="cup-row"><span class="cup-season">22/23</span><span>🏆</span><span class="cup-winner">ac pizzo</span><span class="cup-user">mikepizzo</span></div>
+      <div class="cup-row"><span class="cup-season">21/22</span><span>🏆</span><span class="cup-winner">ac pizzo</span><span class="cup-user">mikepizzo</span></div>
+      <div class="cup-row"><span class="cup-season">20/21</span><span>🏆</span><span class="cup-winner">monza</span><span class="cup-user">intermerda2009</span></div>
+      <div class="cup-row"><span class="cup-season">19/20</span><span>🏆</span><span class="cup-winner">AC Salute</span><span class="cup-user">alessandrogobbo90</span></div>
+      <div class="cup-row"><span class="cup-season">18/19</span><span>🏆</span><span class="cup-winner">F.C. Scrotone</span><span class="cup-user">dalama</span></div>
+    </div>
+
+    <div class="cup-block">
+      <div class="cup-header">
+        <span class="cup-name">Summer Cup</span>
+        <span class="cup-badge badge-summer">Coppa Estiva</span>
+      </div>
+      <div class="cup-row"><span class="cup-season">25 (R)</span><span>🏆</span><span class="cup-winner">Santini United</span><span class="cup-user">dalama</span></div>
+      <div class="cup-row"><span class="cup-season">23/24</span><span>🏆</span><span class="cup-winner">11Degen</span><span class="cup-user">dalama</span></div>
+      <div class="cup-row"><span class="cup-season">22/23</span><span>🏆</span><span class="cup-winner">Scarsenal</span><span class="cup-user">AleWilly86</span></div>
+      <div class="cup-row"><span class="cup-season">20/21</span><span>🏆</span><span class="cup-winner">Birrareal</span><span class="cup-user">andrebamuj33</span></div>
+      <div class="cup-row"><span class="cup-season">19/20</span><span>🏆</span><span class="cup-winner">Piu No Kessie</span><span class="cup-user">dalama</span></div>
+      <div class="cup-row"><span class="cup-season">18/19</span><span>🏆</span><span class="cup-winner">FC Sporting Seregno</span><span class="cup-user">AleWilly86</span></div>
+    </div>
+
+    <div class="cup-block">
+      <div class="cup-header">
+        <span class="cup-name">Competizioni Speciali</span>
+        <span class="cup-badge badge-special">Special</span>
+      </div>
+      <div class="cup-row"><span class="cup-season">24/25</span><span>🏆</span><span class="cup-winner">fc kiricocho 2punto0 · Supercoppa</span><span class="cup-user">alessandrogobbo90</span></div>
+      <div class="cup-row"><span class="cup-season">23/24</span><span>🏆</span><span class="cup-winner">fc kiricocho · Highlander</span><span class="cup-user">alessandrogobbo90</span></div>
+      <div class="cup-row"><span class="cup-season">21/22</span><span>🏆</span><span class="cup-winner">The Walking Dead · Formula 1</span><span class="cup-user">Denny</span></div>
+    </div>
+  </div>
+
+  <!-- ===== TROFEI ===== -->
+  <div class="section" id="tab-stats">
+    <div class="section-title">Trofei per Giocatore</div>
+
+    <div class="stat-box">
+      <div class="stat-box-title">Titoli Serie A</div>
+      <div class="player-row">
+        <span style="font-size:11px;font-weight:700;color:var(--muted);min-width:16px;text-align:center">1</span>
+        <div class="avatar" style="background:rgba(29,158,117,0.15);color:#0F6E56">AG</div>
+        <span class="player-name">alessandrogobbo90</span>
+        <div class="bar-wrap"><div class="bar-fill" style="width:100%;background:#1D9E75"></div></div>
+        <span class="count" style="color:#0F6E56">3</span>
+      </div>
+      <div class="player-row">
+        <span style="font-size:11px;font-weight:700;color:var(--muted);min-width:16px;text-align:center">2</span>
+        <div class="avatar" style="background:rgba(55,138,221,0.15);color:#185FA5">MP</div>
+        <span class="player-name">mikepizzo</span>
+        <div class="bar-wrap"><div class="bar-fill" style="width:66%;background:#378ADD"></div></div>
+        <span class="count" style="color:#185FA5">2</span>
+      </div>
+      <div class="player-row">
+        <span style="font-size:11px;font-weight:700;color:var(--muted);min-width:16px;text-align:center">3</span>
+        <div class="avatar" style="background:rgba(127,119,221,0.15);color:#534AB7">DE</div>
+        <span class="player-name">Denny</span>
+        <div class="bar-wrap"><div class="bar-fill" style="width:33%;background:#7F77DD"></div></div>
+        <span class="count" style="color:#7F77DD">1</span>
+      </div>
+    </div>
+
+    <div class="stat-box">
+      <div class="stat-box-title">Coppe Totali (escluso Battle Royal)</div>
+      <div class="player-row">
+        <span style="font-size:11px;font-weight:700;color:var(--muted);min-width:16px;text-align:center">1</span>
+        <div class="avatar" style="background:rgba(245,197,24,0.15);color:#854F0B">DA</div>
+        <span class="player-name">dalama</span>
+        <div class="bar-wrap"><div class="bar-fill" style="width:100%;background:#EF9F27"></div></div>
+        <span class="count" style="color:#854F0B">4</span>
+      </div>
+      <div class="player-row">
+        <span style="font-size:11px;font-weight:700;color:var(--muted);min-width:16px;text-align:center">1</span>
+        <div class="avatar" style="background:rgba(29,158,117,0.15);color:#0F6E56">AG</div>
+        <span class="player-name">alessandrogobbo90</span>
+        <div class="bar-wrap"><div class="bar-fill" style="width:100%;background:#1D9E75"></div></div>
+        <span class="count" style="color:#0F6E56">4</span>
+      </div>
+      <div class="player-row">
+        <span style="font-size:11px;font-weight:700;color:var(--muted);min-width:16px;text-align:center">3</span>
+        <div class="avatar" style="background:rgba(55,138,221,0.15);color:#185FA5">MP</div>
+        <span class="player-name">mikepizzo</span>
+        <div class="bar-wrap"><div class="bar-fill" style="width:75%;background:#378ADD"></div></div>
+        <span class="count" style="color:#185FA5">3</span>
+      </div>
+      <div class="player-row">
+        <span style="font-size:11px;font-weight:700;color:var(--muted);min-width:16px;text-align:center">4</span>
+        <div class="avatar" style="background:rgba(212,83,126,0.15);color:#993556">AW</div>
+        <span class="player-name">AleWilly86</span>
+        <div class="bar-wrap"><div class="bar-fill" style="width:50%;background:#D4537E"></div></div>
+        <span class="count" style="color:#993556">2</span>
+      </div>
+      <div class="player-row">
+        <span style="font-size:11px;font-weight:700;color:var(--muted);min-width:16px;text-align:center">5</span>
+        <div class="avatar" style="background:rgba(127,119,221,0.15);color:#534AB7">DE</div>
+        <span class="player-name">Denny</span>
+        <div class="bar-wrap"><div class="bar-fill" style="width:25%;background:#7F77DD"></div></div>
+        <span class="count" style="color:#534AB7">1</span>
+      </div>
+      <div class="player-row">
+        <span style="font-size:11px;font-weight:700;color:var(--muted);min-width:16px;text-align:center">5</span>
+        <div class="avatar" style="background:rgba(99,153,34,0.15);color:#3B6D11">AB</div>
+        <span class="player-name">andrebamuj33</span>
+        <div class="bar-wrap"><div class="bar-fill" style="width:25%;background:#639922"></div></div>
+        <span class="count" style="color:#3B6D11">1</span>
+      </div>
+      <div class="player-row">
+        <span style="font-size:11px;font-weight:700;color:var(--muted);min-width:16px;text-align:center">5</span>
+        <div class="avatar" style="background:rgba(186,117,23,0.15);color:#854F0B">IN</div>
+        <span class="player-name">intermerda2009</span>
+        <div class="bar-wrap"><div class="bar-fill" style="width:25%;background:#BA7517"></div></div>
+        <span class="count" style="color:#854F0B">1</span>
+      </div>
+    </div>
+
+    <div class="stat-box">
+      <div class="stat-box-title">Win Rate Coppe · Era 8 (2021–2025) — confronto equo</div>
+      <div class="wr-row">
+        <div class="avatar" style="background:rgba(29,158,117,0.15);color:#0F6E56">AG</div>
+        <span class="wr-name" style="margin-left:4px">alessandrogobbo90</span>
+        <span class="wr-detail">4 in 4 anni</span>
+        <div class="wr-bar-wrap"><div class="wr-bar" style="width:100%;background:#1D9E75"></div></div>
+        <span class="wr-pct" style="color:#0F6E56">1.00</span>
+      </div>
+      <div class="wr-row">
+        <div class="avatar" style="background:rgba(245,197,24,0.15);color:#854F0B">DA</div>
+        <span class="wr-name" style="margin-left:4px">dalama</span>
+        <span class="wr-detail">3 in 4 anni</span>
+        <div class="wr-bar-wrap"><div class="wr-bar" style="width:75%;background:#EF9F27"></div></div>
+        <span class="wr-pct" style="color:#854F0B">0.75</span>
+      </div>
+      <div class="wr-row">
+        <div class="avatar" style="background:rgba(55,138,221,0.15);color:#185FA5">MP</div>
+        <span class="wr-name" style="margin-left:4px">mikepizzo</span>
+        <span class="wr-detail">2 in 4 anni</span>
+        <div class="wr-bar-wrap"><div class="wr-bar" style="width:50%;background:#378ADD"></div></div>
+        <span class="wr-pct" style="color:#185FA5">0.50</span>
+      </div>
+      <div class="wr-row">
+        <div class="avatar" style="background:rgba(127,119,221,0.15);color:#534AB7">DE</div>
+        <span class="wr-name" style="margin-left:4px">Denny</span>
+        <span class="wr-detail">1 in 4 anni</span>
+        <div class="wr-bar-wrap"><div class="wr-bar" style="width:25%;background:#7F77DD"></div></div>
+        <span class="wr-pct" style="color:#534AB7">0.25</span>
+      </div>
+      <div class="wr-row">
+        <div class="avatar" style="background:rgba(99,153,34,0.15);color:#3B6D11">AB</div>
+        <span class="wr-name" style="margin-left:4px">andrebamuj33</span>
+        <span class="wr-detail">1 in 4 anni</span>
+        <div class="wr-bar-wrap"><div class="wr-bar" style="width:25%;background:#639922"></div></div>
+        <span class="wr-pct" style="color:#3B6D11">0.25</span>
+      </div>
+      <div class="wr-row">
+        <div class="avatar" style="background:rgba(186,117,23,0.15);color:#854F0B">IN</div>
+        <span class="wr-name" style="margin-left:4px">intermerda2009</span>
+        <span class="wr-detail">0 in 4 anni</span>
+        <div class="wr-bar-wrap"><div class="wr-bar" style="width:0%"></div></div>
+        <span class="wr-pct" style="color:var(--muted)">0.00</span>
+      </div>
+      <div class="wr-row">
+        <div class="avatar" style="background:rgba(212,83,126,0.15);color:#993556">AW</div>
+        <span class="wr-name" style="margin-left:4px">AleWilly86</span>
+        <span class="wr-detail">0 in 4 anni</span>
+        <div class="wr-bar-wrap"><div class="wr-bar" style="width:0%"></div></div>
+        <span class="wr-pct" style="color:var(--muted)">0.00</span>
+      </div>
+      <div class="wr-row">
+        <div class="avatar" style="background:rgba(168,178,190,0.15);color:var(--muted)">BO</div>
+        <span class="wr-name" style="margin-left:4px">Bobo88</span>
+        <span class="wr-detail">0 in 4 anni</span>
+        <div class="wr-bar-wrap"><div class="wr-bar" style="width:0%"></div></div>
+        <span class="wr-pct" style="color:var(--muted)">0.00</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== BIRRE ===== -->
+  <div class="section" id="tab-birre">
+    <div class="section-title">🍺 Classifica Birre — Ultimi Posti Serie A</div>
+
+    <div class="era-block">
+      <div class="era-block-title">
+        <span class="era-pill era6">Era 6</span>
+        <span class="era-block-sub">2018/19 · 2019/20 · 2020/21</span>
+      </div>
+      <div class="stat-box" style="margin-bottom:4px">
+        <div class="player-row">
+          <div class="avatar" style="background:rgba(226,75,74,0.15);color:#A32D2D">DA</div>
+          <span class="player-name" style="margin-left:4px">dalama</span>
+          <div class="bar-wrap"><div class="bar-fill" style="width:100%;background:#E24B4A"></div></div>
+          <span class="count" style="color:#E24B4A">1</span>
+          <span class="beers">🍺</span>
+          <span style="font-size:11px;color:var(--muted);margin-left:4px">(2020/21)</span>
+        </div>
+        <div class="player-row">
+          <div class="avatar" style="background:rgba(226,75,74,0.15);color:#A32D2D">AB</div>
+          <span class="player-name" style="margin-left:4px">andrebamuj33</span>
+          <div class="bar-wrap"><div class="bar-fill" style="width:100%;background:#E24B4A"></div></div>
+          <span class="count" style="color:#E24B4A">1</span>
+          <span class="beers">🍺</span>
+          <span style="font-size:11px;color:var(--muted);margin-left:4px">(2018/19)</span>
+        </div>
+        <div class="player-row">
+          <div class="avatar" style="background:rgba(226,75,74,0.15);color:#A32D2D">AW</div>
+          <span class="player-name" style="margin-left:4px">AleWilly86</span>
+          <div class="bar-wrap"><div class="bar-fill" style="width:100%;background:#E24B4A"></div></div>
+          <span class="count" style="color:#E24B4A">1</span>
+          <span class="beers">🍺</span>
+          <span style="font-size:11px;color:var(--muted);margin-left:4px">(2019/20)</span>
+        </div>
+      </div>
+      <p class="note">Era equa: ognuno ha pagato esattamente 1 volta su 3 stagioni.</p>
+    </div>
+
+    <div class="era-block">
+      <div class="era-block-title">
+        <span class="era-pill era8">Era 8</span>
+        <span class="era-block-sub">2021/22 · 2022/23 · 2023/24 · 2024/25</span>
+      </div>
+      <div class="stat-box" style="margin-bottom:4px">
+        <div class="player-row">
+          <div class="avatar" style="background:rgba(226,75,74,0.15);color:#A32D2D">DA</div>
+          <span class="player-name" style="margin-left:4px">dalama</span>
+          <div class="bar-wrap"><div class="bar-fill" style="width:100%;background:#E24B4A"></div></div>
+          <span class="count" style="color:#E24B4A">2</span>
+          <span class="beers">🍺🍺</span>
+          <span style="font-size:11px;color:var(--muted);margin-left:4px">(21/22, 20/21)</span>
+        </div>
+        <div class="player-row">
+          <div class="avatar" style="background:rgba(212,83,126,0.15);color:#993556">DE</div>
+          <span class="player-name" style="margin-left:4px">Denny</span>
+          <div class="bar-wrap"><div class="bar-fill" style="width:50%;background:#D4537E"></div></div>
+          <span class="count" style="color:#D4537E">1</span>
+          <span class="beers">🍺</span>
+          <span style="font-size:11px;color:var(--muted);margin-left:4px">(22/23)</span>
+        </div>
+        <div class="player-row">
+          <div class="avatar" style="background:rgba(212,83,126,0.15);color:#993556">IN</div>
+          <span class="player-name" style="margin-left:4px">intermerda2009</span>
+          <div class="bar-wrap"><div class="bar-fill" style="width:50%;background:#D4537E"></div></div>
+          <span class="count" style="color:#D4537E">1</span>
+          <span class="beers">🍺</span>
+          <span style="font-size:11px;color:var(--muted);margin-left:4px">(23/24)</span>
+        </div>
+        <div class="player-row">
+          <div class="avatar" style="background:rgba(212,83,126,0.15);color:#993556">AB</div>
+          <span class="player-name" style="margin-left:4px">andrebamuj33</span>
+          <div class="bar-wrap"><div class="bar-fill" style="width:50%;background:#D4537E"></div></div>
+          <span class="count" style="color:#D4537E">1</span>
+          <span class="beers">🍺</span>
+          <span style="font-size:11px;color:var(--muted);margin-left:4px">(24/25)</span>
+        </div>
+        <div class="player-row">
+          <div class="avatar" style="background:rgba(168,178,190,0.15);color:var(--muted)">AG</div>
+          <span class="player-name muted" style="margin-left:4px">alessandrogobbo90</span>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%"></div></div>
+          <span class="count" style="color:var(--muted);font-size:13px">0</span>
+        </div>
+        <div class="player-row">
+          <div class="avatar" style="background:rgba(168,178,190,0.15);color:var(--muted)">MP</div>
+          <span class="player-name muted" style="margin-left:4px">mikepizzo</span>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%"></div></div>
+          <span class="count" style="color:var(--muted);font-size:13px">0</span>
+        </div>
+        <div class="player-row">
+          <div class="avatar" style="background:rgba(168,178,190,0.15);color:var(--muted)">BO</div>
+          <span class="player-name muted" style="margin-left:4px">Bobo88</span>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%"></div></div>
+          <span class="count" style="color:var(--muted);font-size:13px">0</span>
+        </div>
+        <div class="player-row">
+          <div class="avatar" style="background:rgba(168,178,190,0.15);color:var(--muted)">AW</div>
+          <span class="player-name muted" style="margin-left:4px">AleWilly86</span>
+          <div class="bar-wrap"><div class="bar-fill" style="width:0%"></div></div>
+          <span class="count" style="color:var(--muted);font-size:13px">0</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stat-box">
+      <div class="stat-box-title">Totale Birre · Carriera Completa</div>
+      <div class="player-row">
+        <div class="avatar" style="background:rgba(226,75,74,0.15);color:#A32D2D">DA</div>
+        <span class="player-name" style="margin-left:4px">dalama</span>
+        <div class="bar-wrap" style="width:80px"><div class="bar-fill" style="width:100%;background:#E24B4A"></div></div>
+        <span class="count" style="color:#E24B4A">3</span>
+        <span class="beers">🍺🍺🍺</span>
+      </div>
+      <div class="player-row">
+        <div class="avatar" style="background:rgba(212,83,126,0.12);color:#993556">AB</div>
+        <span class="player-name" style="margin-left:4px">andrebamuj33</span>
+        <div class="bar-wrap" style="width:80px"><div class="bar-fill" style="width:66%;background:#D4537E"></div></div>
+        <span class="count" style="color:#D4537E">2</span>
+        <span class="beers">🍺🍺</span>
+      </div>
+      <div class="player-row">
+        <div class="avatar" style="background:rgba(212,83,126,0.12);color:#993556">AW</div>
+        <span class="player-name" style="margin-left:4px">AleWilly86</span>
+        <div class="bar-wrap" style="width:80px"><div class="bar-fill" style="width:33%;background:#D4537E"></div></div>
+        <span class="count" style="color:#D4537E">1</span>
+        <span class="beers">🍺</span>
+      </div>
+      <div class="player-row">
+        <div class="avatar" style="background:rgba(186,117,23,0.12);color:#854F0B">IN</div>
+        <span class="player-name" style="margin-left:4px">intermerda2009</span>
+        <div class="bar-wrap" style="width:80px"><div class="bar-fill" style="width:33%;background:#BA7517"></div></div>
+        <span class="count" style="color:#854F0B">1</span>
+        <span class="beers">🍺</span>
+      </div>
+      <div class="player-row">
+        <div class="avatar" style="background:rgba(127,119,221,0.12);color:#534AB7">DE</div>
+        <span class="player-name" style="margin-left:4px">Denny</span>
+        <div class="bar-wrap" style="width:80px"><div class="bar-fill" style="width:33%;background:#7F77DD"></div></div>
+        <span class="count" style="color:#534AB7">1</span>
+        <span class="beers">🍺</span>
+      </div>
+    </div>
+  </div>
+
+  <footer>Lega Fantacalcio · 2018–2025</footer>
+
+</div>
+
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
