@@ -367,6 +367,55 @@
     font-style: italic;
   }
 
+  .curiosity-block {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--card);
+  }
+  .curiosity-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .curiosity-icon { font-size: 15px; }
+  .curiosity-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .curiosity-item {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .curiosity-item:last-child { border-bottom: none; }
+  .curiosity-badge {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 10px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 1px;
+    letter-spacing: 0.3px;
+  }
+  .curiosity-text {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .curiosity-text strong {
+    font-weight: 700;
+    color: var(--text);
+  }
+
   footer {
     text-align: center;
     font-size: 11px;
@@ -396,6 +445,7 @@
     <button class="tab" onclick="showTab('coppe',this)">Coppe</button>
     <button class="tab" onclick="showTab('stats',this)">Trofei</button>
     <button class="tab" onclick="showTab('birre',this)">🍺 Birre</button>
+    <button class="tab" onclick="showTab('curiose',this)">💡 Curiosità</button>
   </div>
 
   <!-- ===== SERIE A ===== -->
@@ -819,6 +869,72 @@
         <div class="bar-wrap" style="width:80px"><div class="bar-fill" style="width:33%;background:#7F77DD"></div></div>
         <span class="count" style="color:#534AB7">1</span>
         <span class="beers">🍺</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CURIOSITÀ ===== -->
+  <div class="section" id="tab-curiose">
+    <div class="section-title">💡 Cose Curiose</div>
+
+    <div class="curiosity-block" style="margin-bottom:10px">
+      <div class="curiosity-header" style="background:rgba(55,138,221,0.08);border-left:3px solid #378ADD">
+        <span class="curiosity-icon">🏆</span>
+        <span class="curiosity-title" style="color:#185FA5">Dominatori</span>
+      </div>
+      <div class="curiosity-item">
+        <div class="curiosity-badge" style="background:rgba(55,138,221,0.1);color:#185FA5">mikepizzo</div>
+        <div class="curiosity-text">Ha vinto <strong>3 Winter Cup consecutive</strong> (21/22, 22/23, 24/25) — re assoluto della coppa invernale. Nessuno ci è nemmeno andato vicino.</div>
+      </div>
+      <div class="curiosity-item">
+        <div class="curiosity-badge" style="background:rgba(29,158,117,0.1);color:#0F6E56">alessandrogobbo90</div>
+        <div class="curiosity-text">Unico ad aver vinto la <strong>Serie A per 2 stagioni consecutive</strong> (22/23 e 23/24). Doppio campione in carica.</div>
+      </div>
+      <div class="curiosity-item">
+        <div class="curiosity-badge" style="background:rgba(29,158,117,0.1);color:#0F6E56">alessandrogobbo90</div>
+        <div class="curiosity-text"><strong>Win rate coppe Era 8 perfetto: 1.00</strong> — almeno 1 trofeo vinto in ognuna delle 4 stagioni a 8. Un'anomalia statistica.</div>
+      </div>
+      <div class="curiosity-item">
+        <div class="curiosity-badge" style="background:rgba(245,197,24,0.15);color:#854F0B">dalama</div>
+        <div class="curiosity-text">Recordman di coppe in Era 8 con 3 titoli — ma sono <strong>tutte Summer Cup o speciali</strong>. Non ha mai vinto una Winter Cup in tutta la sua carriera.</div>
+      </div>
+    </div>
+
+    <div class="curiosity-block" style="margin-bottom:10px">
+      <div class="curiosity-header" style="background:rgba(226,75,74,0.08);border-left:3px solid #E24B4A">
+        <span class="curiosity-icon">🍺</span>
+        <span class="curiosity-title" style="color:#A32D2D">Birre &amp; Pagamenti</span>
+      </div>
+      <div class="curiosity-item">
+        <div class="curiosity-badge" style="background:rgba(226,75,74,0.1);color:#A32D2D">dalama</div>
+        <div class="curiosity-text">Detiene il <strong>record assoluto di birre pagate: 3 in carriera</strong>. Nessun altro ha superato quota 2.</div>
+      </div>
+      <div class="curiosity-item">
+        <div class="curiosity-badge" style="background:rgba(127,119,221,0.1);color:#534AB7">Era 6</div>
+        <div class="curiosity-text">Fu <strong>perfettamente equa</strong>: ogni giocatore ha pagato esattamente 1 birra in 3 stagioni. Distribuzione ideale, mai più ripetuta.</div>
+      </div>
+      <div class="curiosity-item">
+        <div class="curiosity-badge" style="background:rgba(29,158,117,0.1);color:#0F6E56">mikepizzo &amp; alessandrogobbo90</div>
+        <div class="curiosity-text"><strong>Non hanno mai pagato una birra</strong> in tutta la loro carriera. Zero ultimi posti in 7 stagioni ciascuno.</div>
+      </div>
+    </div>
+
+    <div class="curiosity-block" style="margin-bottom:10px">
+      <div class="curiosity-header" style="background:rgba(127,119,221,0.08);border-left:3px solid #7F77DD">
+        <span class="curiosity-icon">😅</span>
+        <span class="curiosity-title" style="color:#534AB7">Destini Particolari</span>
+      </div>
+      <div class="curiosity-item">
+        <div class="curiosity-badge" style="background:rgba(168,178,190,0.15);color:#5F5E5A">Bobo88</div>
+        <div class="curiosity-text">Non ha mai vinto né una coppa né il campionato in 7 stagioni, ma ha collezionato <strong>2 podi in Serie A</strong>. Eterno secondo.</div>
+      </div>
+      <div class="curiosity-item">
+        <div class="curiosity-badge" style="background:rgba(212,83,126,0.1);color:#993556">AleWilly86</div>
+        <div class="curiosity-text">Ha vinto <strong>2 Summer Cup</strong> ma zero Winter Cup, zero campionati. Specialista dell'estate.</div>
+      </div>
+      <div class="curiosity-item">
+        <div class="curiosity-badge" style="background:rgba(127,119,221,0.1);color:#534AB7">Denny</div>
+        <div class="curiosity-text">Al suo <strong>primo anno ha vinto tutto</strong> (Serie A + Formula 1 League). L'anno dopo ha pagato la birra. Dai massimi ai minimi in 12 mesi.</div>
       </div>
     </div>
   </div>
