@@ -593,6 +593,11 @@
         "trasferta": "PORCELLONA FC",
         "alert_casa": [
           {
+            "giocatore": "De Bruyne",
+            "stato": "titolare",
+            "nota": "Titolare vs Cagliari — Conte lo conferma con McTominay"
+          },
+          {
             "giocatore": "Thuram",
             "stato": "titolare",
             "nota": "Titolare confermato vs Fiorentina. 203 FVMp — il più in forma della lega"
