@@ -48,7 +48,7 @@ body{font-family:'Lato',sans-serif;background:var(--bg);color:var(--text);min-he
 .ev-team{color:var(--muted);font-size:11px}
 .owner-badge{font-size:10px;padding:1px 6px;border-radius:6px;font-weight:700}
 /* CLASSIFICA */
-.cr{display:grid;grid-template-columns:22px 1fr 26px 26px 26px 34px 58px;align-items:center;padding:7px 12px;border-bottom:1px solid var(--border);gap:3px}
+.cr{display:grid;grid-template-columns:22px 1fr 22px 22px 22px 22px 22px 30px 52px;align-items:center;padding:7px 12px;border-bottom:1px solid var(--border);gap:2px}
 .cr:last-child{border-bottom:none}
 .cr-pos{font-weight:700;font-size:13px}
 .cr-name{font-size:12px;font-weight:700;min-width:0}
@@ -125,7 +125,7 @@ footer{text-align:center;font-size:11px;color:var(--muted);margin:1.5rem 0;lette
   <!-- CLASSIFICA -->
   <div class="section active" id="tab-classifica">
     <div class="card">
-      <div class="card-header">Serie A · Classifica G27 <span style="font-size:10px">V · N · P · Pt · Tot</span></div>
+      <div class="card-header">Serie A · Classifica G27 <span style="font-size:10px">V · N · P · GF · GS · Pt · Tot</span></div>
       <div id="classifica-body"></div>
     </div>
   </div>
@@ -177,6 +177,15 @@ footer{text-align:center;font-size:11px;color:var(--muted);margin:1.5rem 0;lette
   <footer id="footer-meta">Fantalega 21I22 · 2025/26</footer>
 </div>
 <script>
+// ---- NAVIGATION ----
+function showTab(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
 // ---- COLORS ----
 const PC={'Mike':'#378ADD','Ale':'#1D9E75','Bobo':'#7F77DD','Willy':'#EF9F27','Davide':'#BA7517','Denny':'#534AB7','Bamu':'#639922','Salvo':'#854F0B'};
 const TC={'ac pizzo':'#378ADD','fc kiricocho2puntozero':'#1D9E75','FcZeroTituli':'#7F77DD','R B Salisburro':'#EF9F27','Santini United':'#BA7517','I Ridartati dei Caraibi':'#534AB7','PORCELLONA FC':'#639922','monza':'#854F0B'};
@@ -192,6 +201,8 @@ function buildClassifica(data){
     h+='<div class="cr"><div class="cr-pos" style="color:'+pc[i]+'">'+t.pos+'</div>'+
       '<div class="cr-name" style="color:'+c+'">'+t.nome+'<span>'+t.user+'</span></div>'+
       '<div class="cr-n">'+t.v+'</div><div class="cr-n">'+t.n+'</div><div class="cr-n">'+t.p+'</div>'+
+      '<div class="cr-n" style="color:#1D9E75;font-weight:700">'+t.gf+'</div>'+
+      '<div class="cr-n" style="color:#E24B4A;font-weight:700">'+t.gs+'</div>'+
       '<div class="cr-pt" style="color:'+c+'">'+t.pt+'</div>'+
       '<div class="cr-tot" style="color:'+(i===0?c:(t.tot<=1900?'#E24B4A':'var(--muted)'))+'">'+t.tot+'</div>'+
     '</div>';
