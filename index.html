@@ -185,6 +185,26 @@ body { font-family: 'Lato', sans-serif; background: var(--bg); color: var(--text
 
 footer { text-align: center; font-size: 11px; color: var(--muted); margin: 1.5rem 0; letter-spacing: 1px; text-transform: uppercase; }
 
+.live-match { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+.live-match:last-child { border-bottom: none; }
+.live-match-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+.live-teams { display: flex; align-items: center; gap: 8px; flex: 1; }
+.live-team { font-size: 12px; font-weight: 700; flex: 1; }
+.live-team.away { text-align: right; }
+.live-score { font-family: 'Oswald', sans-serif; font-size: 20px; font-weight: 700; min-width: 50px; text-align: center; color: var(--text); }
+.live-minute { font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 8px; }
+.live-status-ft { background: var(--surface); color: var(--muted); }
+.live-status-live { background: rgba(226,75,74,0.15); color: #E24B4A; animation: pulse 1.5s infinite; }
+.live-status-ns { background: var(--surface); color: var(--muted); }
+.live-owners { font-size: 11px; color: var(--muted); margin-top: 4px; }
+.live-event { display: flex; align-items: center; gap: 8px; padding: 6px 14px; border-bottom: 1px solid var(--border); font-size: 12px; }
+.live-event:last-child { border-bottom: none; }
+.live-event-min { font-family: 'Oswald', sans-serif; font-size: 12px; font-weight: 600; color: var(--muted); min-width: 30px; }
+.live-event-icon { font-size: 14px; }
+.live-event-player { font-weight: 700; }
+.live-event-team { color: var(--muted); font-size: 11px; }
+.live-fanta-owner { font-size: 10px; padding: 1px 6px; border-radius: 6px; font-weight: 700; margin-left: 4px; }
+
 .stat-pill {
   display: inline-block; padding: 2px 8px; border-radius: 8px;
   font-size: 10px; font-weight: 700; margin-left: 6px;
@@ -214,6 +234,7 @@ footer { text-align: center; font-size: 11px; color: var(--muted); margin: 1.5re
     <button class="tab" onclick="showTab('andamento',this)">📈 Trend</button>
     <button class="tab" onclick="showTab('curiosita',this)">💡 Stats</button>
     <button class="tab" onclick="showTab('h2h',this)">⚔️ H2H</button>
+    <button class="tab" onclick="showTab('live',this)">🔴 Live</button>
   </div>
 
   <div class="section active" id="tab-classifica">
@@ -277,6 +298,24 @@ footer { text-align: center; font-size: 11px; color: var(--muted); margin: 1.5re
         <span style="font-size:10px">V1 · N · V2 · gol</span>
       </div>
       <div class="card-body" id="h2h-table-body"></div>
+    </div>
+  </div>
+
+  <div class="section" id="tab-live">
+    <div class="card" style="margin-bottom:10px">
+      <div class="card-header">
+        🔴 Risultati Live — Giornata 30
+        <span id="live-status" style="font-size:10px;color:#E24B4A">Caricamento...</span>
+      </div>
+      <div class="card-body" id="live-matches-body">
+        <div style="padding:20px;text-align:center;color:var(--muted);font-size:13px">Caricamento dati live...</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">Marcatori &amp; Assist della giornata</div>
+      <div class="card-body" id="live-events-body">
+        <div style="padding:20px;text-align:center;color:var(--muted);font-size:13px">In attesa dei dati...</div>
+      </div>
     </div>
   </div>
 
@@ -383,6 +422,8 @@ function showTab(id, btn) {
   document.getElementById('tab-' + id).classList.add('active');
   btn.classList.add('active');
   window.scrollTo({top: 0, behavior: 'smooth'});
+  if (id === 'live') startLiveUpdates();
+  else if (liveInterval) { clearInterval(liveInterval); liveInterval = null; }
 }
 
 function buildClassifica(data) {
@@ -677,6 +718,194 @@ function buildH2HTable(data) {
     </div>`;
   });
   document.getElementById('h2h-table-body').innerHTML = html;
+}
+
+const API_KEY = 'e9eb9bdf5262e79ea2a3245e2936acd4';
+const SERIE_A_LEAGUE = 135;
+const SEASON = 2025;
+
+// Map real Serie A team names to fanta owners
+const TEAM_OWNERS = {
+  'Napoli': [{nome:'Davide',color:'#BA7517'},{nome:'Denny',color:'#534AB7'},{nome:'Bamu',color:'#639922'}],
+  'Cagliari': [{nome:'Willy',color:'#EF9F27'}],
+  'Genoa': [{nome:'Mike',color:'#378ADD'},{nome:'Ale',color:'#1D9E75'},{nome:'Willy',color:'#EF9F27'}],
+  'Udinese': [{nome:'Ale',color:'#1D9E75'},{nome:'Bobo',color:'#7F77DD'}],
+  'Parma': [{nome:'Mike',color:'#378ADD'},{nome:'Davide',color:'#BA7517'},{nome:'Willy',color:'#EF9F27'}],
+  'Cremonese': [{nome:'Willy',color:'#EF9F27'},{nome:'Salvo',color:'#854F0B'}],
+  'Milan': [{nome:'Mike',color:'#378ADD'},{nome:'Denny',color:'#534AB7'},{nome:'Salvo',color:'#854F0B'},{nome:'Ale',color:'#1D9E75'}],
+  'Torino': [{nome:'Salvo',color:'#854F0B'},{nome:'Bamu',color:'#639922'}],
+  'Juventus': [{nome:'Mike',color:'#378ADD'},{nome:'Ale',color:'#1D9E75'},{nome:'Bobo',color:'#7F77DD'},{nome:'Willy',color:'#EF9F27'},{nome:'Bamu',color:'#639922'}],
+  'Sassuolo': [{nome:'Willy',color:'#EF9F27'},{nome:'Davide',color:'#BA7517'}],
+  'Como': [{nome:'Davide',color:'#BA7517'},{nome:'Mike',color:'#378ADD'},{nome:'Denny',color:'#534AB7'},{nome:'Bobo',color:'#7F77DD'},{nome:'Willy',color:'#EF9F27'}],
+  'Pisa': [{nome:'Salvo',color:'#854F0B'}],
+  'Atalanta': [{nome:'Ale',color:'#1D9E75'},{nome:'Salvo',color:'#854F0B'},{nome:'Bobo',color:'#7F77DD'},{nome:'Willy',color:'#EF9F27'},{nome:'Bamu',color:'#639922'}],
+  'Verona': [],
+  'Bologna': [{nome:'Mike',color:'#378ADD'},{nome:'Ale',color:'#1D9E75'},{nome:'Bamu',color:'#639922'},{nome:'Willy',color:'#EF9F27'}],
+  'Lazio': [{nome:'Mike',color:'#378ADD'},{nome:'Davide',color:'#BA7517'},{nome:'Bobo',color:'#7F77DD'},{nome:'Denny',color:'#534AB7'},{nome:'Bamu',color:'#639922'}],
+  'Roma': [{nome:'Mike',color:'#378ADD'},{nome:'Ale',color:'#1D9E75'},{nome:'Willy',color:'#EF9F27'},{nome:'Bamu',color:'#639922'}],
+  'Lecce': [],
+  'Fiorentina': [{nome:'Davide',color:'#BA7517'},{nome:'Salvo',color:'#854F0B'},{nome:'Bobo',color:'#7F77DD'}],
+  'Inter': [{nome:'Ale',color:'#1D9E75'},{nome:'Salvo',color:'#854F0B'},{nome:'Bobo',color:'#7F77DD'},{nome:'Willy',color:'#EF9F27'},{nome:'Denny',color:'#534AB7'}],
+};
+
+// Specific player->owner mapping
+const PLAYER_OWNERS = {
+  'Leali':'Mike','N\'Dicka':'Mike','Pavlovic':'Mike','Modric':'Mike',
+  'Saelemaekers':'Mike','Leao':'Mike','Conceicao':'Mike','Yildiz':'Mike',
+  'Castro S.':'Mike','Zaccagni':'Mike','Esposito F.P.':'Mike','Valeri':'Mike','Da Cunha':'Mike',
+  'Carnesecchi':'Ale','Dimarco':'Ale','Locatelli':'Ale','Thuram K.':'Ale',
+  'Bernardeschi':'Ale','Ferguson B.':'Ale','Mkhitaryan':'Ale','Mandragora':'Ale',
+  'Malen':'Ale','Dovbyk':'Ale','Ferguson E.':'Ale','Soule':'Ale','Davis K.':'Ale','Vasquez':'Ale',
+  'Buongiorno':'Bobo','Zambo Anguissa':'Bobo','Hojlund':'Bobo',
+  'McKennie':'Bobo','Zielinski':'Bobo','Martinez L.':'Bobo','Wesley':'Bobo','Ramon':'Bobo','Maldini':'Bobo',
+  'Caprile':'Willy','Palestra':'Willy','Spinazzola':'Willy','Bremer':'Willy',
+  'Dumfries':'Willy','Svilar':'Willy','Orsolini':'Willy','Berardi':'Willy',
+  'Krstovic':'Willy','Baturina':'Willy','Scalvini':'Willy','El Shaarawy':'Willy',
+  'De Bruyne':'Davide','Thuram':'Davide','Paz N.':'Davide','Butez':'Davide',
+  'Gosens':'Davide','Gudmundsson':'Davide','Douvikas':'Davide','Cataldi':'Davide','Strefezza':'Davide',
+  'Meret':'Denny','McTominay':'Denny','Elmas':'Denny','Pulisic':'Denny',
+  'Rabiot':'Denny','Fofana Y.':'Denny','Acerbi':'Denny','Akanji':'Denny','Bastoni':'Denny','Bisseck':'Denny','Vojvoda':'Denny',
+  'Di Gregorio':'Bamu','Gila':'Bamu','Delprato':'Bamu','Isaksen':'Bamu',
+  'Lobotka':'Bamu','Odgaard':'Bamu','Vlasic':'Bamu','Angelino':'Bamu','David':'Bamu','Dybala':'Bamu',
+  'Maignan':'Salvo','Calhanoglu':'Salvo','Barella':'Salvo','Kean':'Salvo',
+  'Scamacca':'Salvo','Pasalic':'Salvo','De Roon':'Salvo','Fullkrug':'Salvo','Casadei':'Salvo',
+};
+
+const OWNER_COLORS = {
+  'Mike':'#378ADD','Ale':'#1D9E75','Bobo':'#7F77DD','Willy':'#EF9F27',
+  'Davide':'#BA7517','Denny':'#534AB7','Bamu':'#639922','Salvo':'#854F0B'
+};
+
+function getOwner(playerName) {
+  // Try exact match first
+  if (PLAYER_OWNERS[playerName]) return PLAYER_OWNERS[playerName];
+  // Try partial match (last name)
+  const lastName = playerName.split(' ').pop();
+  for (const [key, owner] of Object.entries(PLAYER_OWNERS)) {
+    if (key.includes(lastName) || lastName.includes(key)) return owner;
+  }
+  return null;
+}
+
+async function fetchLive() {
+  try {
+    const res = await fetch(
+      `https://v3.football.api-sports.io/fixtures?league=${SERIE_A_LEAGUE}&season=${SEASON}&round=Regular Season - 30`,
+      { headers: { 'x-apisports-key': API_KEY } }
+    );
+    const data = await res.json();
+    if (data.errors && Object.keys(data.errors).length > 0) {
+      console.error('API errors:', data.errors);
+      return;
+    }
+    renderLive(data.response || []);
+  } catch(e) {
+    console.error('Live fetch error:', e);
+    document.getElementById('live-status').textContent = 'Errore connessione';
+  }
+}
+
+function renderLive(fixtures) {
+  const statusEl = document.getElementById('live-status');
+  const now = new Date();
+  statusEl.textContent = `Aggiornato ${now.getHours()}:${String(now.getMinutes()).padStart(2,'0')}`;
+  
+  let matchesHtml = '';
+  let eventsHtml = '';
+  const allEvents = [];
+
+  // Sort: live first, then by time
+  fixtures.sort((a,b) => {
+    const order = {LIVE:0,'1H':0,'HT':0,'2H':0,'ET':0,'FT':1,'NS':2};
+    return (order[a.fixture.status.short]||3) - (order[b.fixture.status.short]||3);
+  });
+
+  fixtures.forEach(f => {
+    const home = f.teams.home.name;
+    const away = f.teams.away.name;
+    const scoreH = f.goals.home ?? '-';
+    const scoreA = f.goals.away ?? '-';
+    const status = f.fixture.status.short;
+    const minute = f.fixture.status.elapsed;
+    const isLive = ['1H','2H','HT','ET','LIVE'].includes(status);
+    const isFt = ['FT','AET','PEN'].includes(status);
+
+    const statusLabel = isLive ? `${minute}'` : isFt ? 'FT' : f.fixture.date ? new Date(f.fixture.date).toLocaleTimeString('it',{hour:'2-digit',minute:'2-digit'}) : 'NS';
+    const statusClass = isLive ? 'live-status-live' : isFt ? 'live-status-ft' : 'live-status-ns';
+
+    // Get fanta owners for each team
+    const homeOwners = (TEAM_OWNERS[home]||[]).map(o=>`<span style="font-weight:700;color:${o.color}">${o.nome}</span>`).join(' ');
+    const awayOwners = (TEAM_OWNERS[away]||[]).map(o=>`<span style="font-weight:700;color:${o.color}">${o.nome}</span>`).join(' ');
+
+    const scoreColor = isLive ? '#E24B4A' : 'var(--text)';
+
+    matchesHtml += `<div class="live-match">
+      <div class="live-match-header">
+        <div class="live-teams">
+          <div class="live-team">${home}</div>
+          <div style="text-align:center">
+            <div class="live-score" style="color:${scoreColor}">${scoreH} – ${scoreA}</div>
+            <div class="live-minute ${statusClass}">${statusLabel}</div>
+          </div>
+          <div class="live-team away">${away}</div>
+        </div>
+      </div>
+      <div class="live-owners" style="display:flex;justify-content:space-between">
+        <div>${homeOwners||'<span style="color:var(--muted);font-size:10px">nessuno</span>'}</div>
+        <div style="text-align:right">${awayOwners||'<span style="color:var(--muted);font-size:10px">nessuno</span>'}</div>
+      </div>
+    </div>`;
+
+    // Collect events (goals + assists)
+    if (f.events) {
+      f.events.forEach(ev => {
+        if (ev.type === 'Goal' && ev.detail !== 'Missed Penalty') {
+          allEvents.push({
+            minute: ev.time.elapsed,
+            type: ev.detail === 'Own Goal' ? '⚽ Autogol' : '⚽ Gol',
+            player: ev.player.name,
+            assist: ev.assist?.name || null,
+            team: ev.team.name,
+            match: `${home} ${scoreH}-${scoreA} ${away}`,
+            isLive
+          });
+        }
+      });
+    }
+  });
+
+  document.getElementById('live-matches-body').innerHTML = matchesHtml || '<div style="padding:20px;text-align:center;color:var(--muted)">Nessuna partita trovata</div>';
+
+  // Render events
+  if (allEvents.length === 0) {
+    eventsHtml = '<div style="padding:16px;text-align:center;color:var(--muted);font-size:12px">Nessun gol ancora segnato</div>';
+  } else {
+    allEvents.sort((a,b) => a.minute - b.minute);
+    allEvents.forEach(ev => {
+      const owner = getOwner(ev.player);
+      const ownerBadge = owner ? `<span class="live-fanta-owner" style="background:rgba(${hexToRgb(OWNER_COLORS[owner]||'#888')},0.15);color:${OWNER_COLORS[owner]||'#888'}">${owner}</span>` : '';
+      const assistOwner = ev.assist ? getOwner(ev.assist) : null;
+      const assistBadge = assistOwner ? `<span class="live-fanta-owner" style="background:rgba(${hexToRgb(OWNER_COLORS[assistOwner]||'#888')},0.15);color:${OWNER_COLORS[assistOwner]||'#888'}">${assistOwner}</span>` : '';
+      
+      eventsHtml += `<div class="live-event">
+        <div class="live-event-min">${ev.minute}'</div>
+        <div class="live-event-icon">${ev.type === '⚽ Autogol' ? '🔴' : '⚽'}</div>
+        <div style="flex:1">
+          <div><span class="live-event-player">${ev.player}</span>${ownerBadge} <span class="live-event-team">${ev.team}</span></div>
+          ${ev.assist ? `<div style="font-size:10px;color:var(--muted);margin-top:2px">assist: <span style="font-weight:700">${ev.assist}</span>${assistBadge}</div>` : ''}
+        </div>
+        <div style="font-size:10px;color:var(--muted);text-align:right">${ev.match}</div>
+      </div>`;
+    });
+  }
+  document.getElementById('live-events-body').innerHTML = eventsHtml;
+}
+
+let liveInterval = null;
+function startLiveUpdates() {
+  fetchLive();
+  if (liveInterval) clearInterval(liveInterval);
+  liveInterval = setInterval(fetchLive, 30000);
 }
 
 async function loadData() {
