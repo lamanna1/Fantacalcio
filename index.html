@@ -193,6 +193,8 @@ footer{text-align:center;font-size:11px;color:var(--muted);margin:1.5rem 0;lette
 const WORKER='https://tight-bar-c62afantalega-api.davide-lamanna-dl.workers.dev';
 const LEAGUE=135,SEASON=2025;
 const PC={'Mike':'#378ADD','Ale':'#1D9E75','Bobo':'#7F77DD','Willy':'#EF9F27','Davide':'#BA7517','Denny':'#534AB7','Bamu':'#639922','Salvo':'#854F0B'};
+const TC={'ac pizzo':'#378ADD','fc kiricocho2puntozero':'#1D9E75','FcZeroTituli':'#7F77DD','R B Salisburro':'#EF9F27','Santini United':'#BA7517','I Ridartati dei Caraibi':'#534AB7','PORCELLONA FC':'#639922','monza':'#854F0B'};
+function tc(name){return TC[name]||'var(--muted)';}
 const TEAM_OWNERS={
   'Napoli':[{n:'Davide',c:'#BA7517'},{n:'Denny',c:'#534AB7'},{n:'Bamu',c:'#639922'}],
   'Cagliari':[{n:'Willy',c:'#EF9F27'}],
@@ -362,7 +364,7 @@ function buildClassifica(data){
   const pc=['#F5C518','#A8B2BE','#CD7F32','#EF9F27','var(--muted)','var(--muted)','var(--muted)','#E24B4A'];
   let h='';
   data.classifica.forEach((t,i)=>{
-    const c=PC[Object.keys(PC).find(k=>t.nome.toLowerCase().includes(k.toLowerCase()))||'']||'var(--muted)';
+    const c=tc(t.nome);
     h+='<div class="cr"><div class="cr-pos" style="color:'+pc[i]+'">'+t.pos+'</div>'+
       '<div class="cr-name" style="color:'+c+'">'+t.nome+'<span>'+t.user+'</span></div>'+
       '<div class="cr-n">'+t.v+'</div><div class="cr-n">'+t.n+'</div><div class="cr-n">'+t.p+'</div>'+
@@ -392,7 +394,7 @@ function buildCup(data){
     const st=calcGroup(gr);
     sh+='<div class="gtitle">Gruppo '+g+'</div>';
     st.forEach((t,i)=>{
-      const c=PC[Object.keys(PC).find(k=>t.n.toLowerCase().includes(k.toLowerCase()))||'']||'var(--muted)';
+      const c=tc(t.n);
       sh+='<div class="grow" style="background:'+(i<2?'rgba(29,158,117,.04)':'')+'">'+
         '<div style="font-weight:700;color:'+(i<2?'#1D9E75':'var(--muted)')+'">'+( i+1)+'</div>'+
         '<div style="font-weight:700;font-size:12px;color:'+c+'">'+t.n+'</div>'+
@@ -405,13 +407,12 @@ function buildCup(data){
     });
     rh+='<div class="gtitle">Gruppo '+g+'</div>';
     gr.risultati.forEach(round=>round.partite.forEach(m=>{
-      const cc=PC[Object.keys(PC).find(k=>m.casa.toLowerCase().includes(k.toLowerCase()))||'']||'var(--muted)';
-      const tc=PC[Object.keys(PC).find(k=>m.trasferta.toLowerCase().includes(k.toLowerCase()))||'']||'var(--muted)';
+      const cc=tc(m.casa),tcc=tc(m.trasferta);
       const w=m.gol_c>m.gol_t?'casa':m.gol_c<m.gol_t?'tr':'pari';
       rh+='<div class="cup-m">'+
         '<span class="cup-t" style="color:'+cc+';opacity:'+(w==='tr'?.5:1)+'">'+m.casa+'</span>'+
         '<div style="text-align:center"><div class="cup-s">'+m.gol_c+'–'+m.gol_t+'</div><div style="font-size:10px;color:var(--muted)">'+m.pt_c+' · '+m.pt_t+'</div></div>'+
-        '<span class="cup-t r" style="color:'+tc+';opacity:'+(w==='casa'?.5:1)+'">'+m.trasferta+'</span>'+
+        '<span class="cup-t r" style="color:'+tcc+';opacity:'+(w==='casa'?.5:1)+'">'+m.trasferta+'</span>'+
       '</div>';
     }));
     if(g==='A'){sh+='<div style="height:4px;background:var(--border)"></div>';rh+='<div style="height:4px;background:var(--border)"></div>';}
@@ -423,9 +424,7 @@ function buildCup(data){
 function buildAndamento(data){
   let h='';
   data.andamento.fasi.forEach(f=>{
-    const c1=PC[Object.keys(PC).find(k=>f.primo.toLowerCase().includes(k.toLowerCase()))||'']||'var(--muted)';
-    const c2=PC[Object.keys(PC).find(k=>f.secondo.toLowerCase().includes(k.toLowerCase()))||'']||'var(--muted)';
-    const cu=PC[Object.keys(PC).find(k=>f.ultimo.toLowerCase().includes(k.toLowerCase()))||'']||'var(--muted)';
+    const c1=tc(f.primo),c2=tc(f.secondo),cu=tc(f.ultimo);
     h+='<div class="fase"><div class="fasel">'+f.label+'</div>'+
       '<div style="flex:1">'+
         '<div style="font-size:12px;font-weight:700">🥇 <span style="color:'+c1+'">'+f.primo+'</span></div>'+
@@ -444,7 +443,7 @@ function buildAndamento(data){
   ];
   let sh='';
   rows.forEach(r=>{
-    const c=PC[Object.keys(PC).find(k=>r.t.nome.toLowerCase().includes(k.toLowerCase()))||'']||'var(--muted)';
+    const c=tc(r.t.nome);
     sh+='<div style="display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--border)">'+
       '<span style="font-size:16px">'+r.i+'</span>'+
       '<div style="flex:1"><div style="font-size:11px;color:var(--muted)">'+r.l+'</div>'+
