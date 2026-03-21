@@ -211,15 +211,15 @@ function buildClassifica(data){
 }
 
 function calcGroup(group){
-  const t={};group.squadre.forEach(s=>{t[s]={g:0,v:0,n:0,p:0,gf:0,gs:0,pt:0};});
+  const t={};group.squadre.forEach(s=>{t[s]={g:0,v:0,par:0,p:0,gf:0,gs:0,pt:0};});
   group.risultati.forEach(r=>r.partite.forEach(m=>{
     const c=m.casa,tr=m.trasferta,gc=m.gol_c,gt=m.gol_t;
     t[c].g++;t[tr].g++;t[c].gf+=gc;t[c].gs+=gt;t[tr].gf+=gt;t[tr].gs+=gc;
     if(gc>gt){t[c].v++;t[c].pt+=3;t[tr].p++;}
     else if(gc<gt){t[tr].v++;t[tr].pt+=3;t[c].p++;}
-    else{t[c].n++;t[tr].n++;t[c].pt++;t[tr].pt++;}
+    else{t[c].par++;t[tr].par++;t[c].pt++;t[tr].pt++;}
   }));
-  return Object.entries(t).map(([n,s])=>({n,...s})).sort((a,b)=>b.pt-a.pt||(b.gf-b.gs)-(a.gf-a.gs));
+  return Object.entries(t).map(([nome,s])=>({nome,...s})).sort((a,b)=>b.pt-a.pt||(b.gf-b.gs)-(a.gf-a.gs));
 }
 
 function buildCup(data){
@@ -242,12 +242,12 @@ function buildCup(data){
     });
     rh+='<div class="gtitle">Gruppo '+g+'</div>';
     gr.risultati.forEach(round=>round.partite.forEach(m=>{
-      const cc=tc(m.casa),tcc=tc(m.trasferta);
+      const cHome=tc(m.casa),cAway=tc(m.trasferta);
       const w=m.gol_c>m.gol_t?'casa':m.gol_c<m.gol_t?'tr':'pari';
       rh+='<div class="cup-m">'+
-        '<span class="cup-t" style="color:'+cc+';opacity:'+(w==='tr'?.5:1)+'">'+m.casa+'</span>'+
+        '<span class="cup-t" style="color:'+cHome+';opacity:'+(w==='tr'?.5:1)+'">'+m.casa+'</span>'+
         '<div style="text-align:center"><div class="cup-s">'+m.gol_c+'–'+m.gol_t+'</div><div style="font-size:10px;color:var(--muted)">'+m.pt_c+' · '+m.pt_t+'</div></div>'+
-        '<span class="cup-t r" style="color:'+tcc+';opacity:'+(w==='casa'?.5:1)+'">'+m.trasferta+'</span>'+
+        '<span class="cup-t r" style="color:'+cAway+';opacity:'+(w==='casa'?.5:1)+'">'+m.trasferta+'</span>'+
       '</div>';
     }));
     if(g==='A'){sh+='<div style="height:4px;background:var(--border)"></div>';rh+='<div style="height:4px;background:var(--border)"></div>';}
