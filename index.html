@@ -229,7 +229,7 @@ footer { text-align: center; font-size: 11px; color: var(--muted); margin: 1.5re
 <div class="wrap">
   <div class="tabs">
     <button class="tab active" onclick="showTab('classifica',this)">📊 Class.</button>
-    <button class="tab" onclick="showTab('giornata',this)">⚽ G.28</button>
+    <button class="tab" onclick="showTab('giornata',this)">⚽ Giornata</button>
     <button class="tab" onclick="showTab('coppa',this)">🥤 Cup</button>
     <button class="tab" onclick="showTab('andamento',this)">📈 Trend</button>
     <button class="tab" onclick="showTab('curiosita',this)">💡 Stats</button>
@@ -248,10 +248,6 @@ footer { text-align: center; font-size: 11px; color: var(--muted); margin: 1.5re
   </div>
 
   <div class="section" id="tab-giornata">
-    <div class="card" style="margin-bottom:10px">
-      <div class="card-header">Fantapartite · Giornata 28</div>
-      <div class="card-body" id="fantapartite-body"></div>
-    </div>
     <div class="card">
       <div class="card-header">Serie A · Giornata 30 · Partite &amp; Giocatori</div>
       <div class="card-body" id="matches-body"></div>
@@ -788,20 +784,34 @@ function getOwner(playerName) {
 }
 
 async function fetchLive() {
+  const statusEl = document.getElementById('live-status');
+  statusEl.textContent = 'Aggiornamento...';
   try {
     const res = await fetch(
-      `https://v3.football.api-sports.io/fixtures?league=${SERIE_A_LEAGUE}&season=${SEASON}&round=Regular Season - 30`,
+      'https://v3.football.api-sports.io/fixtures?league=' + SERIE_A_LEAGUE + '&season=' + SEASON + '&round=Regular%20Season%20-%2030',
       { headers: { 'x-apisports-key': API_KEY } }
     );
+    if (!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
     if (data.errors && Object.keys(data.errors).length > 0) {
-      console.error('API errors:', data.errors);
+      statusEl.textContent = 'Errore API';
+      document.getElementById('live-matches-body').innerHTML = '<div style="padding:16px;font-size:12px;color:var(--muted)">Errore: ' + JSON.stringify(data.errors) + '</div>';
       return;
     }
-    renderLive(data.response || []);
+    if (!data.response || data.response.length === 0) {
+      const res2 = await fetch(
+        'https://v3.football.api-sports.io/fixtures?league=' + SERIE_A_LEAGUE + '&season=' + SEASON + '&live=all',
+        { headers: { 'x-apisports-key': API_KEY } }
+      );
+      const data2 = await res2.json();
+      renderLive(data2.response || []);
+    } else {
+      renderLive(data.response);
+    }
   } catch(e) {
     console.error('Live fetch error:', e);
-    document.getElementById('live-status').textContent = 'Errore connessione';
+    statusEl.textContent = 'Errore connessione';
+    document.getElementById('live-matches-body').innerHTML = '<div style="padding:16px;font-size:12px;color:var(--muted)"><p style="margin-bottom:8px">Impossibile caricare i dati live. Possibili cause:</p><ul style="padding-left:16px;line-height:1.8"><li>Il browser blocca la richiesta (CORS) su GitHub Pages</li><li>Quota API esaurita (100/giorno)</li></ul><button onclick="fetchLive()" style="margin-top:10px;padding:6px 14px;border-radius:8px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-size:12px">Riprova</button></div>';
   }
 }
 
@@ -970,7 +980,6 @@ async function loadData() {
     buildAndamento(fallback);
     buildCuriosity(fallback);
   }
-  buildFantapartite(null);
   buildMatches();
 }
 
