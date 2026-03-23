@@ -64,7 +64,7 @@ body{font-family:'Lato',sans-serif;background:var(--bg);color:var(--text);min-he
 .cup-t.r{text-align:right}
 .gr{font-size:11px;color:var(--muted);min-width:44px;font-weight:700}
 /* GROUP */
-.grow{display:grid;grid-template-columns:18px 1fr 22px 22px 22px 22px 30px;align-items:center;padding:6px 12px;border-bottom:1px solid var(--border);font-size:11px;gap:3px}
+.grow{display:grid;grid-template-columns:18px 1fr 22px 22px 22px 22px 30px 46px;align-items:center;padding:6px 12px;border-bottom:1px solid var(--border);font-size:11px;gap:3px}
 .grow:last-child{border-bottom:none}
 .gtitle{font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:8px 12px 4px}
 /* PLAYER ROW */
@@ -133,7 +133,7 @@ footer{text-align:center;font-size:11px;color:var(--muted);margin:1.5rem 0;lette
   <!-- COPPA -->
   <div class="section" id="tab-coppa">
     <div class="card" style="margin-bottom:10px">
-      <div class="card-header">Summer Cup · Classifica Gruppi <span style="font-size:10px">V · N · P · Pt</span></div>
+      <div class="card-header">Summer Cup · Classifica Gruppi <span style="font-size:10px">V · N · P · Pt · Pt Tot</span></div>
       <div id="cup-standings"></div>
     </div>
     <div class="card">
@@ -156,6 +156,13 @@ footer{text-align:center;font-size:11px;color:var(--muted);margin:1.5rem 0;lette
 
   <!-- CURIOSITA -->
   <div class="section" id="tab-curiosita">
+    <div class="card" style="margin-bottom:10px">
+      <div class="card-header" style="display:flex;align-items:center;gap:8px">
+        <span style="background:#D4380D;color:#fff;font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px;letter-spacing:1px">MONDIALI</span>
+        Pausa · Rischio Infortuni
+      </div>
+      <div id="mondiali-body"></div>
+    </div>
     <div class="card">
       <div class="card-header">Curiosità &amp; Statistiche</div>
       <div id="curiosita-body"></div>
@@ -211,10 +218,11 @@ function buildClassifica(data){
 }
 
 function calcGroup(group){
-  const t={};group.squadre.forEach(s=>{t[s]={g:0,v:0,par:0,p:0,gf:0,gs:0,pt:0};});
+  const t={};group.squadre.forEach(s=>{t[s]={g:0,v:0,par:0,p:0,gf:0,gs:0,pt:0,tot:0};});
   group.risultati.forEach(r=>r.partite.forEach(m=>{
     const c=m.casa,tr=m.trasferta,gc=m.gol_c,gt=m.gol_t;
     t[c].g++;t[tr].g++;t[c].gf+=gc;t[c].gs+=gt;t[tr].gf+=gt;t[tr].gs+=gc;
+    t[c].tot+=(m.pt_c||0);t[tr].tot+=(m.pt_t||0);
     if(gc>gt){t[c].v++;t[c].pt+=3;t[tr].p++;}
     else if(gc<gt){t[tr].v++;t[tr].pt+=3;t[c].p++;}
     else{t[c].par++;t[tr].par++;t[c].pt++;t[tr].pt++;}
@@ -229,15 +237,16 @@ function buildCup(data){
     const st=calcGroup(gr);
     sh+='<div class="gtitle">Gruppo '+g+'</div>';
     st.forEach((t,i)=>{
-      const c=tc(t.n);
+      const c=tc(t.nome);
       sh+='<div class="grow" style="background:'+(i<2?'rgba(29,158,117,.04)':'')+'">'+
         '<div style="font-weight:700;color:'+(i<2?'#1D9E75':'var(--muted)')+'">'+( i+1)+'</div>'+
-        '<div style="font-weight:700;font-size:12px;color:'+c+'">'+t.n+'</div>'+
+        '<div style="font-weight:700;font-size:12px;color:'+c+'">'+t.nome+'</div>'+
         '<div style="text-align:center;color:var(--muted)">'+t.g+'</div>'+
         '<div style="text-align:center;color:var(--muted)">'+t.v+'</div>'+
-        '<div style="text-align:center;color:var(--muted)">'+t.n+'</div>'+
+        '<div style="text-align:center;color:var(--muted)">'+t.par+'</div>'+
         '<div style="text-align:center;color:var(--muted)">'+t.p+'</div>'+
         '<div style="text-align:center;font-weight:700;color:'+c+'">'+t.pt+'</div>'+
+        '<div style="text-align:right;font-size:11px;color:var(--muted);padding-right:2px">'+t.tot.toFixed(1)+'</div>'+
       '</div>';
     });
     rh+='<div class="gtitle">Gruppo '+g+'</div>';
@@ -286,6 +295,23 @@ function buildAndamento(data){
       '<div style="font-size:12px;font-weight:700;color:'+c+'">'+r.v(r.t)+'</div></div>';
   });
   document.getElementById('stats-body').innerHTML=sh;
+}
+
+function buildMondiali(){
+  const notizie=[
+    {icon:'🌍',titolo:'Pausa Mondiali: ~10 giorni stop',testo:'La lega si ferma. Tanti giocatori scenderanno in campo ai Mondiali: infortuni in agguato. Chi torna acciaccato potrebbe cambiare le sorti del finale di stagione.'},
+    {icon:'⚠️',titolo:'Giocatori a rischio infortunio',testo:'Thuram, De Bruyne, Calhanoglu, Barella, Dimarco — tutti convocati con le rispettive nazionali. Un infortunio nelle prossime settimane potrebbe stravolgere qualsiasi classifica.'},
+    {icon:'📅',titolo:'Si riparte dalla G29',testo:'Al rientro dalla pausa, subito doppio impegno: Serie A e Summer Cup. Chi avrà recuperato bene e chi tornerà acciaccato farà la differenza. Tieniti pronto.'},
+  ];
+  let h='';
+  notizie.forEach(n=>{
+    h+='<div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-bottom:1px solid var(--border)">'+
+      '<span style="font-size:20px;margin-top:1px">'+n.icon+'</span>'+
+      '<div><div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:2px">'+n.titolo+'</div>'+
+      '<div style="font-size:11px;color:var(--muted);line-height:1.5">'+n.testo+'</div></div></div>';
+  });
+  h+='<div style="padding:8px 14px;font-size:10px;color:var(--muted);text-align:center;letter-spacing:.5px">⚽ Mondiali in corso · Aggiornamento al rientro</div>';
+  document.getElementById('mondiali-body').innerHTML=h;
 }
 
 function buildCuriosity(data){
@@ -342,7 +368,7 @@ async function loadData(){
     const d=await r.json();
     document.getElementById('meta-badge').textContent='G'+d.meta.giornata_attuale+' · '+d.meta.ultimo_aggiornamento;
     document.getElementById('footer-meta').textContent='Fantalega 21I22 · '+d.meta.stagione+' · Agg. '+d.meta.ultimo_aggiornamento;
-    buildClassifica(d);buildCup(d);buildAndamento(d);buildCuriosity(d);buildH2H(d);
+    buildClassifica(d);buildCup(d);buildAndamento(d);buildMondiali();buildCuriosity(d);buildH2H(d);
   }catch(e){console.error('loadData error:',e);}
 }
 

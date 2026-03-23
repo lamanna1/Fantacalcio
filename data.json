@@ -2,119 +2,119 @@
   "meta": {
     "stagione": "2025/26",
     "giornata_attuale": 28,
-    "ultimo_aggiornamento": "20/03/2026"
+    "ultimo_aggiornamento": "23/03/2026"
   },
   "classifica": [
     {
       "pos": 1,
       "nome": "fc kiricocho2puntozero",
       "user": "alessandrogobbo90",
-      "g": 27,
+      "g": 28,
       "v": 13,
-      "n": 7,
+      "n": 8,
       "p": 7,
-      "gf": 48,
-      "gs": 32,
-      "pt": 46,
-      "tot": 1977.5,
-      "trend": "up"
+      "gf": 51,
+      "gs": 35,
+      "pt": 47,
+      "tot": 2055.5,
+      "trend": "stable"
     },
     {
       "pos": 2,
       "nome": "ac pizzo",
       "user": "mikepizzo",
-      "g": 27,
-      "v": 12,
+      "g": 28,
+      "v": 13,
       "n": 4,
       "p": 11,
-      "gf": 45,
+      "gf": 48,
       "gs": 40,
-      "pt": 40,
-      "tot": 1965,
-      "trend": "stable"
+      "pt": 43,
+      "tot": 2043,
+      "trend": "up"
     },
     {
       "pos": 3,
-      "nome": "FcZeroTituli",
-      "user": "Bobo88",
-      "g": 27,
+      "nome": "R B Salisburro",
+      "user": "Germano Mosconi",
+      "g": 28,
       "v": 11,
-      "n": 6,
-      "p": 10,
-      "gf": 40,
-      "gs": 42,
-      "pt": 39,
-      "tot": 1937,
+      "n": 8,
+      "p": 9,
+      "gf": 41,
+      "gs": 35,
+      "pt": 41,
+      "tot": 1997.5,
       "trend": "up"
     },
     {
       "pos": 4,
-      "nome": "R B Salisburro",
-      "user": "Germano Mosconi",
-      "g": 27,
-      "v": 10,
-      "n": 8,
-      "p": 9,
+      "nome": "FcZeroTituli",
+      "user": "Bobo88",
+      "g": 28,
+      "v": 11,
+      "n": 6,
+      "p": 11,
       "gf": 40,
-      "gs": 35,
-      "pt": 38,
-      "tot": 1930,
+      "gs": 45,
+      "pt": 39,
+      "tot": 2001.5,
       "trend": "down"
     },
     {
       "pos": 5,
       "nome": "Santini United",
       "user": "dalama",
-      "g": 27,
+      "g": 28,
       "v": 10,
       "n": 6,
-      "p": 11,
-      "gf": 47,
-      "gs": 46,
+      "p": 12,
+      "gf": 49,
+      "gs": 49,
       "pt": 36,
-      "tot": 1970.5,
-      "trend": "stable"
-    },
-    {
-      "pos": 6,
-      "nome": "I Ridartati dei Caraibi",
-      "user": "Denny",
-      "g": 27,
-      "v": 8,
-      "n": 9,
-      "p": 10,
-      "gf": 41,
-      "gs": 44,
-      "pt": 33,
-      "tot": 1933,
+      "tot": 2045,
       "trend": "down"
     },
     {
-      "pos": 7,
+      "pos": 6,
       "nome": "PORCELLONA FC",
       "user": "andrebamuj33",
-      "g": 27,
-      "v": 8,
+      "g": 28,
+      "v": 9,
       "n": 9,
       "p": 10,
-      "gf": 27,
-      "gs": 38,
-      "pt": 33,
-      "tot": 1860,
-      "trend": "stable"
+      "gf": 30,
+      "gs": 40,
+      "pt": 36,
+      "tot": 1939,
+      "trend": "up"
+    },
+    {
+      "pos": 7,
+      "nome": "I Ridartati dei Caraibi",
+      "user": "Denny",
+      "g": 28,
+      "v": 8,
+      "n": 10,
+      "p": 10,
+      "gf": 44,
+      "gs": 47,
+      "pt": 34,
+      "tot": 2014,
+      "trend": "up"
     },
     {
       "pos": 8,
       "nome": "monza",
       "user": "intermerda2009",
-      "g": 27,
+      "g": 28,
       "v": 9,
       "n": 5,
-      "p": 13,
+      "p": 14,
       "gf": 30,
-      "gs": 41,
+      "gs": 42,
       "pt": 32,
-      "tot": 1862.5,
+      "tot": 1927,
       "trend": "down"
     }
   ],
@@ -141,6 +141,12 @@
       },
       {
         "label": "G24-27",
+        "primo": "fc kiricocho2puntozero",
+        "secondo": "ac pizzo",
+        "ultimo": "monza"
+      },
+      {
+        "label": "G28",
         "primo": "fc kiricocho2puntozero",
         "secondo": "ac pizzo",
         "ultimo": "monza"
@@ -341,338 +347,73 @@
     }
   },
   "giornata_28": {
-    "partite_serie_a": [
-      {
-        "ora": "18:30",
-        "stato": "live",
-        "casa": "Cagliari",
-        "trasferta": "Napoli"
-      },
-      {
-        "ora": "20:45",
-        "stato": "oggi",
-        "casa": "Genoa",
-        "trasferta": "Udinese"
-      },
-      {
-        "ora": "Sab 15:00",
-        "stato": "weekend",
-        "casa": "Parma",
-        "trasferta": "Cremonese"
-      },
-      {
-        "ora": "Sab 18:00",
-        "stato": "weekend",
-        "casa": "Milan",
-        "trasferta": "Torino"
-      },
-      {
-        "ora": "Sab 20:45",
-        "stato": "weekend",
-        "casa": "Juventus",
-        "trasferta": "Sassuolo"
-      },
-      {
-        "ora": "Dom 12:30",
-        "stato": "weekend",
-        "casa": "Como",
-        "trasferta": "Pisa"
-      },
-      {
-        "ora": "Dom 15:00",
-        "stato": "weekend",
-        "casa": "Atalanta",
-        "trasferta": "Verona"
-      },
-      {
-        "ora": "Dom 15:00",
-        "stato": "weekend",
-        "casa": "Bologna",
-        "trasferta": "Lazio"
-      },
-      {
-        "ora": "Dom 18:00",
-        "stato": "weekend",
-        "casa": "Roma",
-        "trasferta": "Lecce"
-      },
-      {
-        "ora": "Dom 20:45",
-        "stato": "weekend",
-        "casa": "Fiorentina",
-        "trasferta": "Inter"
-      }
-    ],
+    "partite_serie_a": [],
     "fantapartite": [
       {
         "casa": "I Ridartati dei Caraibi",
         "trasferta": "fc kiricocho2puntozero",
-        "alert_casa": [
-          {
-            "giocatore": "McTominay",
-            "stato": "titolare",
-            "nota": "Confermato titolare vs Cagliari. Gioca sulla trequarti dietro Hojlund"
-          },
-          {
-            "giocatore": "Pulisic",
-            "stato": "dubbio",
-            "nota": "Rischia la panchina vs Torino — Allegri valuta Fullkrug. Leao out per infortunio all'adduttore"
-          },
-          {
-            "giocatore": "Rabiot",
-            "stato": "titolare",
-            "nota": "Rientra dalla squalifica vs Torino. Titolare certo"
-          },
-          {
-            "giocatore": "Bastoni",
-            "stato": "titolare",
-            "nota": "Rientra vs Fiorentina dopo contusione alla tibia"
-          },
-          {
-            "giocatore": "Meret",
-            "stato": "ballottaggio",
-            "nota": "Ballottaggio 55% con Milinkovic-Savic"
-          }
-        ],
-        "alert_trasferta": [
-          {
-            "giocatore": "Dimarco",
-            "stato": "titolare",
-            "nota": "Titolare vs Fiorentina. Tra i più attivi della stagione (282 FVMp)"
-          },
-          {
-            "giocatore": "Locatelli",
-            "stato": "titolare",
-            "nota": "Titolare vs Sassuolo"
-          },
-          {
-            "giocatore": "Thuram K.",
-            "stato": "dubbio",
-            "nota": "Caviglia gonfia dopo Udine — 60% di giocare titolare vs Sassuolo, altrimenti Koopmeiners"
-          },
-          {
-            "giocatore": "Malen",
-            "stato": "titolare",
-            "nota": "Titolare vs Lecce — Roma uscita male dall'Europa ma Malen è confermato"
-          },
-          {
-            "giocatore": "Skorupski",
-            "stato": "out",
-            "nota": "Infortunio grave — out 6-8 settimane. Gioca Ravaglia vs Lazio"
-          }
-        ]
+        "risultato": "3-3",
+        "pt_c": 81.0,
+        "pt_t": 78.0
       },
       {
         "casa": "R B Salisburro",
         "trasferta": "monza",
-        "alert_casa": [
-          {
-            "giocatore": "Svilar",
-            "stato": "titolare",
-            "nota": "Titolare vs Lecce. Roma ha recuperato Wesley... no è squalificato"
-          },
-          {
-            "giocatore": "Orsolini",
-            "stato": "ballottaggio",
-            "nota": "Ballottaggio con Bernardeschi vs Lazio — favorito Orsolini"
-          },
-          {
-            "giocatore": "Bremer",
-            "stato": "titolare",
-            "nota": "Titolare vs Sassuolo. Juventus cerca continuità"
-          },
-          {
-            "giocatore": "Dumfries",
-            "stato": "titolare",
-            "nota": "Titolare vs Fiorentina. Inter capolista, motivata"
-          },
-          {
-            "giocatore": "Berardi",
-            "stato": "titolare",
-            "nota": "Confermato titolare vs Juventus. Sassulo non cambia l'undici tipo"
-          },
-          {
-            "giocatore": "Vardy",
-            "stato": "out",
-            "nota": "Infortunio alla coscia — out. Non convocato vs Parma"
-          }
-        ],
-        "alert_trasferta": [
-          {
-            "giocatore": "Maignan",
-            "stato": "titolare",
-            "nota": "Titolare vs Torino"
-          },
-          {
-            "giocatore": "Calhanoglu",
-            "stato": "titolare",
-            "nota": "Rientra e sarà titolare vs Cagliari dopo il problema muscolare"
-          },
-          {
-            "giocatore": "Barella",
-            "stato": "titolare",
-            "nota": "Titolare vs Fiorentina"
-          },
-          {
-            "giocatore": "Scamacca",
-            "stato": "ballottaggio",
-            "nota": "Ballottaggio Scamacca/Krstovic vs Cagliari — 50/50"
-          },
-          {
-            "giocatore": "Kean",
-            "stato": "titolare",
-            "nota": "Favorito su Piccoli per guidare l'attacco viola vs Inter"
-          }
-        ]
+        "risultato": "1-0",
+        "pt_c": 67.5,
+        "pt_t": 64.5
       },
       {
         "casa": "FcZeroTituli",
         "trasferta": "ac pizzo",
-        "alert_casa": [
-          {
-            "giocatore": "Martinez L.",
-            "stato": "dubbio",
-            "nota": "Risentimento al soleo — in dubbio per Fiorentina-Inter. Se non ce la fa gioca Thuram"
-          },
-          {
-            "giocatore": "Hojlund",
-            "stato": "titolare",
-            "nota": "Prima punta titolare vs Cagliari per il Napoli"
-          },
-          {
-            "giocatore": "Di Lorenzo",
-            "stato": "out",
-            "nota": "Infortunio al ginocchio — out fino al 7 aprile"
-          },
-          {
-            "giocatore": "Buongiorno",
-            "stato": "titolare",
-            "nota": "Confermato titolare vs Cagliari"
-          }
-        ],
-        "alert_trasferta": [
-          {
-            "giocatore": "Leao",
-            "stato": "out",
-            "nota": "Infortunio all'adduttore — salta Milan-Torino. Gioca Fullkrug"
-          },
-          {
-            "giocatore": "Gabbia",
-            "stato": "out",
-            "nota": "Infortunio — out. Gioca De Winter vs Torino"
-          },
-          {
-            "giocatore": "Loftus-Cheek",
-            "stato": "out",
-            "nota": "Indisponibile vs Torino"
-          },
-          {
-            "giocatore": "Conceicao",
-            "stato": "titolare",
-            "nota": "Titolare vs Sassuolo"
-          },
-          {
-            "giocatore": "Yildiz",
-            "stato": "titolare",
-            "nota": "Gioca 'falso 9' vs Sassuolo con Boga — David in panchina"
-          },
-          {
-            "giocatore": "Saelemaekers",
-            "stato": "titolare",
-            "nota": "Confermato titolare vs Torino (92 FVMp stagione)"
-          },
-          {
-            "giocatore": "Zaccagni",
-            "stato": "out",
-            "nota": "Lesione muscolare — salta Bologna-Lazio. Gioca Cancellieri"
-          }
-        ]
+        "risultato": "0-3",
+        "pt_c": 64.5,
+        "pt_t": 78.0
       },
       {
         "casa": "Santini United",
         "trasferta": "PORCELLONA FC",
-        "alert_casa": [
-          {
-            "giocatore": "De Bruyne",
-            "stato": "titolare",
-            "nota": "Titolare vs Cagliari — Conte lo conferma con McTominay"
-          },
-          {
-            "giocatore": "Thuram",
-            "stato": "titolare",
-            "nota": "Titolare confermato vs Fiorentina. 203 FVMp — il più in forma della lega"
-          },
-          {
-            "giocatore": "De Bruyne",
-            "stato": "titolare",
-            "nota": "Titolare vs Cagliari — Conte lo conferma con McTominay"
-          },
-          {
-            "giocatore": "Paz N.",
-            "stato": "titolare",
-            "nota": "Titolare vs Pisa — Como in forma, 230 FVMp stagione"
-          }
-        ],
-        "alert_trasferta": [
-          {
-            "giocatore": "David",
-            "stato": "panchina",
-            "nota": "Verso la panchina vs Sassuolo — gioca Boga come prima punta"
-          },
-          {
-            "giocatore": "Delprato",
-            "stato": "out",
-            "nota": "Squalificato — salta Parma-Cremonese. Al suo posto Valenti"
-          },
-          {
-            "giocatore": "Isaksen",
-            "stato": "titolare",
-            "nota": "Titolare vs Bologna"
-          },
-          {
-            "giocatore": "Vlasic",
-            "stato": "titolare",
-            "nota": "Titolare vs Milan (75 FVMp)"
-          }
-        ]
+        "risultato": "2-3",
+        "pt_c": 74.5,
+        "pt_t": 79.0
       }
     ]
   },
   "curiosita_stagione": [
     {
       "icon": "🔥",
-      "titolo": "Il sorpasso del secolo",
-      "testo": "Ale era 4° alla giornata 9. Dalla giornata 20 in poi non si è più fermato. Ora è primo con 6 punti di vantaggio su Mike e li sta aumentando."
+      "titolo": "Ale prende il largo",
+      "testo": "47 punti, 4 di vantaggio su Mike. Il pareggio 3-3 con Denny non ha fermato la corsa: kiricocho è ormai il favorito numero uno per il titolo e per i soldi del primo posto."
     },
     {
-      "icon": "👑",
-      "titolo": "Willy: un regno durato 5 giornate",
-      "testo": "Dalla giornata 19 alla 23 R B Salisburro era in testa. Poi Ale ha fatto 0-4 a Bobo con 85.5pt e ha scavalcato tutti. Il trono era caldo ma non abbastanza."
+      "icon": "⚔️",
+      "titolo": "La guerra per il secondo posto",
+      "testo": "Mike (43pt) supera Willy (41pt) di soli 2 punti. La sfida per il secondo posto — e per i soldi — è più aperta che mai. Bobo (39pt) è in agguato."
     },
     {
-      "icon": "⚡",
-      "titolo": "Il punteggio più alto della stagione",
-      "testo": "Giornata 17: Santini United fa 94.5pt e batte Denny 2-5. Fino ad allora non si era mai visto un punteggio simile in lega. Ale stava solo riscaldando i motori."
+      "icon": "🏖️",
+      "titolo": "10 giorni di pausa: arrivano i Mondiali",
+      "testo": "La lega si ferma. Nel frattempo i giocatori scendono in campo ai Mondiali: rischio infortuni reale. Chi torna acciaccato potrebbe cambiare le sorti del finale di stagione."
+    },
+    {
+      "icon": "🎯",
+      "titolo": "Davide sblocca Santini United... ma perde",
+      "testo": "2-3 contro Bamu alla G28. Davide segna 2 ma subisce 3 — ancora quinta posizione con 36pt come Bamu. La classifica è cortissima dal 5° all'8° posto."
     },
     {
       "icon": "💀",
-      "titolo": "monza e i 13 ko",
-      "testo": "Salvo ha perso 13 partite su 27 — la metà esatta. Peggior attacco con 30 gol fatti. Alla giornata 21 ha toccato il fondo con 57pt. La stagione è ancora lunga, ma non abbastanza."
-    },
-    {
-      "icon": "🎲",
-      "titolo": "Denny: campione in carica al 6° posto",
-      "testo": "Il campione uscente è sesto a -13 dal leader. Ha alternato grandi prove (2-5 su Denny alla g17, ma dall'altra parte) a crolli inspiegabili. La difesa del titolo è complicata."
+      "titolo": "monza: 14 sconfitte su 28",
+      "testo": "Salvo perde esattamente la metà delle partite. L'1-0 subito da Willy alla G28 non fa che confermare: la stagione è compromessa, ma ci sono ancora 10 giornate."
     },
     {
       "icon": "🏆",
-      "titolo": "Ale domina anche la Summer Cup",
-      "testo": "Nel Gruppo B Ale è primo con 3 vittorie e 1 pareggio. Se dovesse vincere anche la Summer Cup oltre al campionato, sarebbe la stagione perfetta."
+      "titolo": "Summer Cup: si decide tutto nelle ultime 2 giornate",
+      "testo": "Gruppo A: monza sorprendentemente in testa con 9pt. Gruppo B: kiricocho e ac pizzo appaiate a 9pt. Semifinali in arrivo — la Cup potrebbe decidere chi porta a casa qualcosa in questa stagione."
     },
     {
-      "icon": "🍀",
-      "titolo": "Il culo del calendario",
-      "testo": "Ale alla giornata 20 ha incrociato Bobo nel momento peggiore per Bobo (65pt) e nel momento migliore per lui (85.5pt). Quattro gol di scarto. A volte la fortuna del calendario fa la differenza."
+      "icon": "💸",
+      "titolo": "Chi vince le vacanze?",
+      "testo": "Il primo classificato vince qualcosa di bello. Con 10 giornate alla fine, 4 punti di distacco non sono molti. Ale è il favorito, ma Mike e Willy stanno accelerando."
     }
   ],
   "h2h_curiosita": [
