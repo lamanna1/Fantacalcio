@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="FL Admin">
+<meta name="theme-color" content="#0f0c29">
+<title>Fantalega · Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --bg:#16161a;--card:#1e1e24;--surface:#252530;--border:rgba(255,255,255,.08);
+  --text:#e8e8e0;--muted:#888880;--accent:#1D9E75;--gold:#F5C518;--danger:#E24B4A;
+  --r:14px;--rs:10px;--safe-bottom:env(safe-area-inset-bottom,0px)
+}
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:'Lato',sans-serif}
+
+/* ── APP SHELL ── */
+#app{display:flex;flex-direction:column;height:100%;height:-webkit-fill-available}
+#app-header{
+  background:linear-gradient(135deg,#0f0c29,#1a1a3e);
+  padding:12px 16px 10px;padding-top:calc(12px + env(safe-area-inset-top,0px));
+  flex-shrink:0;display:flex;align-items:center;justify-content:space-between
+}
+.app-title{font-family:'Oswald',sans-serif;font-size:16px;font-weight:700;color:var(--gold);letter-spacing:2px;text-transform:uppercase}
+.app-sub{font-size:9px;color:rgba(255,255,255,.35);letter-spacing:1.5px;text-transform:uppercase;margin-top:1px}
+.app-badge{display:flex;align-items:center;gap:5px;background:rgba(29,158,117,.2);border:1px solid rgba(29,158,117,.35);border-radius:20px;padding:4px 10px}
+.live-dot{width:6px;height:6px;border-radius:50%;background:#1D9E75;animation:pulse 1.5s infinite}
+.badge-txt{font-size:10px;font-weight:700;color:#5DCAA5}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+#content{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding-bottom:calc(70px + var(--safe-bottom))}
+
+/* ── BOTTOM NAV ── */
+#bottom-nav{
+  position:fixed;bottom:0;left:0;right:0;
+  background:var(--card);border-top:1px solid var(--border);
+  display:flex;padding-bottom:var(--safe-bottom);flex-shrink:0;z-index:100
+}
+.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;padding:10px 4px 8px;cursor:pointer;transition:color .15s;color:var(--muted);position:relative}
+.nav-item.active{color:var(--accent)}
+.nav-item.active::after{content:'';position:absolute;top:0;left:20%;right:20%;height:2px;background:var(--accent);border-radius:0 0 2px 2px}
+.nav-ico{font-size:20px;line-height:1}
+.nav-lbl{font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-top:3px}
+.nav-badge{position:absolute;top:6px;right:calc(50% - 18px);background:var(--danger);color:#fff;font-size:8px;font-weight:700;width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;display:none}
+
+/* ── SCREENS ── */
+.screen{display:none;padding:14px}
+.screen.active{display:block}
+
+/* ── COMPONENTS ── */
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);margin-bottom:12px;overflow:hidden}
+.card-header{padding:10px 14px;background:var(--surface);border-bottom:1px solid var(--border);font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;justify-content:space-between}
+
+/* KPI */
+.kpi-row{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
+.kpi{padding:16px 12px;background:var(--card);text-align:center}
+.kpi-val{font-family:'Oswald',sans-serif;font-size:30px;font-weight:700;color:var(--accent)}
+.kpi-label{font-size:10px;color:var(--muted);margin-top:2px;text-transform:uppercase;letter-spacing:.5px}
+.kpi-val.gold{color:var(--gold)}
+
+/* Online chips */
+.online-wrap{padding:10px 14px;display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:5px 10px;border-radius:20px;background:var(--surface);border:1px solid var(--border)}
+.chip-dot{width:7px;height:7px;border-radius:50%;animation:pulse 2s infinite}
+.chip-time{font-size:9px;font-weight:400;color:var(--muted)}
+
+/* Chat feed */
+.chat-feed{max-height:340px;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.cf-msg{padding:10px 14px;border-bottom:1px solid var(--border);display:flex;gap:9px;align-items:flex-start}
+.cf-av{width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff}
+.cf-body{flex:1;min-width:0}
+.cf-name{font-size:11px;font-weight:700;margin-bottom:2px}
+.cf-text{font-size:12px;color:var(--muted);line-height:1.4;word-break:break-word}
+.cf-time{font-size:9px;color:var(--muted);flex-shrink:0;margin-top:2px}
+
+/* Proposte */
+.proposta{padding:12px 14px;border-bottom:1px solid var(--border)}
+.proposta:last-child{border-bottom:none}
+.prop-user{font-size:10px;color:var(--muted);margin-bottom:4px}
+.prop-title{font-size:13px;font-weight:700;margin-bottom:3px}
+.prop-text{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:8px}
+.prop-actions{display:flex;gap:8px}
+.prop-btn{flex:1;padding:8px;border-radius:var(--rs);font-size:12px;font-weight:700;cursor:pointer;border:1px solid;text-align:center}
+.prop-ok{background:rgba(29,158,117,.15);border-color:var(--accent);color:#5DCAA5}
+.prop-no{background:rgba(226,75,74,.12);border-color:var(--danger);color:var(--danger)}
+
+/* Voti */
+.vote-row{padding:10px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.vote-row:last-child{border-bottom:none}
+.vote-ico{font-size:16px;flex-shrink:0}
+.vote-title{font-size:12px;font-weight:700;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.vote-nums{display:flex;gap:6px;flex-shrink:0}
+.vn{font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px}
+.vn.up{background:rgba(29,158,117,.2);color:#5DCAA5}
+.vn.dn{background:rgba(226,75,74,.15);color:var(--danger)}
+
+/* ── NOTIZIE GENERATOR ── */
+.field{margin-bottom:12px}
+label{display:block;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+input,textarea,select{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:var(--rs);padding:10px 12px;font-family:'Lato',sans-serif;font-size:14px;color:var(--text);outline:none;-webkit-appearance:none;transition:border-color .15s}
+input:focus,textarea:focus{border-color:var(--accent)}
+textarea{resize:none;min-height:100px;line-height:1.5}
+
+.btn-primary{width:100%;padding:14px;background:var(--accent);color:#fff;border:none;border-radius:var(--rs);font-family:'Oswald',sans-serif;font-size:14px;font-weight:600;letter-spacing:2px;text-transform:uppercase;cursor:pointer;margin-top:4px;-webkit-appearance:none;transition:opacity .15s}
+.btn-primary:active{opacity:.8}
+.btn-primary:disabled{opacity:.4}
+.btn-secondary{width:100%;padding:12px;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:var(--rs);font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;margin-top:8px}
+
+.spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:6px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Notizie output cards */
+.news-card{padding:12px 14px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .1s}
+.news-card:last-child{border-bottom:none}
+.news-card.sel{background:rgba(29,158,117,.08);border-left:3px solid var(--accent)}
+.nc-badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:2px 6px;border-radius:4px;margin-bottom:4px}
+.nc-badge.player{background:rgba(186,117,23,.2);color:#EF9F27}
+.nc-badge.cup{background:rgba(29,158,117,.2);color:#5DCAA5}
+.nc-badge.serie{background:rgba(55,138,221,.2);color:#85B7EB}
+.nc-title{font-size:13px;font-weight:700;margin-bottom:3px}
+.nc-text{font-size:12px;color:var(--muted);line-height:1.5}
+
+/* Copy JSON area */
+.json-area{background:var(--surface);border:1px solid var(--border);border-radius:var(--rs);padding:10px;font-family:monospace;font-size:10px;color:var(--muted);max-height:180px;overflow-y:auto;word-break:break-all;white-space:pre-wrap;margin-bottom:8px}
+
+/* ── LOGIN ── */
+#login-screen{position:fixed;inset:0;background:linear-gradient(135deg,#0f0c29,#1a1a3e);display:flex;align-items:center;justify-content:center;z-index:999;padding:24px}
+.login-box{width:100%;max-width:320px;text-align:center}
+.login-logo{font-family:'Oswald',sans-serif;font-size:22px;font-weight:700;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}
+.login-sub{font-size:11px;color:rgba(255,255,255,.35);letter-spacing:2px;margin-bottom:32px}
+.login-input{width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:var(--rs);padding:14px;font-size:18px;color:#fff;outline:none;text-align:center;letter-spacing:4px;margin-bottom:12px;-webkit-appearance:none}
+.login-input:focus{border-color:var(--accent)}
+.login-btn{width:100%;padding:14px;background:var(--accent);color:#fff;border:none;border-radius:var(--rs);font-family:'Oswald',sans-serif;font-size:14px;font-weight:600;letter-spacing:2px;text-transform:uppercase;cursor:pointer}
+.login-err{font-size:12px;color:var(--danger);margin-top:8px;display:none}
+
+/* tip box */
+.tip{background:rgba(29,158,117,.08);border-left:3px solid var(--accent);border-radius:0 var(--rs) var(--rs) 0;padding:10px 12px;font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:12px}
+.tip strong{color:#5DCAA5}
+
+/* section title */
+.sec-title{font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;margin-top:4px}
+
+/* refresh pill */
+.refresh-pill{display:flex;align-items:center;justify-content:center;gap:6px;padding:8px;background:var(--surface);border:1px solid var(--border);border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;color:var(--muted);margin-bottom:12px;width:100%}
+
+/* installazione PWA banner */
+#pwa-banner{background:rgba(245,197,24,.1);border:1px solid rgba(245,197,24,.25);border-radius:var(--rs);padding:10px 14px;display:none;margin-bottom:12px;font-size:12px;color:var(--gold);line-height:1.6}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">Fantalega</div>
+    <div class="login-sub">Admin · 21I22</div>
+    <input class="login-input" type="password" id="pw" placeholder="••••••" onkeydown="if(event.key==='Enter')login()">
+    <button class="login-btn" onclick="login()">Accedi</button>
+    <div class="login-err" id="login-err">Password errata</div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <div id="app-header">
+    <div>
+      <div class="app-title">FL Admin</div>
+      <div class="app-sub">Fantalega 21I22 · 2025/26</div>
+    </div>
+    <div class="app-badge">
+      <div class="live-dot"></div>
+      <div class="badge-txt" id="hdr-online">– online</div>
+    </div>
+  </div>
+
+  <div id="content">
+
+    <!-- ═══ SCREEN: STATS ═══ -->
+    <div class="screen active" id="sc-stats">
+      <div id="pwa-banner">📲 <strong>Installa l'app:</strong> tocca <strong>Condividi → Aggiungi a schermata Home</strong> per avere l'icona sul telefono!</div>
+
+      <div class="card">
+        <div class="card-header">
+          <span><span class="live-dot"></span> Live</span>
+          <span id="last-update" style="font-size:9px">–</span>
+        </div>
+        <div class="kpi-row">
+          <div class="kpi"><div class="kpi-val" id="k-online">–</div><div class="kpi-label">Online ora</div></div>
+          <div class="kpi"><div class="kpi-val gold" id="k-visite">–</div><div class="kpi-label">Visite totali</div></div>
+          <div class="kpi"><div class="kpi-val" id="k-msg">–</div><div class="kpi-label">Messaggi</div></div>
+          <div class="kpi"><div class="kpi-val" id="k-prop">–</div><div class="kpi-label">Proposte</div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><span class="live-dot"></span> Chi c'è adesso</div>
+        <div class="online-wrap" id="online-wrap">
+          <span style="font-size:12px;color:var(--muted);padding:4px">Nessuno online</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">📊 Voti notizie</div>
+        <div id="voti-list"><div style="padding:16px;text-align:center;font-size:12px;color:var(--muted)">Caricamento...</div></div>
+      </div>
+    </div>
+
+    <!-- ═══ SCREEN: CHAT ═══ -->
+    <div class="screen" id="sc-chat">
+      <div class="card">
+        <div class="card-header">
+          💬 Chat live
+          <span id="chat-count" style="color:var(--accent);font-size:10px"></span>
+        </div>
+        <div class="chat-feed" id="chat-feed">
+          <div style="padding:20px;text-align:center;font-size:12px;color:var(--muted)">Caricamento...</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">✍️ Proposte (<span id="prop-count-lbl">0</span>)</div>
+        <div id="proposte-list">
+          <div style="padding:16px;text-align:center;font-size:12px;color:var(--muted)">Nessuna proposta</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ SCREEN: NOTIZIE ═══ -->
+    <div class="screen" id="sc-notizie">
+      <div class="tip">
+        <strong>Come funziona:</strong> inserisci i risultati e note, tocca Genera — Claude scrive le notizie. Copia il JSON e incollalo in <code>data.json</code> su GitHub.
+      </div>
+
+      <div class="card">
+        <div class="card-header">Dati giornata</div>
+        <div style="padding:14px">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+            <div class="field" style="margin:0">
+              <label>Giornata fanta</label>
+              <input type="number" id="g-fanta" value="29">
+            </div>
+            <div class="field" style="margin:0">
+              <label>Giornata Serie A</label>
+              <input type="number" id="g-seriea" value="31">
+            </div>
+          </div>
+          <div class="field">
+            <label>Risultati</label>
+            <textarea id="g-risultati" placeholder="es: Santini United 2-1 PORCELLONA FC (74.5 vs 69.0)&#10;fc kiricocho 3-0 monza (82.0 vs 61.0)&#10;..."></textarea>
+          </div>
+          <div class="field">
+            <label>Note libere (infortuni, gufate, eventi...)</label>
+            <textarea id="g-note" placeholder="es: De Bruyne out ai mondiali&#10;Salvo ha usato il modulo sbagliato&#10;Mike era sicuro di vincere..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-primary" id="gen-btn" onclick="genera()">Genera notizie</button>
+      <div style="text-align:center;font-size:11px;color:var(--muted);margin-top:6px;display:none" id="gen-status"></div>
+
+      <!-- Risultato -->
+      <div id="gen-output" style="display:none;margin-top:12px">
+        <div class="sec-title">Notizie generate — tocca per selezionare</div>
+        <div class="card">
+          <div id="news-list-out"></div>
+        </div>
+        <div class="sec-title" style="margin-top:12px">JSON da copiare in data.json</div>
+        <div class="json-area" id="json-out"></div>
+        <button class="btn-primary" onclick="copyJSON()">📋 Copia JSON</button>
+        <button class="btn-secondary" onclick="resetGen()">↺ Nuova generazione</button>
+      </div>
+    </div>
+
+    <!-- ═══ SCREEN: SETTINGS ═══ -->
+    <div class="screen" id="sc-settings">
+      <div class="card">
+        <div class="card-header">🔑 API Key Anthropic</div>
+        <div style="padding:14px">
+          <div class="field">
+            <label>Chiave (sk-ant-...)</label>
+            <input type="password" id="api-key-inp" placeholder="sk-ant-api03-..." oninput="saveKey()">
+          </div>
+          <div class="tip" style="margin:0">
+            Serve per generare notizie e per le domande degli utenti nella community. ~$0.002 per generazione. Prendila su <strong>console.anthropic.com</strong> → API Keys.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">🌐 Link rapidi</div>
+        <div style="padding:8px 14px">
+          <a href="index.html" style="display:block;padding:10px 0;border-bottom:1px solid var(--border);color:var(--accent);font-size:13px;font-weight:700;text-decoration:none">🏠 Vai al sito principale →</a>
+          <a href="chat.html" style="display:block;padding:10px 0;border-bottom:1px solid var(--border);color:var(--accent);font-size:13px;font-weight:700;text-decoration:none">💬 Vai alla Community →</a>
+          <button onclick="logout()" style="width:100%;padding:10px 0;background:transparent;border:none;color:var(--danger);font-size:13px;font-weight:700;cursor:pointer;text-align:left">🔓 Logout</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">📲 Installa come app</div>
+        <div style="padding:14px;font-size:12px;color:var(--muted);line-height:1.8">
+          <strong style="color:var(--text);display:block;margin-bottom:6px">iPhone / iPad:</strong>
+          Tocca <strong style="color:var(--gold)">Condividi ↑</strong> in Safari → <strong style="color:var(--gold)">Aggiungi a schermata Home</strong> → Aggiungi<br><br>
+          <strong style="color:var(--text);display:block;margin-bottom:6px">Android:</strong>
+          Menu <strong style="color:var(--gold)">⋮</strong> in Chrome → <strong style="color:var(--gold)">Aggiungi a schermata Home</strong>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+
+  <!-- BOTTOM NAV -->
+  <div id="bottom-nav">
+    <div class="nav-item active" id="nav-stats" onclick="showScreen('stats',this)">
+      <div class="nav-ico">📊</div>
+      <div class="nav-lbl">Stats</div>
+    </div>
+    <div class="nav-item" id="nav-chat" onclick="showScreen('chat',this)">
+      <div class="nav-ico">💬</div>
+      <div class="nav-lbl">Chat</div>
+      <div class="nav-badge" id="badge-prop">0</div>
+    </div>
+    <div class="nav-item" id="nav-notizie" onclick="showScreen('notizie',this)">
+      <div class="nav-ico">📰</div>
+      <div class="nav-lbl">Notizie</div>
+    </div>
+    <div class="nav-item" id="nav-settings" onclick="showScreen('settings',this)">
+      <div class="nav-ico">⚙️</div>
+      <div class="nav-lbl">Config</div>
+    </div>
+  </div>
+</div><!-- /app -->
+
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import { getDatabase, ref, onValue, push, set, remove } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js';
+
+const FB = {
+  apiKey:"AIzaSyChRRMF4ulbUORYoMyaXaO7qQKc51QYyVQ",
+  authDomain:"fantalega2126.firebaseapp.com",
+  databaseURL:"https://fantalega2126-default-rtdb.firebaseio.com",
+  projectId:"fantalega2126",
+  storageBucket:"fantalega2126.firebasestorage.app",
+  messagingSenderId:"355930166220",
+  appId:"1:355930166220:web:45b0348f16f2a8e5134369"
+};
+const app = initializeApp(FB);
+const db = getDatabase(app);
+
+const ADMIN_PW = 'fantalega2126';
+const PLAYERS = [
+  {nome:'fc kiricocho2puntozero',user:'Ale',color:'#1D9E75'},
+  {nome:'ac pizzo',user:'Mike',color:'#378ADD'},
+  {nome:'R B Salisburro',user:'Willy',color:'#EF9F27'},
+  {nome:'FcZeroTituli',user:'Bobo',color:'#7F77DD'},
+  {nome:'Santini United',user:'Davide',color:'#BA7517'},
+  {nome:'PORCELLONA FC',user:'Bamu',color:'#639922'},
+  {nome:'I Ridartati dei Caraibi',user:'Denny',color:'#534AB7'},
+  {nome:'monza',user:'Salvo',color:'#854F0B'},
+];
+
+let generatedNews = [];
+let selIdxs = new Set();
+
+// ── LOGIN ──
+window.login = function() {
+  const pw = document.getElementById('pw').value;
+  if (pw === ADMIN_PW) {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('api-key-inp').value = localStorage.getItem('fantalega_api_key') || '';
+    initData();
+    showPWAbanner();
+    push(ref(db,'visite'),{t:Date.now(),page:'admin-app'});
+  } else {
+    document.getElementById('login-err').style.display = 'block';
+  }
+};
+
+window.logout = function() {
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('pw').value = '';
+};
+
+// ── PWA BANNER ──
+function showPWAbanner() {
+  const ios = /iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
+  const standalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+  if (!standalone) document.getElementById('pwa-banner').style.display = 'block';
+}
+
+// ── NAVIGATION ──
+window.showScreen = function(id, el) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('sc-'+id).classList.add('active');
+  el.classList.add('active');
+  document.getElementById('content').scrollTop = 0;
+};
+
+// ── FIREBASE DATA ──
+function initData() {
+  // Online
+  onValue(ref(db,'online'), snap => {
+    const users = Object.values(snap.val()||{});
+    const n = users.length;
+    document.getElementById('k-online').textContent = n;
+    document.getElementById('hdr-online').textContent = n + ' online';
+    document.getElementById('online-wrap').innerHTML = n
+      ? users.map(u => {
+          const mins = Math.floor((Date.now()-u.t)/60000);
+          return `<div class="chip"><span class="chip-dot" style="background:${u.color}"></span>${u.user}<span class="chip-time">${mins<1?'ora':mins+'m'}</span></div>`;
+        }).join('')
+      : '<span style="font-size:12px;color:var(--muted)">Nessuno</span>';
+    document.getElementById('last-update').textContent = 'agg. '+new Date().toLocaleTimeString('it',{hour:'2-digit',minute:'2-digit'});
+  });
+
+  // Visite
+  onValue(ref(db,'visite'), snap => {
+    document.getElementById('k-visite').textContent = snap.val() ? Object.keys(snap.val()).length : 0;
+  });
+
+  // Chat
+  onValue(ref(db,'chat'), snap => {
+    const data = snap.val()||{};
+    const msgs = Object.values(data).sort((a,b)=>b.t-a.t).slice(0,60);
+    const tot = Object.keys(data).length;
+    document.getElementById('k-msg').textContent = tot;
+    document.getElementById('chat-count').textContent = '('+tot+' totali)';
+    document.getElementById('chat-feed').innerHTML = msgs.map(m =>
+      `<div class="cf-msg">
+        <div class="cf-av" style="background:${m.color||'#888'}">${(m.user||'?')[0]}</div>
+        <div class="cf-body">
+          <div class="cf-name" style="color:${m.color||'var(--text)'}">${m.user}</div>
+          <div class="cf-text">${m.text}</div>
+        </div>
+        <div class="cf-time">${new Date(m.t).toLocaleString('it',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})}</div>
+      </div>`
+    ).join('') || '<div style="padding:20px;text-align:center;font-size:12px;color:var(--muted)">Nessun messaggio</div>';
+  });
+
+  // Proposte
+  onValue(ref(db,'proposte'), snap => {
+    const data = snap.val()||{};
+    const pending = Object.entries(data).filter(([,v])=>v.stato==='pending');
+    const n = pending.length;
+    document.getElementById('k-prop').textContent = n;
+    document.getElementById('prop-count-lbl').textContent = n;
+    const badge = document.getElementById('badge-prop');
+    if (n > 0) { badge.style.display='flex'; badge.textContent=n; } else { badge.style.display='none'; }
+    document.getElementById('proposte-list').innerHTML = Object.entries(data).length
+      ? Object.entries(data).map(([key,p]) => `
+        <div class="proposta">
+          <div class="prop-user">da ${p.user} · ${new Date(p.t).toLocaleString('it',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})}</div>
+          <div class="prop-title">${p.titolo}</div>
+          <div class="prop-text">${p.testo}</div>
+          ${p.stato==='pending'?`
+          <div class="prop-actions">
+            <button class="prop-btn prop-ok" onclick="approva('${key}','${p.titolo.replace(/'/g,"\\'")}','${p.testo.replace(/'/g,"\\'")}')">✅ Approva</button>
+            <button class="prop-btn prop-no" onclick="rifiuta('${key}')">❌ Rifiuta</button>
+          </div>`:`<div style="font-size:10px;color:var(--muted);margin-top:4px">${p.stato==='approved'?'✅ Approvata':'❌ Rifiutata'}</div>`}
+        </div>`).join('')
+      : '<div style="padding:16px;text-align:center;font-size:12px;color:var(--muted)">Nessuna proposta</div>';
+  });
+
+  // Voti + notizie
+  fetch('data.json').then(r=>r.json()).then(d => {
+    const news = d.curiosita_stagione||[];
+    onValue(ref(db,'voti'), snap => {
+      const voti = snap.val()||{};
+      document.getElementById('voti-list').innerHTML = news.map((n,i) => {
+        const v = voti[i]||{up:0,down:0};
+        return `<div class="vote-row">
+          <div class="vote-ico">${n.icon}</div>
+          <div class="vote-title">${n.titolo}</div>
+          <div class="vote-nums">
+            <span class="vn up">👍 ${v.up||0}</span>
+            <span class="vn dn">👎 ${v.down||0}</span>
+          </div>
+        </div>`;
+      }).join('') || '<div style="padding:16px;text-align:center;font-size:12px;color:var(--muted)">Nessun voto</div>';
+    });
+  });
+}
+
+window.approva = function(key, titolo, testo) {
+  set(ref(db,'proposte/'+key+'/stato'),'approved');
+  navigator.clipboard?.writeText(`{"icon":"📰","titolo":"${titolo}","testo":"${testo}"}`)
+    .then(()=>alert('✅ Approvata!\nJSON copiato negli appunti — incollalo in data.json'))
+    .catch(()=>alert('✅ Approvata!\nAggiorna manualmente data.json'));
+};
+
+window.rifiuta = function(key) {
+  if (confirm('Rifiutare questa proposta?')) set(ref(db,'proposte/'+key+'/stato'),'rejected');
+};
+
+// ── API KEY ──
+window.saveKey = function() {
+  localStorage.setItem('fantalega_api_key', document.getElementById('api-key-inp').value);
+};
+
+// ── GENERA NOTIZIE ──
+window.genera = async function() {
+  const key = localStorage.getItem('fantalega_api_key')||'';
+  if (!key) { alert('Inserisci prima la API key nella sezione Config ⚙️'); showScreen('settings', document.getElementById('nav-settings')); return; }
+
+  const fanta = document.getElementById('g-fanta').value;
+  const seriea = document.getElementById('g-seriea').value;
+  const risultati = document.getElementById('g-risultati').value.trim();
+  const note = document.getElementById('g-note').value.trim();
+  if (!risultati) { alert('Inserisci almeno i risultati della giornata'); return; }
+
+  const btn = document.getElementById('gen-btn');
+  const status = document.getElementById('gen-status');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>Claude sta scrivendo...';
+  status.style.display = 'block';
+  status.textContent = 'Generazione in corso...';
+
+  let ctx = '';
+  try { const r = await fetch('data.json'); const d = await r.json(); ctx = d.classifica.map(t=>`${t.pos}. ${t.nome} (${t.pt}pt, ${t.tot}tot)`).join(', '); } catch(e){}
+
+  const prompt = `Genera notizie della settimana per la Fantalega 21I22, stagione 2025/26.
+G${fanta} fantacalcio (${seriea}ª Serie A).
+
+RISULTATI:\n${risultati}
+${note?`\nNOTE:\n${note}`:''}
+${ctx?`\nCLASSIFICA: ${ctx}`:''}
+
+FANTALLENTORI: Ale (fc kiricocho), Mike (ac pizzo), Willy (R B Salisburro), Bobo (FcZeroTituli), Davide (Santini United), Bamu (PORCELLONA FC), Denny (I Ridartati), Salvo (monza).
+
+Genera 8-10 notizie. Almeno 1 per fantallentore. Tono ironico, simpatico, come un amico al bar.
+Rispondi SOLO con JSON array: [{"icon":"emoji","titolo":"...","testo":"...","tipo":"serie_a|summer_cup|player","player":"user_o_null"}]`;
+
+  try {
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:2000,
+        system:'Cronista satirico della Fantalega italiana. Rispondi SOLO con JSON array, zero testo aggiuntivo.',
+        messages:[{role:'user',content:prompt}]})
+    });
+    const data = await resp.json();
+    const raw = data.content?.[0]?.text||'[]';
+    generatedNews = JSON.parse(raw.replace(/```json|```/g,'').trim());
+    selIdxs = new Set(generatedNews.map((_,i)=>i));
+    renderOutput();
+    document.getElementById('gen-output').style.display = 'block';
+    status.textContent = '✅ ' + generatedNews.length + ' notizie generate!';
+  } catch(e) {
+    status.textContent = '❌ Errore: '+e.message;
+  }
+  btn.disabled = false;
+  btn.textContent = 'Genera notizie';
+};
+
+function renderOutput() {
+  const badgeClass = t => t==='summer_cup'?'cup':t==='player'?'player':'serie';
+  const badgeLbl = (t,p) => t==='summer_cup'?'Cup':t==='player'?(p||'Player'):'Serie A';
+  document.getElementById('news-list-out').innerHTML = generatedNews.map((n,i) =>
+    `<div class="news-card sel" data-idx="${i}" onclick="toggleSel(${i},this)">
+      <span class="nc-badge ${badgeClass(n.tipo)}">${badgeLbl(n.tipo,n.player)}</span>
+      <div class="nc-title">${n.icon} ${n.titolo}</div>
+      <div class="nc-text">${n.testo}</div>
+    </div>`
+  ).join('');
+  updateJSON();
+}
+
+window.toggleSel = function(idx, el) {
+  if (selIdxs.has(idx)) { selIdxs.delete(idx); el.classList.remove('sel'); }
+  else { selIdxs.add(idx); el.classList.add('sel'); }
+  updateJSON();
+};
+
+function updateJSON() {
+  const sel = generatedNews.filter((_,i)=>selIdxs.has(i));
+  document.getElementById('json-out').textContent = JSON.stringify(sel, null, 2);
+}
+
+window.copyJSON = function() {
+  const json = document.getElementById('json-out').textContent;
+  navigator.clipboard?.writeText(json)
+    .then(()=>{ const b=document.querySelector('.btn-primary[onclick="copyJSON()"]'); b.textContent='✅ Copiato!'; setTimeout(()=>{b.textContent='📋 Copia JSON'},2000); })
+    .catch(()=>{ document.getElementById('json-out').select?.(); alert('Seleziona e copia manualmente il testo'); });
+};
+
+window.resetGen = function() {
+  document.getElementById('gen-output').style.display = 'none';
+  document.getElementById('gen-status').style.display = 'none';
+  document.getElementById('g-risultati').value = '';
+  document.getElementById('g-note').value = '';
+  generatedNews = [];
+};
+
+// Auto-login se sessione salvata
+if (localStorage.getItem('fl_admin_session') === ADMIN_PW) {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('api-key-inp').value = localStorage.getItem('fantalega_api_key')||'';
+  initData(); showPWAbanner();
+}
+document.getElementById('pw').addEventListener('input', () => {
+  if (document.getElementById('pw').value === ADMIN_PW) localStorage.setItem('fl_admin_session', ADMIN_PW);
+});
+</script>
+</body>
+</html>
