@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fantalega · Admin Stats</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#f4f4f0;--card:#fff;--surface:#f0efe9;--border:rgba(0,0,0,.1);--text:#1a1a1a;--muted:#6b6b6b;--accent:#1D9E75;--danger:#E24B4A;--r:12px;--rs:8px}
+@media(prefers-color-scheme:dark){:root{--bg:#16161a;--card:#1e1e24;--surface:#252530;--border:rgba(255,255,255,.08);--text:#e8e8e0;--muted:#888880}}
+body{font-family:'Lato',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.header{background:linear-gradient(135deg,#0f0c29,#1a1a3e,#0f3460);padding:1rem;text-align:center;position:relative}
+.header h1{font-family:'Oswald',sans-serif;font-size:18px;font-weight:700;color:#F5C518;letter-spacing:3px;text-transform:uppercase}
+.header .sub{font-size:10px;color:rgba(255,255,255,.4);letter-spacing:2px;margin-top:3px}
+.back-btn{position:absolute;left:14px;top:50%;transform:translateY(-50%);background:rgba(245,197,24,.15);border:1px solid rgba(245,197,24,.3);color:#F5C518;font-size:11px;font-weight:700;padding:5px 10px;border-radius:20px;text-decoration:none}
+.wrap{max-width:600px;margin:0 auto;padding:14px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);margin-bottom:12px;overflow:hidden}
+.card-header{padding:9px 14px;background:var(--surface);border-bottom:1px solid var(--border);font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;justify-content:space-between}
+
+/* Login admin */
+#login-wrap{padding:30px 14px;text-align:center}
+.login-card{max-width:300px;margin:0 auto}
+.pw-input{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:var(--rs);padding:10px 14px;font-size:14px;color:var(--text);outline:none;margin-bottom:10px;text-align:center;letter-spacing:3px}
+.pw-btn{width:100%;padding:11px;background:var(--accent);color:#fff;border:none;border-radius:var(--rs);font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;cursor:pointer}
+.pw-err{font-size:12px;color:var(--danger);margin-top:6px;display:none}
+
+/* Live dot */
+.live-dot{width:7px;height:7px;border-radius:50%;background:#E24B4A;display:inline-block;margin-right:5px;animation:pulse 1.5s infinite}
+.online-dot{width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:4px;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* KPI grid */
+.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
+.kpi{padding:14px;background:var(--card);text-align:center}
+.kpi-val{font-family:'Oswald',sans-serif;font-size:26px;font-weight:700;color:var(--accent)}
+.kpi-label{font-size:11px;color:var(--muted);margin-top:2px;text-transform:uppercase;letter-spacing:.5px}
+
+/* Online users */
+.online-list{padding:10px 14px;display:flex;flex-wrap:wrap;gap:6px;min-height:44px}
+.online-chip{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:700;padding:4px 10px;border-radius:20px;background:var(--surface);border:1px solid var(--border)}
+.online-time{font-size:10px;font-weight:400;color:var(--muted)}
+
+/* Chat feed -->
+.chat-feed{max-height:320px;overflow-y:auto;padding:8px 0}
+.cf-msg{padding:8px 14px;border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:flex-start;font-size:12px}
+.cf-msg:last-child{border-bottom:none}
+.cf-avatar{width:24px;height:24px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff}
+.cf-body{flex:1}
+.cf-name{font-weight:700;margin-bottom:1px}
+.cf-text{color:var(--muted);line-height:1.4}
+.cf-time{font-size:10px;color:var(--muted);margin-left:auto;flex-shrink:0}
+
+/* Proposte -->
+.proposta{padding:12px 14px;border-bottom:1px solid var(--border)}
+.proposta:last-child{border-bottom:none}
+.prop-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+.prop-title{font-size:13px;font-weight:700}
+.prop-user{font-size:11px;color:var(--muted)}
+.prop-text{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:8px}
+.prop-actions{display:flex;gap:6px}
+.prop-btn{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;border:1px solid;transition:opacity .1s}
+.prop-btn:hover{opacity:.8}
+.prop-approve{background:rgba(29,158,117,.12);border-color:var(--accent);color:var(--accent)}
+.prop-reject{background:rgba(226,75,74,.12);border-color:var(--danger);color:var(--danger)}
+.badge-pending{background:rgba(239,159,39,.15);color:#854F0B;font-size:9px;font-weight:700;padding:2px 6px;border-radius:4px;text-transform:uppercase}
+
+/* Voti chart */
+.vote-row{padding:8px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.vote-row:last-child{border-bottom:none}
+.vote-title{font-size:12px;font-weight:700;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.vote-bars{display:flex;gap:4px;align-items:center}
+.vbar{height:14px;border-radius:3px;min-width:20px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;padding:0 4px}
+
+/* Refresh btn */
+.refresh-btn{background:var(--surface);border:1px solid var(--border);color:var(--muted);font-size:10px;padding:3px 8px;border-radius:4px;cursor:pointer;font-weight:700;letter-spacing:.5px}
+</style>
+</head>
+<body>
+<div class="header">
+  <a class="back-btn" href="index.html">← Sito</a>
+  <h1>Fantalega 21I22</h1>
+  <div class="sub">Admin · Statistiche · Live</div>
+</div>
+
+<div class="wrap">
+
+<!-- LOGIN ADMIN -->
+<div id="login-wrap">
+  <div class="login-card">
+    <div class="card">
+      <div class="card-header" style="justify-content:center">🔐 Area Admin</div>
+      <div style="padding:20px">
+        <div style="font-size:12px;color:var(--muted);margin-bottom:12px;text-align:center">Solo per Davide</div>
+        <input class="pw-input" type="password" id="pw-input" placeholder="••••••" onkeydown="if(event.key==='Enter')checkPw()">
+        <button class="pw-btn" onclick="checkPw()">Entra</button>
+        <div class="pw-err" id="pw-err">Password errata</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DASHBOARD (nascosta) -->
+<div id="dashboard" style="display:none">
+
+  <!-- KPI -->
+  <div class="card">
+    <div class="card-header">
+      <span><span class="live-dot"></span>Statistiche live</span>
+      <button class="refresh-btn" onclick="refreshAll()">↻ Aggiorna</button>
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi"><div class="kpi-val" id="kpi-online">–</div><div class="kpi-label">Online ora</div></div>
+      <div class="kpi"><div class="kpi-val" id="kpi-visite">–</div><div class="kpi-label">Visite totali</div></div>
+      <div class="kpi"><div class="kpi-val" id="kpi-msg">–</div><div class="kpi-label">Messaggi chat</div></div>
+      <div class="kpi"><div class="kpi-val" id="kpi-proposte">–</div><div class="kpi-label">Proposte pending</div></div>
+    </div>
+  </div>
+
+  <!-- Chi è online ora -->
+  <div class="card">
+    <div class="card-header"><span><span class="live-dot"></span>Chi c'è online adesso</span></div>
+    <div class="online-list" id="online-list">
+      <span style="font-size:12px;color:var(--muted)">Nessuno online</span>
+    </div>
+  </div>
+
+  <!-- Chat feed live -->
+  <div class="card">
+    <div class="card-header">💬 Chat live <span id="chat-badge" style="color:var(--accent);font-size:10px"></span></div>
+    <div class="chat-feed" id="chat-feed"></div>
+  </div>
+
+  <!-- Voti notizie -->
+  <div class="card">
+    <div class="card-header">📊 Voti notizie</div>
+    <div id="voti-list">
+      <div style="padding:16px;text-align:center;font-size:12px;color:var(--muted)">Caricamento...</div>
+    </div>
+  </div>
+
+  <!-- Proposte notizie -->
+  <div class="card">
+    <div class="card-header">✍️ Proposte notizie <span id="prop-badge" style="color:var(--danger)"></span></div>
+    <div id="proposte-list">
+      <div style="padding:16px;text-align:center;font-size:12px;color:var(--muted)">Nessuna proposta</div>
+    </div>
+  </div>
+
+  <!-- Logout -->
+  <div style="text-align:center;padding:8px 0">
+    <button onclick="logout()" style="background:var(--surface);border:1px solid var(--border);color:var(--muted);padding:6px 16px;border-radius:var(--rs);font-size:11px;cursor:pointer;font-weight:700">Logout</button>
+  </div>
+
+</div><!-- /dashboard -->
+</div><!-- /wrap -->
+
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import { getDatabase, ref, onValue, remove, set, push, get } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js';
+
+const FB = {
+  apiKey: "AIzaSyChRRMF4ulbUORYoMyaXaO7qQKc51QYyVQ",
+  authDomain: "fantalega2126.firebaseapp.com",
+  databaseURL: "https://fantalega2126-default-rtdb.firebaseio.com",
+  projectId: "fantalega2126",
+  storageBucket: "fantalega2126.firebasestorage.app",
+  messagingSenderId: "355930166220",
+  appId: "1:355930166220:web:45b0348f16f2a8e5134369"
+};
+
+const ADMIN_PW = 'fantalega2126';
+
+const app = initializeApp(FB);
+const db = getDatabase(app);
+
+window.checkPw = function() {
+  const pw = document.getElementById('pw-input').value;
+  if (pw === ADMIN_PW) {
+    document.getElementById('login-wrap').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    initDashboard();
+    // Registra visita admin
+    push(ref(db, 'visite'), {t: Date.now(), page: 'stats-admin'});
+  } else {
+    document.getElementById('pw-err').style.display = 'block';
+  }
+};
+
+window.logout = function() {
+  document.getElementById('login-wrap').style.display = 'block';
+  document.getElementById('dashboard').style.display = 'none';
+  document.getElementById('pw-input').value = '';
+};
+
+function initDashboard() {
+  // Online ora
+  onValue(ref(db, 'online'), snap => {
+    const data = snap.val() || {};
+    const users = Object.values(data);
+    document.getElementById('kpi-online').textContent = users.length;
+    document.getElementById('online-list').innerHTML = users.length
+      ? users.map(u => {
+          const mins = Math.floor((Date.now() - u.t) / 60000);
+          return `<div class="online-chip">
+            <span class="online-dot" style="background:${u.color}"></span>
+            ${u.user}
+            <span class="online-time">${mins < 1 ? 'ora' : mins + 'min fa'}</span>
+          </div>`;
+        }).join('')
+      : '<span style="font-size:12px;color:var(--muted)">Nessuno online</span>';
+  });
+
+  // Visite totali
+  onValue(ref(db, 'visite'), snap => {
+    const n = snap.val() ? Object.keys(snap.val()).length : 0;
+    document.getElementById('kpi-visite').textContent = n;
+  });
+
+  // Chat
+  onValue(ref(db, 'chat'), snap => {
+    const data = snap.val() || {};
+    const msgs = Object.values(data).sort((a,b) => b.t - a.t).slice(0, 40);
+    document.getElementById('kpi-msg').textContent = Object.keys(data).length;
+    document.getElementById('chat-badge').textContent = '(' + Object.keys(data).length + ' totali)';
+    document.getElementById('chat-feed').innerHTML = msgs.map(m =>
+      `<div class="cf-msg">
+        <div class="cf-avatar" style="background:${m.color||'#888'}">${(m.user||'?')[0]}</div>
+        <div class="cf-body">
+          <div class="cf-name" style="color:${m.color||'var(--text)'}">${m.user}</div>
+          <div class="cf-text">${m.text}</div>
+        </div>
+        <div class="cf-time">${new Date(m.t).toLocaleString('it',{hour:'2-digit',minute:'2-digit',day:'2-digit',month:'2-digit'})}</div>
+      </div>`
+    ).join('');
+  });
+
+  // Voti + notizie
+  fetch('data.json').then(r=>r.json()).then(d => {
+    const news = d.curiosita_stagione || [];
+    onValue(ref(db, 'voti'), snap => {
+      const voti = snap.val() || {};
+      document.getElementById('voti-list').innerHTML = news.map((n, i) => {
+        const v = voti[i] || {up:0, down:0};
+        const tot = (v.up||0) + (v.down||0);
+        const upW = tot ? Math.round((v.up||0)/tot*100) : 0;
+        return `<div class="vote-row">
+          <div class="vote-title">${n.icon} ${n.titolo}</div>
+          <div class="vote-bars">
+            <div class="vbar" style="background:#1D9E75;width:${Math.max(20,(v.up||0)*8)}px">${v.up||0}</div>
+            <div class="vbar" style="background:#E24B4A;width:${Math.max(20,(v.down||0)*8)}px">${v.down||0}</div>
+          </div>
+        </div>`;
+      }).join('') || '<div style="padding:16px;text-align:center;font-size:12px;color:var(--muted)">Nessun voto</div>';
+    });
+  });
+
+  // Proposte
+  onValue(ref(db, 'proposte'), snap => {
+    const data = snap.val() || {};
+    const pending = Object.entries(data).filter(([,v]) => v.stato === 'pending');
+    document.getElementById('kpi-proposte').textContent = pending.length;
+    document.getElementById('prop-badge').textContent = pending.length ? '(' + pending.length + ' nuove)' : '';
+    document.getElementById('proposte-list').innerHTML = Object.entries(data).length
+      ? Object.entries(data).map(([key, p]) => `
+          <div class="proposta">
+            <div class="prop-header">
+              <div class="prop-title">${p.titolo}</div>
+              ${p.stato==='pending' ? '<span class="badge-pending">Nuova</span>' : ''}
+            </div>
+            <div class="prop-user">da ${p.user} · ${new Date(p.t).toLocaleString('it',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})}</div>
+            <div class="prop-text" style="margin-top:4px">${p.testo}</div>
+            ${p.stato==='pending' ? `
+            <div class="prop-actions">
+              <button class="prop-btn prop-approve" onclick="approva('${key}',${JSON.stringify(p).replace(/'/g,"&#39;")})">✅ Approva</button>
+              <button class="prop-btn prop-reject" onclick="rifiuta('${key}')">❌ Rifiuta</button>
+            </div>` : `<div style="font-size:11px;color:var(--muted)">${p.stato === 'approved' ? '✅ Approvata' : '❌ Rifiutata'}</div>`}
+          </div>`
+        ).join('')
+      : '<div style="padding:16px;text-align:center;font-size:12px;color:var(--muted)">Nessuna proposta ricevuta</div>';
+  });
+}
+
+window.approva = function(key, p) {
+  set(ref(db, 'proposte/' + key + '/stato'), 'approved');
+  alert('Approvata! Copia manualmente nel data.json:\n\n{"icon":"📰","titolo":"'+p.titolo+'","testo":"'+p.testo+'"}');
+};
+
+window.rifiuta = function(key) {
+  if (confirm('Rifiutare questa proposta?')) set(ref(db, 'proposte/' + key + '/stato'), 'rejected');
+};
+
+window.refreshAll = function() { location.reload(); };
+
+// Registra visita generica
+push(ref(db, 'visite'), {t: Date.now(), page: location.href});
+</script>
+
+<!-- Tracker visite per index.html — includi questo snippet in tutti i file -->
+<script type="module">
+import { initializeApp, getApps } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import { getDatabase, ref, push } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js';
+</script>
+</body>
+</html>

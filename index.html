@@ -108,6 +108,10 @@ footer{text-align:center;font-size:11px;color:var(--muted);margin:1.5rem 0;lette
     <div style="font-family:'Oswald',sans-serif;font-size:18px;font-weight:700;color:#F5C518;letter-spacing:2px;text-transform:uppercase;position:relative">FANTALEGA 21I22</div>
     <div style="width:90px"></div>
   </div>
+  <div style="display:flex;gap:6px;justify-content:center;margin-bottom:8px;position:relative">
+    <a href="chat.html" style="display:inline-flex;align-items:center;gap:5px;background:rgba(29,158,117,.2);border:1px solid rgba(29,158,117,.4);color:#5DCAA5;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 10px;border-radius:20px;text-decoration:none">💬 Community</a>
+    <a href="stats.html" style="display:inline-flex;align-items:center;gap:5px;background:rgba(245,197,24,.1);border:1px solid rgba(245,197,24,.2);color:#F5C518;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 10px;border-radius:20px;text-decoration:none">📊 Admin</a>
+  </div>
   <h1>Dashboard 25/26</h1>
   <div class="sub">Stagione in corso</div>
   <div class="gbadge" id="meta-badge">Caricamento...</div>
@@ -373,6 +377,17 @@ async function loadData(){
 }
 
 document.addEventListener('DOMContentLoaded', loadData);
+</script>
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import { getDatabase, ref, push, set, onDisconnect } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js';
+const _fb = initializeApp({
+  apiKey:"AIzaSyChRRMF4ulbUORYoMyaXaO7qQKc51QYyVQ",
+  databaseURL:"https://fantalega2126-default-rtdb.firebaseio.com",
+  projectId:"fantalega2126",appId:"1:355930166220:web:45b0348f16f2a8e5134369"
+}, 'tracker');
+const _db = getDatabase(_fb);
+push(ref(_db,'visite'),{t:Date.now(),page:'index',ua:navigator.userAgent.slice(0,80)});
 </script>
 </body>
 </html>
