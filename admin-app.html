@@ -282,7 +282,7 @@ textarea{resize:none;min-height:100px;line-height:1.5}
         <div style="padding:14px">
           <div class="field">
             <label>Chiave (sk-ant-...)</label>
-            <input type="password" id="api-key-inp" placeholder="sk-ant-api03-..." oninput="saveKey()">
+            <input type="password" id="api-key-inp" placeholder="gsk_..." oninput="saveKey()">
           </div>
           <div class="tip" style="margin:0">
             Serve per generare notizie e per le domande degli utenti nella community. ~$0.002 per generazione. Prendila su <strong>console.anthropic.com</strong> → API Keys.
@@ -535,15 +535,17 @@ Genera 8-10 notizie. Almeno 1 per fantallentore. Tono ironico, simpatico, come u
 Rispondi SOLO con JSON array: [{"icon":"emoji","titolo":"...","testo":"...","tipo":"serie_a|summer_cup|player","player":"user_o_null"}]`;
 
   try {
-    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+    const resp = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method:'POST',
-      headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
-      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:2000,
-        system:'Cronista satirico della Fantalega italiana. Rispondi SOLO con JSON array, zero testo aggiuntivo.',
-        messages:[{role:'user',content:prompt}]})
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},
+      body:JSON.stringify({model:'llama-3.3-70b-versatile',max_tokens:2000,
+        messages:[
+          {role:'system',content:'Sei il cronista satirico della Fantalega italiana. Rispondi SOLO con JSON array, zero testo aggiuntivo, nessun markdown.'},
+          {role:'user',content:prompt}
+        ]})
     });
     const data = await resp.json();
-    const raw = data.content?.[0]?.text||'[]';
+    const raw = data.choices?.[0]?.message?.content||'[]';
     generatedNews = JSON.parse(raw.replace(/```json|```/g,'').trim());
     selIdxs = new Set(generatedNews.map((_,i)=>i));
     renderOutput();
