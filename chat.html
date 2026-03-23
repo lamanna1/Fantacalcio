@@ -184,6 +184,13 @@ textarea{resize:vertical;min-height:80px}
           <button class="preset-btn" onclick="setPrompt('Dimmi una cosa divertente su ogni fantallentore basandoti sui dati')">😂 Gossip di lega</button>
         </div>
         <textarea class="prompt-input" id="prompt-input" placeholder="Scrivi la tua domanda sulla lega..."></textarea>
+        <div style="margin-top:8px;padding:8px 10px;background:var(--surface);border:1px solid var(--border);border-radius:var(--rs)">
+          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:5px">🔑 API Key Anthropic</div>
+          <div style="display:flex;gap:6px">
+            <input type="password" id="inline-apikey" placeholder="sk-ant-api03-..." style="flex:1;padding:7px 10px;font-size:12px;background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);color:var(--text);outline:none" oninput="saveInlineKey()">
+          </div>
+          <div style="font-size:10px;color:var(--muted);margin-top:4px">Si salva automaticamente mentre scrivi</div>
+        </div>
         <button class="prompt-btn" id="prompt-btn" onclick="askClaude()">Chiedi a Claude</button>
         <div class="prompt-result" id="prompt-result"></div>
       </div>
@@ -289,6 +296,9 @@ function enterApp() {
   setupOnline();
   listenChat();
   listenNews();
+  const saved = localStorage.getItem('fantalega_api_key')||'';
+  const f = document.getElementById('inline-apikey');
+  if(f) f.value = saved;
 }
 
 // --- ONLINE PRESENCE ---
@@ -387,12 +397,15 @@ window.askClaude = async function() {
       })
     });
     const data = await resp.json();
+    console.log('Risposta API:', JSON.stringify(data).slice(0,200));
+    if (!resp.ok) throw new Error(data.error?.message || 'Errore '+resp.status);
     const answer = data.content?.[0]?.text || 'Errore nella risposta';
     res.textContent = answer;
     res.style.display = 'block';
     // Salva in chat come messaggio bot
     push(ref(db, 'chat'), {user:'🤖 Claude', color:'#BA7517', text:`[risposta a ${currentUser.user}] ${answer}`, t: Date.now()});
   } catch(e) {
+    console.error('Errore API:', e);
     res.textContent = 'Errore: ' + e.message;
     res.style.display = 'block';
   }
