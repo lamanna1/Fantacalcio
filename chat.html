@@ -249,7 +249,7 @@ const PLAYERS = [
 
 let currentUser = null;
 let onlineRef = null;
-const GROQ_KEY = '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';
+const WORKER_URL = 'https://tight-bar-c62afantalega-api.davide-lamanna-dl.workers.dev';
 
 // --- RENDER PLAYERS ---
 function renderPlayers() {
@@ -355,13 +355,10 @@ window.askClaude = async function() {
     ctx = `Classifica: ${d.classifica.map(t=>`${t.pos}. ${t.nome} (${t.pt}pt)`).join(', ')}. Giornata: ${d.meta.giornata_attuale}.`;
   } catch(e) {}
 
-  const key = GROQ_KEY;
-
-
   try {
-    const resp = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    const resp = await fetch(WORKER_URL + '/groq', {
       method: 'POST',
-      headers: {'Content-Type':'application/json','Authorization':'Bearer '+key},
+      headers: {'Content-Type':'application/json'},
       body: JSON.stringify({
         model: 'llama-3.3-70b-versatile',
         max_tokens: 400,
