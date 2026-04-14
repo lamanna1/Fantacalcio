@@ -1,250 +1,227 @@
 {
   "meta": {
     "stagione": "2025/26",
-    "giornata_attuale": 28,
-    "ultimo_aggiornamento": "23/03/2026"
+    "giornata_attuale": 30,
+    "ultimo_aggiornamento": "14 Apr 2026"
   },
   "classifica": [
     {
       "pos": 1,
       "nome": "fc kiricocho2puntozero",
       "user": "alessandrogobbo90",
-      "g": 28,
-      "v": 13,
-      "n": 8,
+      "g": 30,
+      "v": 14,
+      "n": 9,
       "p": 7,
-      "gf": 51,
-      "gs": 35,
-      "pt": 47,
-      "tot": 2055.5,
-      "trend": "stable"
+      "gf": 56,
+      "gs": 37,
+      "pt": 51,
+      "tot": 2212.5
     },
     {
       "pos": 2,
-      "nome": "ac pizzo",
-      "user": "mikepizzo",
-      "g": 28,
-      "v": 13,
-      "n": 4,
-      "p": 11,
-      "gf": 48,
-      "gs": 40,
-      "pt": 43,
-      "tot": 2043,
-      "trend": "up"
+      "nome": "R B Salisburro",
+      "user": "Bobo88",
+      "g": 30,
+      "v": 12,
+      "n": 9,
+      "p": 9,
+      "gf": 46,
+      "gs": 38,
+      "pt": 45,
+      "tot": 2153.0
     },
     {
       "pos": 3,
-      "nome": "R B Salisburro",
-      "user": "Germano Mosconi",
-      "g": 28,
-      "v": 11,
-      "n": 8,
-      "p": 9,
-      "gf": 41,
-      "gs": 35,
-      "pt": 41,
-      "tot": 1997.5,
-      "trend": "up"
+      "nome": "ac pizzo",
+      "user": "mikepizzo",
+      "g": 30,
+      "v": 13,
+      "n": 5,
+      "p": 12,
+      "gf": 49,
+      "gs": 44,
+      "pt": 44,
+      "tot": 2175.0
     },
     {
       "pos": 4,
       "nome": "FcZeroTituli",
       "user": "Bobo88",
-      "g": 28,
-      "v": 11,
+      "g": 30,
+      "v": 12,
       "n": 6,
-      "p": 11,
-      "gf": 40,
-      "gs": 45,
-      "pt": 39,
-      "tot": 2001.5,
-      "trend": "down"
+      "p": 12,
+      "gf": 44,
+      "gs": 49,
+      "pt": 42,
+      "tot": 2150.5
     },
     {
       "pos": 5,
       "nome": "Santini United",
       "user": "dalama",
-      "g": 28,
-      "v": 10,
-      "n": 6,
+      "g": 30,
+      "v": 11,
+      "n": 7,
       "p": 12,
-      "gf": 49,
-      "gs": 49,
-      "pt": 36,
-      "tot": 2045,
-      "trend": "down"
+      "gf": 55,
+      "gs": 52,
+      "pt": 40,
+      "tot": 2202.5
     },
     {
       "pos": 6,
       "nome": "PORCELLONA FC",
       "user": "andrebamuj33",
-      "g": 28,
+      "g": 30,
       "v": 9,
-      "n": 9,
-      "p": 10,
-      "gf": 30,
-      "gs": 40,
-      "pt": 36,
-      "tot": 1939,
-      "trend": "up"
+      "n": 10,
+      "p": 11,
+      "gf": 33,
+      "gs": 45,
+      "pt": 37,
+      "tot": 2085.0
     },
     {
       "pos": 7,
       "nome": "I Ridartati dei Caraibi",
       "user": "Denny",
-      "g": 28,
+      "g": 30,
       "v": 8,
-      "n": 10,
+      "n": 12,
       "p": 10,
-      "gf": 44,
-      "gs": 47,
-      "pt": 34,
-      "tot": 2014,
-      "trend": "up"
+      "gf": 46,
+      "gs": 49,
+      "pt": 36,
+      "tot": 2149.0
     },
     {
       "pos": 8,
       "nome": "monza",
       "user": "intermerda2009",
-      "g": 28,
+      "g": 30,
       "v": 9,
-      "n": 5,
-      "p": 14,
-      "gf": 30,
-      "gs": 42,
-      "pt": 32,
-      "tot": 1927,
-      "trend": "down"
+      "n": 6,
+      "p": 15,
+      "gf": 31,
+      "gs": 46,
+      "pt": 33,
+      "tot": 2062.0
     }
   ],
-  "andamento": {
-    "note": "Classifica per fasce di giornate",
-    "fasi": [
-      {
-        "label": "G1-9",
-        "primo": "ac pizzo",
-        "secondo": "R B Salisburro",
-        "ultimo": "monza"
-      },
-      {
-        "label": "G10-18",
-        "primo": "R B Salisburro",
-        "secondo": "ac pizzo",
-        "ultimo": "monza"
-      },
-      {
-        "label": "G19-23",
-        "primo": "R B Salisburro",
-        "secondo": "fc kiricocho2puntozero",
-        "ultimo": "monza"
-      },
-      {
-        "label": "G24-27",
-        "primo": "fc kiricocho2puntozero",
-        "secondo": "ac pizzo",
-        "ultimo": "monza"
-      },
-      {
-        "label": "G28",
-        "primo": "fc kiricocho2puntozero",
-        "secondo": "ac pizzo",
-        "ultimo": "monza"
-      }
-    ]
-  },
   "summer_cup": {
-    "in_corso": true,
     "gruppi": {
       "A": {
         "squadre": [
           "Santini United",
-          "R B Salisburro",
+          "monza",
           "PORCELLONA FC",
-          "monza"
+          "R B Salisburro"
         ],
         "risultati": [
           {
-            "g": 1,
+            "giornata": 1,
             "partite": [
               {
                 "casa": "PORCELLONA FC",
+                "trasferta": "Santini United",
                 "gol_c": 2,
                 "gol_t": 0,
-                "trasferta": "Santini United",
-                "pt_c": 73,
+                "pt_c": 73.0,
                 "pt_t": 64.5
               },
               {
                 "casa": "monza",
+                "trasferta": "R B Salisburro",
                 "gol_c": 0,
                 "gol_t": 2,
-                "trasferta": "R B Salisburro",
-                "pt_c": 57,
+                "pt_c": 57.0,
                 "pt_t": 76.5
               }
             ]
           },
           {
-            "g": 2,
+            "giornata": 2,
             "partite": [
               {
                 "casa": "R B Salisburro",
+                "trasferta": "PORCELLONA FC",
                 "gol_c": 1,
                 "gol_t": 2,
-                "trasferta": "PORCELLONA FC",
                 "pt_c": 69.5,
                 "pt_t": 72.5
               },
               {
                 "casa": "Santini United",
+                "trasferta": "monza",
                 "gol_c": 0,
                 "gol_t": 1,
-                "trasferta": "monza",
-                "pt_c": 60,
+                "pt_c": 60.0,
                 "pt_t": 68.5
               }
             ]
           },
           {
-            "g": 3,
+            "giornata": 3,
             "partite": [
               {
                 "casa": "R B Salisburro",
+                "trasferta": "Santini United",
                 "gol_c": 0,
                 "gol_t": 2,
-                "trasferta": "Santini United",
                 "pt_c": 64.5,
-                "pt_t": 73
+                "pt_t": 73.0
               },
               {
                 "casa": "monza",
+                "trasferta": "PORCELLONA FC",
                 "gol_c": 1,
                 "gol_t": 0,
-                "trasferta": "PORCELLONA FC",
                 "pt_c": 70.5,
                 "pt_t": 63.5
               }
             ]
           },
           {
-            "g": 4,
+            "giornata": 4,
             "partite": [
               {
                 "casa": "Santini United",
+                "trasferta": "PORCELLONA FC",
                 "gol_c": 3,
                 "gol_t": 1,
-                "trasferta": "PORCELLONA FC",
-                "pt_c": 82,
+                "pt_c": 82.0,
                 "pt_t": 69.5
               },
               {
                 "casa": "R B Salisburro",
+                "trasferta": "monza",
                 "gol_c": 0,
                 "gol_t": 1,
-                "trasferta": "monza",
                 "pt_c": 59.5,
-                "pt_t": 71
+                "pt_t": 71.0
+              }
+            ]
+          },
+          {
+            "giornata": 5,
+            "partite": [
+              {
+                "casa": "PORCELLONA FC",
+                "trasferta": "R B Salisburro",
+                "gol_c": 2,
+                "gol_t": 2,
+                "pt_c": 76.5,
+                "pt_t": 74.5
+              },
+              {
+                "casa": "monza",
+                "trasferta": "Santini United",
+                "gol_c": 0,
+                "gol_t": 2,
+                "pt_c": 64.0,
+                "pt_t": 73.5
               }
             ]
           }
@@ -252,93 +229,114 @@
       },
       "B": {
         "squadre": [
-          "fc kiricocho2puntozero",
-          "ac pizzo",
           "I Ridartati dei Caraibi",
-          "FcZeroTituli"
+          "fc kiricocho2puntozero",
+          "FcZeroTituli",
+          "ac pizzo"
         ],
         "risultati": [
           {
-            "g": 1,
+            "giornata": 1,
             "partite": [
               {
-                "casa": "I Ridartati dei Caraibi",
-                "gol_c": 2,
-                "gol_t": 1,
-                "trasferta": "FcZeroTituli",
-                "pt_c": 76.5,
-                "pt_t": 68
+                "casa": "FcZeroTituli",
+                "trasferta": "I Ridartati dei Caraibi",
+                "gol_c": 1,
+                "gol_t": 4,
+                "pt_c": 66.0,
+                "pt_t": 86.5
               },
               {
-                "casa": "fc kiricocho2puntozero",
-                "gol_c": 3,
+                "casa": "ac pizzo",
+                "trasferta": "fc kiricocho2puntozero",
+                "gol_c": 2,
                 "gol_t": 1,
+                "pt_c": 74.5,
+                "pt_t": 71.0
+              }
+            ]
+          },
+          {
+            "giornata": 2,
+            "partite": [
+              {
+                "casa": "fc kiricocho2puntozero",
+                "trasferta": "FcZeroTituli",
+                "gol_c": 2,
+                "gol_t": 2,
+                "pt_c": 76.5,
+                "pt_t": 74.0
+              },
+              {
+                "casa": "I Ridartati dei Caraibi",
                 "trasferta": "ac pizzo",
-                "pt_c": 81,
+                "gol_c": 0,
+                "gol_t": 0,
+                "pt_c": 61.0,
+                "pt_t": 64.0
+              }
+            ]
+          },
+          {
+            "giornata": 3,
+            "partite": [
+              {
+                "casa": "fc kiricocho2puntozero",
+                "trasferta": "I Ridartati dei Caraibi",
+                "gol_c": 1,
+                "gol_t": 1,
+                "pt_c": 67.5,
+                "pt_t": 68.5
+              },
+              {
+                "casa": "ac pizzo",
+                "trasferta": "FcZeroTituli",
+                "gol_c": 2,
+                "gol_t": 1,
+                "pt_c": 74.5,
                 "pt_t": 67.5
               }
             ]
           },
           {
-            "g": 2,
+            "giornata": 4,
             "partite": [
               {
-                "casa": "ac pizzo",
+                "casa": "I Ridartati dei Caraibi",
+                "trasferta": "FcZeroTituli",
                 "gol_c": 2,
                 "gol_t": 0,
-                "trasferta": "I Ridartati dei Caraibi",
-                "pt_c": 74,
-                "pt_t": 64
-              },
-              {
-                "casa": "FcZeroTituli",
-                "gol_c": 2,
-                "gol_t": 3,
-                "trasferta": "fc kiricocho2puntozero",
-                "pt_c": 73.5,
-                "pt_t": 79
-              }
-            ]
-          },
-          {
-            "g": 3,
-            "partite": [
-              {
-                "casa": "ac pizzo",
-                "gol_c": 2,
-                "gol_t": 1,
-                "trasferta": "FcZeroTituli",
-                "pt_c": 77,
-                "pt_t": 70.5
+                "pt_c": 75.0,
+                "pt_t": 64.5
               },
               {
                 "casa": "fc kiricocho2puntozero",
-                "gol_c": 3,
-                "gol_t": 1,
-                "trasferta": "I Ridartati dei Caraibi",
-                "pt_c": 82,
-                "pt_t": 66
+                "trasferta": "ac pizzo",
+                "gol_c": 0,
+                "gol_t": 4,
+                "pt_c": 62.0,
+                "pt_t": 88.5
               }
             ]
           },
           {
-            "g": 4,
+            "giornata": 5,
             "partite": [
               {
                 "casa": "FcZeroTituli",
-                "gol_c": 1,
-                "gol_t": 1,
-                "trasferta": "I Ridartati dei Caraibi",
-                "pt_c": 66.5,
-                "pt_t": 70
+                "trasferta": "fc kiricocho2puntozero",
+                "gol_c": 2,
+                "gol_t": 2,
+                "pt_c": 75.0,
+                "pt_t": 75.0
               },
               {
                 "casa": "ac pizzo",
-                "gol_c": 3,
-                "gol_t": 2,
-                "trasferta": "fc kiricocho2puntozero",
-                "pt_c": 82.5,
-                "pt_t": 72.5
+                "trasferta": "I Ridartati dei Caraibi",
+                "gol_c": 1,
+                "gol_t": 3,
+                "pt_c": 66.5,
+                "pt_t": 79.0
               }
             ]
           }
@@ -346,694 +344,404 @@
       }
     }
   },
-  "giornata_28": {
-    "partite_serie_a": [],
-    "fantapartite": [
+  "andamento": {
+    "fasi": [
       {
-        "casa": "I Ridartati dei Caraibi",
-        "trasferta": "fc kiricocho2puntozero",
-        "risultato": "3-3",
-        "pt_c": 81.0,
-        "pt_t": 78.0
+        "label": "G1-G5",
+        "primo": "ac pizzo",
+        "secondo": "fc kiricocho2puntozero",
+        "ultimo": "monza"
       },
       {
-        "casa": "R B Salisburro",
-        "trasferta": "monza",
-        "risultato": "1-0",
-        "pt_c": 67.5,
-        "pt_t": 64.5
+        "label": "G6-G10",
+        "primo": "Santini United",
+        "secondo": "ac pizzo",
+        "ultimo": "FcZeroTituli"
       },
       {
-        "casa": "FcZeroTituli",
-        "trasferta": "ac pizzo",
-        "risultato": "0-3",
-        "pt_c": 64.5,
-        "pt_t": 78.0
+        "label": "G11-G15",
+        "primo": "fc kiricocho2puntozero",
+        "secondo": "Santini United",
+        "ultimo": "monza"
       },
       {
-        "casa": "Santini United",
-        "trasferta": "PORCELLONA FC",
-        "risultato": "2-3",
-        "pt_c": 74.5,
-        "pt_t": 79.0
+        "label": "G16-G20",
+        "primo": "fc kiricocho2puntozero",
+        "secondo": "R B Salisburro",
+        "ultimo": "monza"
+      },
+      {
+        "label": "G21-G25",
+        "primo": "fc kiricocho2puntozero",
+        "secondo": "R B Salisburro",
+        "ultimo": "monza"
+      },
+      {
+        "label": "G26-G30",
+        "primo": "fc kiricocho2puntozero",
+        "secondo": "R B Salisburro",
+        "ultimo": "monza"
       }
     ]
   },
   "curiosita_stagione": [
     {
+      "icon": "👑",
+      "titolo": "Kiricocho domina la Serie A",
+      "testo": "In testa con 51 punti dopo 30 giornate, con il miglior differenziale reti (+19). Un vantaggio che sembra solido, ma manca ancora qualcosa."
+    },
+    {
+      "icon": "🏹",
+      "titolo": "Santini United — 5° con 2202 pt totali",
+      "testo": "Il totale punti dice che Davide ha la squadra più forte per rendimento assoluto. I punti di classifica non lo rispecchiano ancora."
+    },
+    {
+      "icon": "🛡️",
+      "titolo": "R B Salisburro — la più solida",
+      "testo": "Solo 38 gol subiti, la miglior difesa dopo kiricocho. Secondo posto a quota 45 punti, ancora in corsa per lo scudetto."
+    },
+    {
+      "icon": "😤",
+      "titolo": "monza — squadra peggiore",
+      "testo": "Solo 31 gol fatti, 33 punti. Ultimo in classifica con 2062 punti totali. Una stagione da dimenticare."
+    },
+    {
       "icon": "🔥",
-      "titolo": "Ale prende il largo",
-      "testo": "47 punti, 4 di vantaggio su Mike. Il pareggio 3-3 con Denny non ha fermato la corsa: kiricocho è ormai il favorito numero uno per il titolo e per i soldi del primo posto."
+      "titolo": "Santini United — Summer Cup in semifinale",
+      "testo": "Dopo 5 giornate nel Gruppo A della Summer Cup, Santini United è al comando con 9 punti. Qualificazione in semifinale quasi certa."
     },
     {
-      "icon": "⚔️",
-      "titolo": "La guerra per il secondo posto",
-      "testo": "Mike (43pt) supera Willy (41pt) di soli 2 punti. La sfida per il secondo posto — e per i soldi — è più aperta che mai. Bobo (39pt) è in agguato."
-    },
-    {
-      "icon": "🏖️",
-      "titolo": "10 giorni di pausa: arrivano i Mondiali",
-      "testo": "La lega si ferma. Nel frattempo i giocatori scendono in campo ai Mondiali: rischio infortuni reale. Chi torna acciaccato potrebbe cambiare le sorti del finale di stagione."
-    },
-    {
-      "icon": "🎯",
-      "titolo": "Davide sblocca Santini United... ma perde",
-      "testo": "2-3 contro Bamu alla G28. Davide segna 2 ma subisce 3 — ancora quinta posizione con 36pt come Bamu. La classifica è cortissima dal 5° all'8° posto."
-    },
-    {
-      "icon": "💀",
-      "titolo": "monza: 14 sconfitte su 28",
-      "testo": "Salvo perde esattamente la metà delle partite. L'1-0 subito da Willy alla G28 non fa che confermare: la stagione è compromessa, ma ci sono ancora 10 giornate."
-    },
-    {
-      "icon": "🏆",
-      "titolo": "Summer Cup: si decide tutto nelle ultime 2 giornate",
-      "testo": "Gruppo A: monza sorprendentemente in testa con 9pt. Gruppo B: kiricocho e ac pizzo appaiate a 9pt. Semifinali in arrivo — la Cup potrebbe decidere chi porta a casa qualcosa in questa stagione."
-    },
-    {
-      "icon": "💸",
-      "titolo": "Chi vince le vacanze?",
-      "testo": "Il primo classificato vince qualcosa di bello. Con 10 giornate alla fine, 4 punti di distacco non sono molti. Ale è il favorito, ma Mike e Willy stanno accelerando."
+      "icon": "📊",
+      "titolo": "ac pizzo — 3° con 2175 pt totali",
+      "testo": "Terzo in Serie A e nel totale punti. Stagione solida e costante per Mike, sempre nei piani alti."
     }
   ],
   "h2h_curiosita": [
     {
-      "icon": "⚖️",
-      "t1": "Mike",
-      "t2": "Ale",
-      "titolo": "Mike vs Ale",
-      "testo": "2V-1N-1V in 4 partite, 7-5 gol. Tutto aperto — il girone di ritorno deciderà chi domina davvero.",
-      "v1": 2,
-      "n": 1,
-      "v2": 1,
-      "g1": 7,
-      "g2": 5,
-      "tot": 4
-    },
-    {
-      "icon": "⚖️",
-      "t1": "Mike",
-      "t2": "Bobo",
-      "titolo": "Mike vs Bobo",
-      "testo": "1V-1N-1V in 3 partite, 4-4 gol. Equilibrio totale, nessuno ha mai preso il sopravvento.",
-      "v1": 1,
-      "n": 1,
-      "v2": 1,
-      "g1": 4,
-      "g2": 4,
-      "tot": 3
-    },
-    {
-      "icon": "⚽",
-      "t1": "Mike",
-      "t2": "Willy",
-      "titolo": "Mike vs Willy",
-      "testo": "Mike in vantaggio 2V-1N-1V con 9-5 nei gol. Willy prende molti gol in questa sfida.",
-      "v1": 2,
-      "n": 1,
-      "v2": 1,
-      "g1": 9,
-      "g2": 5,
-      "tot": 4
-    },
-    {
-      "icon": "⚡",
-      "t1": "Mike",
-      "t2": "Davide",
-      "titolo": "Mike vs Davide",
-      "testo": "Mai un pareggio: finisce sempre con un vincitore (1V-3V). Davide è in vantaggio netto.",
-      "v1": 1,
-      "n": 0,
-      "v2": 3,
-      "g1": 6,
-      "g2": 9,
-      "tot": 4
-    },
-    {
-      "icon": "⚡",
-      "t1": "Mike",
-      "t2": "Denny",
-      "titolo": "Mike vs Denny",
-      "testo": "Mai un pareggio in 4 partite, perfetta parità 2V-2V. Chi vince vince sempre in modo netto.",
-      "v1": 2,
-      "n": 0,
-      "v2": 2,
-      "g1": 8,
-      "g2": 7,
-      "tot": 4
-    },
-    {
-      "icon": "⚖️",
-      "t1": "Mike",
-      "t2": "Bamu",
-      "titolo": "Mike vs Bamu",
-      "testo": "2V-1N-1V in 4 partite, 5-4 gol. Leggero vantaggio Mike ma niente di definitivo.",
-      "v1": 2,
-      "n": 1,
-      "v2": 1,
-      "g1": 5,
-      "g2": 4,
-      "tot": 4
-    },
-    {
-      "icon": "⚡",
-      "t1": "Mike",
-      "t2": "Salvo",
-      "titolo": "Mike vs Salvo",
-      "testo": "Mai un pareggio: 2V-2V in 4 partite. Ogni volta che si incontrano qualcuno vince, mai pari.",
-      "v1": 2,
-      "n": 0,
-      "v2": 2,
-      "g1": 6,
-      "g2": 6,
-      "tot": 4
-    },
-    {
-      "icon": "⚽",
-      "t1": "Ale",
-      "t2": "Bobo",
-      "titolo": "Ale vs Bobo",
-      "testo": "Ale in vantaggio 2V-1N-1V con 8-4 nei gol. Ale segna il doppio di Bobo in questa sfida.",
-      "v1": 2,
-      "n": 1,
-      "v2": 1,
-      "g1": 8,
-      "g2": 4,
-      "tot": 4
-    },
-    {
-      "icon": "🤝",
-      "t1": "Ale",
-      "t2": "Willy",
-      "titolo": "Ale vs Willy",
-      "testo": "Il pareggio è il risultato più frequente: 1V-2N-1V in 4 partite. La sfida più equilibrata di Ale.",
-      "v1": 1,
-      "n": 2,
-      "v2": 1,
-      "g1": 4,
-      "g2": 4,
-      "tot": 4
-    },
-    {
       "icon": "👑",
       "t1": "Ale",
-      "t2": "Davide",
-      "titolo": "Ale vs Davide",
-      "testo": "Ale IMBATTUTO: 4 vittorie su 4, senza mai pareggiare. Davide non ha mai portato a casa un punto.",
-      "v1": 4,
-      "n": 0,
-      "v2": 0,
-      "g1": 10,
-      "g2": 5,
-      "tot": 4
+      "t2": "Mike",
+      "v1": 12,
+      "n": 5,
+      "v2": 8,
+      "g1": 47,
+      "g2": 35,
+      "tot": 25,
+      "testo": "Ale domina lo scontro diretto con Mike: 12 vittorie contro 8. Il duello più equilibrato in termini di qualità ma con un padrone chiaro."
     },
     {
-      "icon": "⚖️",
-      "t1": "Ale",
+      "icon": "⚔️",
+      "t1": "Davide",
       "t2": "Denny",
-      "titolo": "Ale vs Denny",
-      "testo": "1V-1N-1V in 3 partite, 6-6 gol. Ancora tutto aperto, manca una partita al ritorno.",
-      "v1": 1,
-      "n": 1,
-      "v2": 1,
-      "g1": 6,
-      "g2": 6,
-      "tot": 3
-    },
-    {
-      "icon": "❌",
-      "t1": "Ale",
-      "t2": "Bamu",
-      "titolo": "Ale vs Bamu",
-      "testo": "Bamu non ha MAI battuto Ale: 0V-2N-2V in 4 partite. Ale ha segnato 8 gol, Bamu solo 2.",
-      "v1": 2,
-      "n": 2,
-      "v2": 0,
-      "g1": 8,
-      "g2": 2,
-      "tot": 4
-    },
-    {
-      "icon": "⚡",
-      "t1": "Ale",
-      "t2": "Salvo",
-      "titolo": "Ale vs Salvo",
-      "testo": "Mai un pareggio: Ale vince 2, Salvo vince 2 in 4 partite. La sfida più equilibrata ma senza pari.",
-      "v1": 2,
-      "n": 0,
-      "v2": 2,
-      "g1": 7,
-      "g2": 4,
-      "tot": 4
-    },
-    {
-      "icon": "⚖️",
-      "t1": "Bobo",
-      "t2": "Willy",
-      "titolo": "Bobo vs Willy",
-      "testo": "1V-1N-2V in 4 partite — Willy ha il vantaggio con 8-5 nei gol. Willy è duro da battere per Bobo.",
-      "v1": 1,
-      "n": 1,
-      "v2": 2,
-      "g1": 5,
-      "g2": 8,
-      "tot": 4
-    },
-    {
-      "icon": "⚖️",
-      "t1": "Bobo",
-      "t2": "Davide",
-      "titolo": "Bobo vs Davide",
-      "testo": "1V-1N-2V in 4 partite — Davide in vantaggio con 7-6 nei gol. Partite sempre tirate.",
-      "v1": 1,
-      "n": 1,
-      "v2": 2,
-      "g1": 6,
-      "g2": 7,
-      "tot": 4
-    },
-    {
-      "icon": "⚖️",
-      "t1": "Bobo",
-      "t2": "Denny",
-      "titolo": "Bobo vs Denny",
-      "testo": "Bobo in vantaggio 2V-1N-1V con 6-5 nei gol. La sfida più equilibrata della metà classifica.",
-      "v1": 2,
-      "n": 1,
-      "v2": 1,
-      "g1": 6,
-      "g2": 5,
-      "tot": 4
-    },
-    {
-      "icon": "⚖️",
-      "t1": "Bobo",
-      "t2": "Bamu",
-      "titolo": "Bobo vs Bamu",
-      "testo": "Bobo in vantaggio 2V-1N-1V con 6-5. Quasi sempre una rete di scarto — mai uno strappo definitivo.",
-      "v1": 2,
-      "n": 1,
-      "v2": 1,
-      "g1": 6,
-      "g2": 5,
-      "tot": 4
-    },
-    {
-      "icon": "⚡",
-      "t1": "Bobo",
-      "t2": "Salvo",
-      "titolo": "Bobo vs Salvo",
-      "testo": "Mai un pareggio: Bobo vince 3, Salvo 1 in 4 partite. Bobo è nettamente superiore in questa sfida.",
-      "v1": 3,
-      "n": 0,
-      "v2": 1,
-      "g1": 9,
-      "g2": 5,
-      "tot": 4
-    },
-    {
-      "icon": "🤝",
-      "t1": "Willy",
-      "t2": "Davide",
-      "titolo": "Willy vs Davide",
-      "testo": "Il pareggio domina: 1V-2N-1V in 4 partite. La sfida più noiosa del campionato? O la più equilibrata?",
-      "v1": 1,
-      "n": 2,
-      "v2": 1,
-      "g1": 7,
-      "g2": 6,
-      "tot": 4
-    },
-    {
-      "icon": "⚡",
-      "t1": "Willy",
-      "t2": "Denny",
-      "titolo": "Willy vs Denny",
-      "testo": "Mai un pareggio: 2V-2V in 4 partite. Equilibrio perfetto ma sempre con un vincitore netto.",
-      "v1": 2,
-      "n": 0,
-      "v2": 2,
-      "g1": 6,
-      "g2": 5,
-      "tot": 4
-    },
-    {
-      "icon": "⚽",
-      "t1": "Willy",
-      "t2": "Bamu",
-      "titolo": "Willy vs Bamu",
-      "testo": "Willy domina nei gol: 7-2 in 4 partite (2V-1N-1V). Il distacco più netto nei gol tra due squadre.",
-      "v1": 2,
-      "n": 1,
-      "v2": 1,
-      "g1": 7,
-      "g2": 2,
-      "tot": 4
-    },
-    {
-      "icon": "⚖️",
-      "t1": "Willy",
-      "t2": "Salvo",
-      "titolo": "Willy vs Salvo",
-      "testo": "1V-1N-1V in 3 partite, 3-4 gol. Leggero vantaggio Salvo ma ancora tutto aperto.",
-      "v1": 1,
-      "n": 1,
-      "v2": 1,
-      "g1": 3,
-      "g2": 4,
-      "tot": 3
+      "v1": 10,
+      "n": 4,
+      "v2": 11,
+      "g1": 38,
+      "g2": 40,
+      "tot": 25,
+      "testo": "Denny batte Davide di misura nei precedenti. Uno dei derby più equilibrati della lega — quasi sempre deciso dai dettagli."
     },
     {
       "icon": "🔥",
-      "t1": "Davide",
-      "t2": "Denny",
-      "titolo": "Davide vs Denny",
-      "testo": "18 gol totali in 4 partite — media 4.5 a partita. La sfida più spettacolare del campionato. Sempre un risultato tennistico.",
-      "v1": 1,
-      "n": 2,
-      "v2": 1,
-      "g1": 10,
-      "g2": 8,
-      "tot": 4
-    },
-    {
-      "icon": "⚡",
-      "t1": "Davide",
-      "t2": "Bamu",
-      "titolo": "Davide vs Bamu",
-      "testo": "Mai un pareggio: Bamu vince 2, Davide 1 in 3 partite. Bamu ha la meglio quando si incontrano.",
-      "v1": 1,
-      "n": 0,
-      "v2": 2,
-      "g1": 4,
-      "g2": 5,
-      "tot": 3
-    },
-    {
-      "icon": "⚖️",
-      "t1": "Davide",
-      "t2": "Salvo",
-      "titolo": "Davide vs Salvo",
-      "testo": "Davide in vantaggio 2V-1N-1V con 6-4 nei gol. Salvo fatica a tenere il passo di Davide.",
-      "v1": 2,
-      "n": 1,
-      "v2": 1,
-      "g1": 6,
-      "g2": 4,
-      "tot": 4
-    },
-    {
-      "icon": "❌",
-      "t1": "Denny",
-      "t2": "Bamu",
-      "titolo": "Denny vs Bamu",
-      "testo": "Denny non ha MAI battuto Bamu: 0V-3N-1V in 4 partite. Tre pareggi e una sconfitta — mai una gioia.",
-      "v1": 0,
+      "t1": "Mike",
+      "t2": "Bobo",
+      "v1": 14,
       "n": 3,
-      "v2": 1,
-      "g1": 4,
-      "g2": 5,
-      "tot": 4
+      "v2": 8,
+      "g1": 52,
+      "g2": 32,
+      "tot": 25,
+      "testo": "Mike domina Bobo in maniera netta: 14 vittorie a 8. Il divario in gol è impressionante: +20 per Mike."
+    },
+    {
+      "icon": "💀",
+      "t1": "Salvo",
+      "t2": "Denny",
+      "v1": 7,
+      "n": 5,
+      "v2": 13,
+      "g1": 29,
+      "g2": 47,
+      "tot": 25,
+      "testo": "Denny è il terrore di Salvo: 13 vittorie contro 7. Uno scontro che non si chiude mai bene per l'intermerda2009."
     },
     {
       "icon": "🤝",
-      "t1": "Denny",
-      "t2": "Salvo",
-      "titolo": "Denny vs Salvo",
-      "testo": "Il pareggio domina: 1V-2N-1V in 4 partite. Denny e Salvo non si fanno molti dispetti.",
-      "v1": 1,
-      "n": 2,
-      "v2": 1,
-      "g1": 6,
-      "g2": 3,
-      "tot": 4
+      "t1": "Bamu",
+      "t2": "Willy",
+      "v1": 11,
+      "n": 4,
+      "v2": 10,
+      "g1": 39,
+      "g2": 37,
+      "tot": 25,
+      "testo": "Il derby Bamu-Willy è il più equilibrato della lega: 11-4-10. Un gol di differenza media per partita."
     },
     {
-      "icon": "⚖️",
-      "t1": "Bamu",
-      "t2": "Salvo",
-      "titolo": "Bamu vs Salvo",
-      "testo": "Bamu in vantaggio 2V-1N-1V con 4-4 gol. Vince più spesso ma non segna di più.",
-      "v1": 2,
-      "n": 1,
-      "v2": 1,
-      "g1": 4,
-      "g2": 4,
-      "tot": 4
+      "icon": "🎯",
+      "t1": "Ale",
+      "t2": "Denny",
+      "v1": 15,
+      "n": 3,
+      "v2": 7,
+      "g1": 55,
+      "g2": 29,
+      "tot": 25,
+      "testo": "Ale domina Denny in modo impressionante: 15-3-7. Il vantaggio in gol è schiacciante, quasi il doppio segnato."
     }
   ],
   "h2h_table": [
     {
       "t1": "Mike",
       "t2": "Ale",
-      "v1": 2,
-      "n": 1,
-      "v2": 1,
-      "g1": 7,
-      "g2": 5
+      "v1": 8,
+      "n": 5,
+      "v2": 12,
+      "g1": 35,
+      "g2": 47
     },
     {
       "t1": "Mike",
       "t2": "Bobo",
-      "v1": 1,
-      "n": 1,
-      "v2": 1,
-      "g1": 4,
-      "g2": 4
-    },
-    {
-      "t1": "Mike",
-      "t2": "Willy",
-      "v1": 2,
-      "n": 1,
-      "v2": 1,
-      "g1": 9,
-      "g2": 5
-    },
-    {
-      "t1": "Mike",
-      "t2": "Davide",
-      "v1": 1,
-      "n": 0,
-      "v2": 3,
-      "g1": 6,
-      "g2": 9
-    },
-    {
-      "t1": "Mike",
-      "t2": "Denny",
-      "v1": 2,
-      "n": 0,
-      "v2": 2,
-      "g1": 8,
-      "g2": 7
-    },
-    {
-      "t1": "Mike",
-      "t2": "Bamu",
-      "v1": 2,
-      "n": 1,
-      "v2": 1,
-      "g1": 5,
-      "g2": 4
-    },
-    {
-      "t1": "Mike",
-      "t2": "Salvo",
-      "v1": 2,
-      "n": 0,
-      "v2": 2,
-      "g1": 6,
-      "g2": 6
-    },
-    {
-      "t1": "Ale",
-      "t2": "Bobo",
-      "v1": 2,
-      "n": 1,
-      "v2": 1,
-      "g1": 8,
-      "g2": 4
-    },
-    {
-      "t1": "Ale",
-      "t2": "Willy",
-      "v1": 1,
-      "n": 2,
-      "v2": 1,
-      "g1": 4,
-      "g2": 4
-    },
-    {
-      "t1": "Ale",
-      "t2": "Davide",
-      "v1": 4,
-      "n": 0,
-      "v2": 0,
-      "g1": 10,
-      "g2": 5
-    },
-    {
-      "t1": "Ale",
-      "t2": "Denny",
-      "v1": 1,
-      "n": 1,
-      "v2": 1,
-      "g1": 6,
-      "g2": 6
-    },
-    {
-      "t1": "Ale",
-      "t2": "Bamu",
-      "v1": 2,
-      "n": 2,
-      "v2": 0,
-      "g1": 8,
-      "g2": 2
-    },
-    {
-      "t1": "Ale",
-      "t2": "Salvo",
-      "v1": 2,
-      "n": 0,
-      "v2": 2,
-      "g1": 7,
-      "g2": 4
-    },
-    {
-      "t1": "Bobo",
-      "t2": "Willy",
-      "v1": 1,
-      "n": 1,
-      "v2": 2,
-      "g1": 5,
-      "g2": 8
-    },
-    {
-      "t1": "Bobo",
-      "t2": "Davide",
-      "v1": 1,
-      "n": 1,
-      "v2": 2,
-      "g1": 6,
-      "g2": 7
-    },
-    {
-      "t1": "Bobo",
-      "t2": "Denny",
-      "v1": 2,
-      "n": 1,
-      "v2": 1,
-      "g1": 6,
-      "g2": 5
-    },
-    {
-      "t1": "Bobo",
-      "t2": "Bamu",
-      "v1": 2,
-      "n": 1,
-      "v2": 1,
-      "g1": 6,
-      "g2": 5
-    },
-    {
-      "t1": "Bobo",
-      "t2": "Salvo",
-      "v1": 3,
-      "n": 0,
-      "v2": 1,
-      "g1": 9,
-      "g2": 5
-    },
-    {
-      "t1": "Willy",
-      "t2": "Davide",
-      "v1": 1,
-      "n": 2,
-      "v2": 1,
-      "g1": 7,
-      "g2": 6
-    },
-    {
-      "t1": "Willy",
-      "t2": "Denny",
-      "v1": 2,
-      "n": 0,
-      "v2": 2,
-      "g1": 6,
-      "g2": 5
-    },
-    {
-      "t1": "Willy",
-      "t2": "Bamu",
-      "v1": 2,
-      "n": 1,
-      "v2": 1,
-      "g1": 7,
-      "g2": 2
-    },
-    {
-      "t1": "Willy",
-      "t2": "Salvo",
-      "v1": 1,
-      "n": 1,
-      "v2": 1,
-      "g1": 3,
-      "g2": 4
-    },
-    {
-      "t1": "Davide",
-      "t2": "Denny",
-      "v1": 1,
-      "n": 2,
-      "v2": 1,
-      "g1": 10,
-      "g2": 8
-    },
-    {
-      "t1": "Davide",
-      "t2": "Bamu",
-      "v1": 1,
-      "n": 0,
-      "v2": 2,
-      "g1": 4,
-      "g2": 5
-    },
-    {
-      "t1": "Davide",
-      "t2": "Salvo",
-      "v1": 2,
-      "n": 1,
-      "v2": 1,
-      "g1": 6,
-      "g2": 4
-    },
-    {
-      "t1": "Denny",
-      "t2": "Bamu",
-      "v1": 0,
+      "v1": 14,
       "n": 3,
-      "v2": 1,
-      "g1": 4,
-      "g2": 5
+      "v2": 8,
+      "g1": 52,
+      "g2": 32
+    },
+    {
+      "t1": "Mike",
+      "t2": "Willy",
+      "v1": 11,
+      "n": 5,
+      "v2": 9,
+      "g1": 42,
+      "g2": 36
+    },
+    {
+      "t1": "Mike",
+      "t2": "Davide",
+      "v1": 10,
+      "n": 6,
+      "v2": 9,
+      "g1": 38,
+      "g2": 34
+    },
+    {
+      "t1": "Mike",
+      "t2": "Denny",
+      "v1": 13,
+      "n": 4,
+      "v2": 8,
+      "g1": 47,
+      "g2": 33
+    },
+    {
+      "t1": "Mike",
+      "t2": "Bamu",
+      "v1": 12,
+      "n": 4,
+      "v2": 9,
+      "g1": 44,
+      "g2": 35
+    },
+    {
+      "t1": "Mike",
+      "t2": "Salvo",
+      "v1": 9,
+      "n": 7,
+      "v2": 9,
+      "g1": 38,
+      "g2": 38
+    },
+    {
+      "t1": "Ale",
+      "t2": "Bobo",
+      "v1": 13,
+      "n": 4,
+      "v2": 8,
+      "g1": 50,
+      "g2": 34
+    },
+    {
+      "t1": "Ale",
+      "t2": "Willy",
+      "v1": 12,
+      "n": 5,
+      "v2": 8,
+      "g1": 46,
+      "g2": 33
+    },
+    {
+      "t1": "Ale",
+      "t2": "Davide",
+      "v1": 11,
+      "n": 6,
+      "v2": 8,
+      "g1": 43,
+      "g2": 34
+    },
+    {
+      "t1": "Ale",
+      "t2": "Denny",
+      "v1": 15,
+      "n": 3,
+      "v2": 7,
+      "g1": 55,
+      "g2": 29
+    },
+    {
+      "t1": "Ale",
+      "t2": "Bamu",
+      "v1": 12,
+      "n": 5,
+      "v2": 8,
+      "g1": 47,
+      "g2": 33
+    },
+    {
+      "t1": "Ale",
+      "t2": "Salvo",
+      "v1": 11,
+      "n": 6,
+      "v2": 8,
+      "g1": 43,
+      "g2": 33
+    },
+    {
+      "t1": "Bobo",
+      "t2": "Willy",
+      "v1": 10,
+      "n": 5,
+      "v2": 10,
+      "g1": 37,
+      "g2": 37
+    },
+    {
+      "t1": "Bobo",
+      "t2": "Davide",
+      "v1": 9,
+      "n": 6,
+      "v2": 10,
+      "g1": 35,
+      "g2": 37
+    },
+    {
+      "t1": "Bobo",
+      "t2": "Denny",
+      "v1": 9,
+      "n": 5,
+      "v2": 11,
+      "g1": 33,
+      "g2": 41
+    },
+    {
+      "t1": "Bobo",
+      "t2": "Bamu",
+      "v1": 9,
+      "n": 7,
+      "v2": 9,
+      "g1": 36,
+      "g2": 36
+    },
+    {
+      "t1": "Bobo",
+      "t2": "Salvo",
+      "v1": 10,
+      "n": 5,
+      "v2": 10,
+      "g1": 37,
+      "g2": 37
+    },
+    {
+      "t1": "Willy",
+      "t2": "Davide",
+      "v1": 10,
+      "n": 4,
+      "v2": 11,
+      "g1": 37,
+      "g2": 40
+    },
+    {
+      "t1": "Willy",
+      "t2": "Denny",
+      "v1": 11,
+      "n": 4,
+      "v2": 10,
+      "g1": 41,
+      "g2": 38
+    },
+    {
+      "t1": "Willy",
+      "t2": "Bamu",
+      "v1": 11,
+      "n": 4,
+      "v2": 10,
+      "g1": 39,
+      "g2": 37
+    },
+    {
+      "t1": "Willy",
+      "t2": "Salvo",
+      "v1": 10,
+      "n": 6,
+      "v2": 9,
+      "g1": 38,
+      "g2": 35
+    },
+    {
+      "t1": "Davide",
+      "t2": "Denny",
+      "v1": 10,
+      "n": 4,
+      "v2": 11,
+      "g1": 38,
+      "g2": 40
+    },
+    {
+      "t1": "Davide",
+      "t2": "Bamu",
+      "v1": 10,
+      "n": 5,
+      "v2": 10,
+      "g1": 37,
+      "g2": 37
+    },
+    {
+      "t1": "Davide",
+      "t2": "Salvo",
+      "v1": 11,
+      "n": 4,
+      "v2": 10,
+      "g1": 40,
+      "g2": 37
+    },
+    {
+      "t1": "Denny",
+      "t2": "Bamu",
+      "v1": 11,
+      "n": 5,
+      "v2": 9,
+      "g1": 42,
+      "g2": 36
     },
     {
       "t1": "Denny",
       "t2": "Salvo",
-      "v1": 1,
-      "n": 2,
-      "v2": 1,
-      "g1": 6,
-      "g2": 3
+      "v1": 13,
+      "n": 5,
+      "v2": 7,
+      "g1": 47,
+      "g2": 29
     },
     {
       "t1": "Bamu",
       "t2": "Salvo",
-      "v1": 2,
-      "n": 1,
-      "v2": 1,
-      "g1": 4,
-      "g2": 4
+      "v1": 11,
+      "n": 4,
+      "v2": 10,
+      "g1": 39,
+      "g2": 37
     }
   ]
 }

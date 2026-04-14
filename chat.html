@@ -4,19 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fantalega · Chat & Community</title>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#f4f4f0;--card:#fff;--surface:#f0efe9;--border:rgba(0,0,0,.1);--text:#1a1a1a;--muted:#6b6b6b;--accent:#1D9E75;--danger:#E24B4A;--r:12px;--rs:8px}
-@media(prefers-color-scheme:dark){:root{--bg:#16161a;--card:#1e1e24;--surface:#252530;--border:rgba(255,255,255,.08);--text:#e8e8e0;--muted:#888880}}
-body{font-family:'Lato',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
-.header{background:linear-gradient(135deg,#0f0c29,#1a1a3e,#0f3460);padding:1rem;text-align:center;position:relative}
-.header h1{font-family:'Oswald',sans-serif;font-size:18px;font-weight:700;color:#F5C518;letter-spacing:3px;text-transform:uppercase}
+:root{--bg:#0d0d12;--card:#141419;--surface:#1c1c24;--border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.12);--text:#f0f0e8;--muted:#6a6a7a;--muted2:#9090a0;--accent:#00c97a;--danger:#ff4d4d;--r:14px;--rs:8px}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.header{background:linear-gradient(160deg,#0d0d12,#121228,#0d0d12);border-bottom:1px solid rgba(255,255,255,.12);padding:1rem;text-align:center;position:relative}
+.header h1{font-family:'Bebas Neue',sans-serif;font-size:20px;color:#f5c518;letter-spacing:4px;text-transform:uppercase}
 .header .sub{font-size:10px;color:rgba(255,255,255,.4);letter-spacing:2px;margin-top:3px}
-.back-btn{position:absolute;left:14px;top:50%;transform:translateY(-50%);background:rgba(245,197,24,.15);border:1px solid rgba(245,197,24,.3);color:#F5C518;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 10px;border-radius:20px;text-decoration:none}
+.back-btn{position:absolute;left:14px;top:50%;transform:translateY(-50%);background:rgba(245,197,24,.15);border:1px solid rgba(245,197,24,.3);color:#f5c518;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 10px;border-radius:20px;text-decoration:none}
 .wrap{max-width:600px;margin:0 auto;padding:14px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);margin-bottom:12px;overflow:hidden}
-.card-header{padding:9px 14px;background:var(--surface);border-bottom:1px solid var(--border);font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;justify-content:space-between}
+.card-header{padding:9px 14px;background:var(--surface);border-bottom:1px solid var(--border);font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:2px;color:var(--muted2);display:flex;align-items:center;justify-content:space-between}
 .online-dot{width:7px;height:7px;border-radius:50%;background:#1D9E75;display:inline-block;margin-right:5px;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 
@@ -34,7 +33,7 @@ body{font-family:'Lato',sans-serif;background:var(--bg);color:var(--text);min-he
 
 /* Tabs */
 .tab-bar{display:flex;gap:2px;background:var(--surface);padding:3px;border-radius:var(--rs);margin-bottom:12px;border:1px solid var(--border)}
-.tab-btn{flex:1;padding:7px;text-align:center;font-family:'Lato',sans-serif;font-size:11px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;cursor:pointer;border-radius:6px;color:var(--muted);border:none;background:transparent}
+.tab-btn{flex:1;padding:7px;text-align:center;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;cursor:pointer;border-radius:6px;color:var(--muted);border:none;background:transparent}
 .tab-btn.active{background:var(--card);color:var(--text);border:1px solid var(--border)}
 .tab-pane{display:none}.tab-pane.active{display:block}
 
@@ -77,18 +76,20 @@ body{font-family:'Lato',sans-serif;background:var(--bg);color:var(--text);min-he
 .prompt-btn:disabled{opacity:.4;cursor:not-allowed}
 .prompt-result{margin-top:10px;padding:12px;background:rgba(186,117,23,.08);border:1px solid rgba(186,117,23,.2);border-radius:var(--rs);font-size:13px;line-height:1.6;white-space:pre-wrap;display:none}
 
-/* News voti */
+/* News reaction */
 .news-item{padding:12px 14px;border-bottom:1px solid var(--border);display:flex;gap:10px;align-items:flex-start}
 .news-item:last-child{border-bottom:none}
 .ni-ico{font-size:18px;flex-shrink:0}
 .ni-body{flex:1}
 .ni-title{font-size:13px;font-weight:700;margin-bottom:3px}
-.ni-text{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:6px}
-.vote-bar{display:flex;gap:6px;align-items:center}
-.vote-btn{display:flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;border:1px solid var(--border);background:var(--surface);font-size:11px;font-weight:700;cursor:pointer;transition:all .1s;color:var(--text)}
-.vote-btn.voted-up{background:rgba(29,158,117,.12);border-color:var(--accent);color:var(--accent)}
-.vote-btn.voted-down{background:rgba(226,75,74,.12);border-color:var(--danger);color:var(--danger)}
-.vote-count{font-size:11px;color:var(--muted);margin-left:4px}
+.ni-text{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:8px}
+.reaction-bar{display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.rx-btn{display:flex;align-items:center;gap:3px;padding:4px 10px;border-radius:20px;border:1px solid var(--border);background:var(--surface);font-size:12px;font-weight:700;cursor:pointer;transition:all .15s;color:var(--text);position:relative}
+.rx-btn.active{border-color:var(--accent);background:rgba(29,158,117,.12);color:var(--accent)}
+.rx-count{font-size:11px;font-weight:700}
+.rx-users{display:none;position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:var(--card);border:1px solid var(--border);border-radius:8px;padding:6px 10px;font-size:11px;white-space:nowrap;z-index:10;box-shadow:0 4px 16px rgba(0,0,0,.15);pointer-events:none;color:var(--text);font-weight:700;line-height:1.6}
+.rx-btn:hover .rx-users{display:block}
+.rx-users::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--border)}
 
 /* Proponi notizia */
 .proponi-wrap{padding:14px}
@@ -143,7 +144,7 @@ textarea{resize:vertical;min-height:80px}
 
   <div class="tab-bar">
     <button class="tab-btn active" onclick="showTab('chat',this)">💬 Chat</button>
-    <button class="tab-btn" onclick="showTab('chiedi',this)">🤖 Chiedi</button>
+    
     <button class="tab-btn" onclick="showTab('news',this)">📰 News</button>
     <button class="tab-btn" onclick="showTab('proponi',this)">✍️ Proponi</button>
   </div>
@@ -158,41 +159,6 @@ textarea{resize:vertical;min-height:80px}
       <div class="chat-input-wrap">
         <input class="chat-input" id="chat-input" placeholder="Scrivi un messaggio..." onkeydown="if(event.key==='Enter')sendMsg()">
         <button class="send-btn" onclick="sendMsg()">➤</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- TAB CHIEDI A CLAUDE -->
-  <div id="tab-chiedi" class="tab-pane">
-    <div class="card">
-      <div class="card-header">🤖 Chiedi qualcosa alla lega</div>
-      <div class="prompt-wrap">
-        <div style="font-size:12px;color:var(--muted);margin-bottom:10px;line-height:1.5">Claude conosce tutta la lega — classifica, risultati, Summer Cup. Chiedile qualsiasi cosa!</div>
-        <div id="apikey-row" style="margin-bottom:10px;padding:8px 10px;background:rgba(226,75,74,.08);border:1px solid rgba(226,75,74,.2);border-radius:var(--rs);display:none">
-          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--danger);margin-bottom:5px">⚠️ API Key mancante</div>
-          <div style="display:flex;gap:6px">
-            <input type="password" id="inline-apikey" placeholder="gsk_..." style="flex:1;padding:7px 10px;font-size:12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--rs);color:var(--text);outline:none">
-            <button onclick="saveInlineKey()" style="padding:7px 12px;background:var(--accent);color:#fff;border:none;border-radius:var(--rs);font-size:11px;font-weight:700;cursor:pointer">Salva</button>
-          </div>
-        </div>
-        <div class="prompt-presets">
-          <button class="preset-btn" onclick="setPrompt('Chi sta vincendo la lega e di quanto?')">🏆 Chi sta vincendo?</button>
-          <button class="preset-btn" onclick="setPrompt('Com\'è andata l\'ultima giornata? Dimmi i risultati e chi ha fatto meglio')">⚽ Ultima giornata</button>
-          <button class="preset-btn" onclick="setPrompt('Analizza la Summer Cup: chi passerà il turno?')">🥤 Summer Cup</button>
-          <button class="preset-btn" onclick="setPrompt('Fai una previsione ironica su chi vincerà il campionato')">🔮 Previsione</button>
-          <button class="preset-btn" onclick="setPrompt('Chi ha la migliore difesa e chi il peggior attacco?')">🛡️ Statistiche</button>
-          <button class="preset-btn" onclick="setPrompt('Dimmi una cosa divertente su ogni fantallentore basandoti sui dati')">😂 Gossip di lega</button>
-        </div>
-        <textarea class="prompt-input" id="prompt-input" placeholder="Scrivi la tua domanda sulla lega..."></textarea>
-        <div style="margin-top:8px;padding:8px 10px;background:var(--surface);border:1px solid var(--border);border-radius:var(--rs)">
-          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:5px">🔑 API Key Anthropic</div>
-          <div style="display:flex;gap:6px">
-            <input type="password" id="inline-apikey" placeholder="gsk_..." style="flex:1;padding:7px 10px;font-size:12px;background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);color:var(--text);outline:none" oninput="saveInlineKey()">
-          </div>
-          <div style="font-size:10px;color:var(--muted);margin-top:4px">Si salva automaticamente mentre scrivi</div>
-        </div>
-        <button class="prompt-btn" id="prompt-btn" onclick="askClaude()">Chiedi a Claude</button>
-        <div class="prompt-result" id="prompt-result"></div>
       </div>
     </div>
   </div>
@@ -232,7 +198,7 @@ textarea{resize:vertical;min-height:80px}
 
 <script type="module">
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-import { getDatabase, ref, push, onValue, set, serverTimestamp, onDisconnect, remove } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js';
+import { getDatabase, ref, push, onValue, set, get, serverTimestamp, onDisconnect, remove } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js';
 
 const FB = {
   apiKey: "AIzaSyChRRMF4ulbUORYoMyaXaO7qQKc51QYyVQ",
@@ -420,45 +386,67 @@ function listenNews() {
   // Carica notizie da data.json + voti da Firebase
   fetch('data.json').then(r=>r.json()).then(d => {
     const news = d.curiosita_stagione || [];
-    onValue(ref(db, 'voti'), snap => {
-      const voti = snap.val() || {};
-      renderNews(news, voti);
+    onValue(ref(db, 'reactions'), snap => {
+      const reactions = snap.val() || {};
+      renderNews(news, reactions);
     });
   }).catch(() => {
     document.getElementById('news-vote-list').innerHTML = '<div style="padding:20px;text-align:center;font-size:12px;color:var(--muted)">Nessuna notizia disponibile</div>';
   });
 }
 
-function renderNews(news, voti) {
-  const myVotes = JSON.parse(localStorage.getItem('fl_votes') || '{}');
+const REACTIONS = ['👍','🔥','😂','💀','🤌','😤','🫡','🍺'];
+
+function renderNews(news, reactions) {
+  const myRx = JSON.parse(localStorage.getItem('fl_rx') || '{}');
   document.getElementById('news-vote-list').innerHTML = news.map((n, i) => {
-    const v = voti[i] || {up:0, down:0};
-    const mv = myVotes[i];
+    const rxData = reactions[i] || {};
+    const btns = REACTIONS.map(emoji => {
+      const users = rxData[emoji] ? Object.values(rxData[emoji]) : [];
+      const count = users.length;
+      const mine = myRx[i] === emoji;
+      const tooltip = count > 0 ? users.join(', ') : 'Nessuno ancora';
+      return `<button class="rx-btn ${mine?'active':''}" onclick="reagisci(${i},'${emoji}')">
+        ${emoji}<span class="rx-count">${count||''}</span>
+        <div class="rx-users">${tooltip}</div>
+      </button>`;
+    }).join('');
     return `<div class="news-item">
       <div class="ni-ico">${n.icon}</div>
       <div class="ni-body">
         <div class="ni-title">${n.titolo}</div>
         <div class="ni-text">${n.testo}</div>
-        <div class="vote-bar">
-          <button class="vote-btn ${mv==='up'?'voted-up':''}" onclick="vota(${i},'up')">👍 ${v.up||0}</button>
-          <button class="vote-btn ${mv==='down'?'voted-down':''}" onclick="vota(${i},'down')">👎 ${v.down||0}</button>
-        </div>
+        <div class="reaction-bar">${btns}</div>
       </div>
     </div>`;
   }).join('');
 }
 
-window.vota = function(idx, tipo) {
-  const myVotes = JSON.parse(localStorage.getItem('fl_votes') || '{}');
-  if (myVotes[idx] === tipo) return;
-  myVotes[idx] = tipo;
-  localStorage.setItem('fl_votes', JSON.stringify(myVotes));
-  const vRef = ref(db, 'voti/' + idx);
-  onValue(vRef, snap => {
-    const v = snap.val() || {up:0, down:0};
-    v[tipo] = (v[tipo] || 0) + 1;
-    set(vRef, v);
-  }, {onlyOnce: true});
+window.reagisci = function(idx, emoji) {
+  if (!currentUser || !currentUser.user) return;
+  const myRx = JSON.parse(localStorage.getItem('fl_rx') || '{}');
+  const prev = myRx[idx];
+  const rxRef = ref(db, 'reactions/' + idx);
+  get(rxRef).then(snap => {
+    const data = snap.val() || {};
+    // Rimuovi reaction precedente
+    if (prev && data[prev]) {
+      const uid = currentUser.user.replace(/[.#$/[\]]/g, '_');
+      delete data[prev][uid];
+      if (Object.keys(data[prev]).length === 0) delete data[prev];
+    }
+    // Aggiungi nuova (o toggle off)
+    if (prev !== emoji) {
+      const uid = currentUser.user.replace(/[.#$/[\]]/g, '_');
+      if (!data[emoji]) data[emoji] = {};
+      data[emoji][uid] = currentUser.user;
+      myRx[idx] = emoji;
+    } else {
+      delete myRx[idx];
+    }
+    set(rxRef, data);
+    localStorage.setItem('fl_rx', JSON.stringify(myRx));
+  });
 };
 
 // --- PROPONI NOTIZIA ---

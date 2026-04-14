@@ -4,19 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fantalega · Admin Stats</title>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#f4f4f0;--card:#fff;--surface:#f0efe9;--border:rgba(0,0,0,.1);--text:#1a1a1a;--muted:#6b6b6b;--accent:#1D9E75;--danger:#E24B4A;--r:12px;--rs:8px}
-@media(prefers-color-scheme:dark){:root{--bg:#16161a;--card:#1e1e24;--surface:#252530;--border:rgba(255,255,255,.08);--text:#e8e8e0;--muted:#888880}}
+:root{--bg:#0d0d12;--card:#141419;--surface:#1c1c24;--border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.12);--text:#f0f0e8;--muted:#6a6a7a;--muted2:#9090a0;--accent:#00c97a;--gold:#f5c518;--danger:#ff4d4d;--r:14px;--rs:8px}
 body{font-family:'Lato',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
-.header{background:linear-gradient(135deg,#0f0c29,#1a1a3e,#0f3460);padding:1rem;text-align:center;position:relative}
-.header h1{font-family:'Oswald',sans-serif;font-size:18px;font-weight:700;color:#F5C518;letter-spacing:3px;text-transform:uppercase}
+.header{background:linear-gradient(160deg,#0d0d12,#121228,#0d0d12);border-bottom:1px solid rgba(255,255,255,.12);padding:1rem;text-align:center;position:relative}
+.header h1{font-family:'Oswald',sans-serif;font-size:18px;font-weight:700;color:#f5c518;letter-spacing:3px;font-family:'Bebas Neue',sans-serif;text-transform:uppercase}
 .header .sub{font-size:10px;color:rgba(255,255,255,.4);letter-spacing:2px;margin-top:3px}
-.back-btn{position:absolute;left:14px;top:50%;transform:translateY(-50%);background:rgba(245,197,24,.15);border:1px solid rgba(245,197,24,.3);color:#F5C518;font-size:11px;font-weight:700;padding:5px 10px;border-radius:20px;text-decoration:none}
+.back-btn{position:absolute;left:14px;top:50%;transform:translateY(-50%);background:rgba(245,197,24,.15);border:1px solid rgba(245,197,24,.3);color:#f5c518;font-size:11px;font-weight:700;padding:5px 10px;border-radius:20px;text-decoration:none}
 .wrap{max-width:600px;margin:0 auto;padding:14px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);margin-bottom:12px;overflow:hidden}
-.card-header{padding:9px 14px;background:var(--surface);border-bottom:1px solid var(--border);font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;justify-content:space-between}
+.card-header{padding:9px 14px;background:var(--surface);border-bottom:1px solid var(--border);font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:2px;color:var(--muted2);display:flex;align-items:center;justify-content:space-between}
 
 /* Login admin */
 #login-wrap{padding:30px 14px;text-align:center}
