@@ -4,18 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fantalega · Chat & Community</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#0d0d12;--card:#141419;--surface:#1c1c24;--border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.12);--text:#f0f0e8;--muted:#6a6a7a;--muted2:#9090a0;--accent:#00c97a;--danger:#ff4d4d;--r:14px;--rs:8px}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
-.header{background:linear-gradient(160deg,#0d0d12,#121228,#0d0d12);border-bottom:1px solid rgba(255,255,255,.12);padding:1rem;text-align:center;position:relative}
-.header h1{font-family:'Bebas Neue',sans-serif;font-size:20px;color:#f5c518;letter-spacing:4px;text-transform:uppercase}
-.header .sub{font-size:10px;color:rgba(255,255,255,.4);letter-spacing:2px;margin-top:3px}
-.back-btn{position:absolute;left:14px;top:50%;transform:translateY(-50%);background:rgba(245,197,24,.15);border:1px solid rgba(245,197,24,.3);color:#f5c518;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 10px;border-radius:20px;text-decoration:none}
+:root{--bg:#F5F3EE;--card:#FFFFFF;--surface:#EEECEA;--border:#E0DDD5;--text:#1C1B18;--muted:#8A8880;--accent:#0F7A5A;--accent-light:rgba(15,122,90,.1);--gold:#C8960C;--danger:#C0392B;--r:14px;--rs:9px}
+body{font-family:'Lato',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.header{background:linear-gradient(160deg,#083d2b 0%,#0F7A5A 65%,#12a06e 100%);padding:1rem;text-align:center;position:relative}
+.header h1{font-family:'Oswald',sans-serif;font-size:18px;font-weight:700;color:#fff;letter-spacing:3px;text-transform:uppercase}
+.header .sub{font-size:10px;color:rgba(255,255,255,.65);letter-spacing:2px;margin-top:3px}
+.back-btn{position:absolute;left:14px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);color:#fff;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 10px;border-radius:20px;text-decoration:none}
 .wrap{max-width:600px;margin:0 auto;padding:14px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);margin-bottom:12px;overflow:hidden}
-.card-header{padding:9px 14px;background:var(--surface);border-bottom:1px solid var(--border);font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:2px;color:var(--muted2);display:flex;align-items:center;justify-content:space-between}
+.card-header{padding:9px 14px;background:var(--surface);border-bottom:1px solid var(--border);font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;justify-content:space-between}
 .online-dot{width:7px;height:7px;border-radius:50%;background:#1D9E75;display:inline-block;margin-right:5px;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 
@@ -33,7 +33,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 
 /* Tabs */
 .tab-bar{display:flex;gap:2px;background:var(--surface);padding:3px;border-radius:var(--rs);margin-bottom:12px;border:1px solid var(--border)}
-.tab-btn{flex:1;padding:7px;text-align:center;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;cursor:pointer;border-radius:6px;color:var(--muted);border:none;background:transparent}
+.tab-btn{flex:1;padding:7px;text-align:center;font-family:'Lato',sans-serif;font-size:11px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;cursor:pointer;border-radius:6px;color:var(--muted);border:none;background:transparent}
 .tab-btn.active{background:var(--card);color:var(--text);border:1px solid var(--border)}
 .tab-pane{display:none}.tab-pane.active{display:block}
 
@@ -85,9 +85,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .ni-text{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:8px}
 .reaction-bar{display:flex;flex-wrap:wrap;gap:5px;align-items:center}
 .rx-btn{display:flex;align-items:center;gap:3px;padding:4px 10px;border-radius:20px;border:1px solid var(--border);background:var(--surface);font-size:12px;font-weight:700;cursor:pointer;transition:all .15s;color:var(--text);position:relative}
-.rx-btn.active{border-color:var(--accent);background:rgba(29,158,117,.12);color:var(--accent)}
+.rx-btn.active{border-color:var(--accent);background:var(--accent-light);color:var(--accent)}
 .rx-count{font-size:11px;font-weight:700}
-.rx-users{display:none;position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:var(--card);border:1px solid var(--border);border-radius:8px;padding:6px 10px;font-size:11px;white-space:nowrap;z-index:10;box-shadow:0 4px 16px rgba(0,0,0,.15);pointer-events:none;color:var(--text);font-weight:700;line-height:1.6}
+.rx-users{display:none;position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:var(--card);border:1px solid var(--border);border-radius:8px;padding:6px 10px;font-size:11px;white-space:nowrap;z-index:10;box-shadow:0 4px 16px rgba(0,0,0,.12);pointer-events:none;color:var(--text);font-weight:700;line-height:1.6}
 .rx-btn:hover .rx-users{display:block}
 .rx-users::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--border)}
 
@@ -144,7 +144,7 @@ textarea{resize:vertical;min-height:80px}
 
   <div class="tab-bar">
     <button class="tab-btn active" onclick="showTab('chat',this)">💬 Chat</button>
-    
+    <button class="tab-btn" onclick="showTab('chiedi',this)">🤖 Chiedi</button>
     <button class="tab-btn" onclick="showTab('news',this)">📰 News</button>
     <button class="tab-btn" onclick="showTab('proponi',this)">✍️ Proponi</button>
   </div>
@@ -159,6 +159,41 @@ textarea{resize:vertical;min-height:80px}
       <div class="chat-input-wrap">
         <input class="chat-input" id="chat-input" placeholder="Scrivi un messaggio..." onkeydown="if(event.key==='Enter')sendMsg()">
         <button class="send-btn" onclick="sendMsg()">➤</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB CHIEDI A CLAUDE -->
+  <div id="tab-chiedi" class="tab-pane">
+    <div class="card">
+      <div class="card-header">🤖 Chiedi qualcosa alla lega</div>
+      <div class="prompt-wrap">
+        <div style="font-size:12px;color:var(--muted);margin-bottom:10px;line-height:1.5">Claude conosce tutta la lega — classifica, risultati, Summer Cup. Chiedile qualsiasi cosa!</div>
+        <div id="apikey-row" style="margin-bottom:10px;padding:8px 10px;background:rgba(226,75,74,.08);border:1px solid rgba(226,75,74,.2);border-radius:var(--rs);display:none">
+          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--danger);margin-bottom:5px">⚠️ API Key mancante</div>
+          <div style="display:flex;gap:6px">
+            <input type="password" id="inline-apikey" placeholder="gsk_..." style="flex:1;padding:7px 10px;font-size:12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--rs);color:var(--text);outline:none">
+            <button onclick="saveInlineKey()" style="padding:7px 12px;background:var(--accent);color:#fff;border:none;border-radius:var(--rs);font-size:11px;font-weight:700;cursor:pointer">Salva</button>
+          </div>
+        </div>
+        <div class="prompt-presets">
+          <button class="preset-btn" onclick="setPrompt('Chi sta vincendo la lega e di quanto?')">🏆 Chi sta vincendo?</button>
+          <button class="preset-btn" onclick="setPrompt('Com\'è andata l\'ultima giornata? Dimmi i risultati e chi ha fatto meglio')">⚽ Ultima giornata</button>
+          <button class="preset-btn" onclick="setPrompt('Analizza la Summer Cup: chi passerà il turno?')">🥤 Summer Cup</button>
+          <button class="preset-btn" onclick="setPrompt('Fai una previsione ironica su chi vincerà il campionato')">🔮 Previsione</button>
+          <button class="preset-btn" onclick="setPrompt('Chi ha la migliore difesa e chi il peggior attacco?')">🛡️ Statistiche</button>
+          <button class="preset-btn" onclick="setPrompt('Dimmi una cosa divertente su ogni fantallentore basandoti sui dati')">😂 Gossip di lega</button>
+        </div>
+        <textarea class="prompt-input" id="prompt-input" placeholder="Scrivi la tua domanda sulla lega..."></textarea>
+        <div style="margin-top:8px;padding:8px 10px;background:var(--surface);border:1px solid var(--border);border-radius:var(--rs)">
+          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:5px">🔑 API Key Anthropic</div>
+          <div style="display:flex;gap:6px">
+            <input type="password" id="inline-apikey" placeholder="gsk_..." style="flex:1;padding:7px 10px;font-size:12px;background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);color:var(--text);outline:none" oninput="saveInlineKey()">
+          </div>
+          <div style="font-size:10px;color:var(--muted);margin-top:4px">Si salva automaticamente mentre scrivi</div>
+        </div>
+        <button class="prompt-btn" id="prompt-btn" onclick="askClaude()">Chiedi a Claude</button>
+        <div class="prompt-result" id="prompt-result"></div>
       </div>
     </div>
   </div>
@@ -429,15 +464,13 @@ window.reagisci = function(idx, emoji) {
   const rxRef = ref(db, 'reactions/' + idx);
   get(rxRef).then(snap => {
     const data = snap.val() || {};
-    // Rimuovi reaction precedente
     if (prev && data[prev]) {
-      const uid = currentUser.user.replace(/[.#$/[\]]/g, '_');
+      const uid = currentUser.user.replace(/[.#$[\]]/g, '_');
       delete data[prev][uid];
       if (Object.keys(data[prev]).length === 0) delete data[prev];
     }
-    // Aggiungi nuova (o toggle off)
     if (prev !== emoji) {
-      const uid = currentUser.user.replace(/[.#$/[\]]/g, '_');
+      const uid = currentUser.user.replace(/[.#$[\]]/g, '_');
       if (!data[emoji]) data[emoji] = {};
       data[emoji][uid] = currentUser.user;
       myRx[idx] = emoji;
