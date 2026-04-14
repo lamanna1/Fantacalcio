@@ -386,34 +386,39 @@
   },
   "curiosita_stagione": [
     {
-      "icon": "👑",
-      "titolo": "Kiricocho domina la Serie A",
-      "testo": "In testa con 51 punti dopo 30 giornate, con il miglior differenziale reti (+19). Un vantaggio che sembra solido, ma manca ancora qualcosa."
-    },
-    {
-      "icon": "🏹",
-      "titolo": "Santini United — 5° con 2202 pt totali",
-      "testo": "Il totale punti dice che Davide ha la squadra più forte per rendimento assoluto. I punti di classifica non lo rispecchiano ancora."
-    },
-    {
-      "icon": "🛡️",
-      "titolo": "R B Salisburro — la più solida",
-      "testo": "Solo 38 gol subiti, la miglior difesa dopo kiricocho. Secondo posto a quota 45 punti, ancora in corsa per lo scudetto."
-    },
-    {
-      "icon": "😤",
-      "titolo": "monza — squadra peggiore",
-      "testo": "Solo 31 gol fatti, 33 punti. Ultimo in classifica con 2062 punti totali. Una stagione da dimenticare."
-    },
-    {
       "icon": "🔥",
-      "titolo": "Santini United — Summer Cup in semifinale",
-      "testo": "Dopo 5 giornate nel Gruppo A della Summer Cup, Santini United è al comando con 9 punti. Qualificazione in semifinale quasi certa."
+      "titolo": "Thuram torna a ruggire",
+      "testo": "Dopo settimane di stop, Thuram ha messo a segno una doppietta in Como-Inter (2-4, 12 apr). 10 gol stagionali in Serie A. Chi ce l'ha in squadra può dormire sereno — almeno per ora."
     },
     {
-      "icon": "📊",
-      "titolo": "ac pizzo — 3° con 2175 pt totali",
-      "testo": "Terzo in Serie A e nel totale punti. Stagione solida e costante per Mike, sempre nei piani alti."
+      "icon": "⚡",
+      "titolo": "Barella: il motore non si ferma",
+      "testo": "Assist, pressing, gol: Barella è il più continuo dell'Inter anche nel rush finale. Nonostante i guai fisici di inizio anno, ora è titolare fisso e in grande forma. Vale ogni credit speso."
+    },
+    {
+      "icon": "🩹",
+      "titolo": "Calhanoglu: infortuni seriali e playoff Mondiale",
+      "testo": "Il regista turco ha saltato il derby per un risentimento all'adduttore. Rientro atteso vs Fiorentina, ma i playoff Mondiali con la Turchia lo spingono a forzare. Rischio recidiva alto nel finale."
+    },
+    {
+      "icon": "🚑",
+      "titolo": "Lautaro out almeno tre settimane",
+      "testo": "Infortunio diverso dal precedente: rientro previsto tra Torino e Parma. L'Inter segna meno da quando è ai box. Chi ce l'ha ha perso il bomber principale nel momento più caldo."
+    },
+    {
+      "icon": "💥",
+      "titolo": "Dumfries: doppietta a Como, torna il mostro",
+      "testo": "Due gol in Como-Inter (12 apr) per l'olandese, tornato dopo 3 mesi di infortunio meglio di prima. Letteralmente il laterale più pericoloso del fanta in questo momento. Non cedere."
+    },
+    {
+      "icon": "😬",
+      "titolo": "Dimarco in calo: Luis Henrique lo insegue",
+      "testo": "A Como è stato saltato spesso da Diao e sostituito al 56'. Chivu sta dando spazio a Luis Henrique sulla fascia sinistra. I voti fantacalcio rischiano di calare nelle prossime giornate."
+    },
+    {
+      "icon": "📅",
+      "titolo": "8 giornate al termine: tutto ancora aperto",
+      "testo": "Con la G30 alle spalle, mancano 8 giornate. La classifica è ancora decisa. Ogni infortunio può ribaltare tutto — monitorare il tabellone degli infortuni è fondamentale da qui alla fine."
     }
   ],
   "h2h_curiosita": [

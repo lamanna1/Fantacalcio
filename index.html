@@ -103,10 +103,6 @@ footer{text-align:center;font-size:11px;color:var(--muted);margin:1.5rem 0;lette
     </div>
   </div>
   <div class="section" id="tab-curiosita">
-    <div class="card" style="margin-bottom:10px">
-      <div class="card-header"><span style="background:#C0392B;color:#fff;font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px;letter-spacing:1px">MONDIALI</span>&nbsp;&nbsp;Pausa · Rischio Infortuni</div>
-      <div id="mondiali-body"></div>
-    </div>
     <div class="card">
       <div class="card-header">Curiosità &amp; Statistiche</div>
       <div id="curiosita-body"></div>
@@ -202,10 +198,7 @@ function buildAndamento(data){
   });
   document.getElementById('stats-body').innerHTML=sh;
 }
-function buildMondiali(){
-  const nn=[{icon:'🌍',titolo:'Pausa Mondiali: ~10 giorni stop',testo:'La lega si ferma. Tanti giocatori scenderanno in campo ai Mondiali: infortuni in agguato.'},{icon:'⚠️',titolo:'Giocatori a rischio infortunio',testo:'Thuram, De Bruyne, Calhanoglu, Barella, Dimarco — tutti convocati. Un infortunio potrebbe stravolgere qualsiasi classifica.'},{icon:'📅',titolo:'Si riparte dalla G29',testo:'Al rientro, subito doppio impegno: Serie A e Summer Cup. Chi avrà recuperato meglio farà la differenza.'}];
-  document.getElementById('mondiali-body').innerHTML=nn.map(n=>'<div style="display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-bottom:1px solid var(--border)"><span style="font-size:20px;margin-top:1px">'+n.icon+'</span><div><div style="font-size:12px;font-weight:700;margin-bottom:2px">'+n.titolo+'</div><div style="font-size:11px;color:var(--muted);line-height:1.5">'+n.testo+'</div></div></div>').join('')+'<div style="padding:8px 14px;font-size:10px;color:var(--muted);text-align:center">⚽ Mondiali in corso · Aggiornamento al rientro</div>';
-}
+
 function buildCuriosity(data){document.getElementById('curiosita-body').innerHTML=data.curiosita_stagione.map(c=>'<div class="ci"><div class="ci-ico">'+c.icon+'</div><div><div class="ci-title">'+c.titolo+'</div><div class="ci-text">'+c.testo+'</div></div></div>').join('');}
 function buildH2H(data){
   if(!data.h2h_curiosita)return;
@@ -219,7 +212,7 @@ function buildH2H(data){
     return '<div class="h2h-row"><div><span style="font-size:12px;font-weight:700;color:'+c1+';opacity:'+(d2?.5:1)+'">'+r.t1+'</span><div style="font-size:11px;color:var(--muted)">'+r.v1+'V · '+r.g1+' gol</div></div><div style="text-align:center"><div style="font-family:\'Oswald\',sans-serif;font-size:14px;font-weight:700;color:'+(p?'var(--muted)':d1?c1:c2)+'">'+r.v1+'-'+r.n+'-'+r.v2+'</div><div style="font-size:10px;color:var(--muted)">'+(r.v1+r.n+r.v2)+' part.</div></div><div style="text-align:right"><span style="font-size:12px;font-weight:700;color:'+c2+';opacity:'+(d1?.5:1)+'">'+r.t2+'</span><div style="font-size:11px;color:var(--muted)">'+r.v2+'V · '+r.g2+' gol</div></div></div>';
   }).join('');
 }
-async function loadData(){try{const r=await fetch('data.json?v='+Date.now());const d=await r.json();document.getElementById('meta-badge').textContent='G'+d.meta.giornata_attuale+' · '+d.meta.ultimo_aggiornamento;document.getElementById('footer-meta').textContent='Fantalega 21I22 · '+d.meta.stagione+' · Agg. '+d.meta.ultimo_aggiornamento;buildClassifica(d);buildCup(d);buildAndamento(d);buildMondiali();buildCuriosity(d);buildH2H(d);}catch(e){console.error('loadData error:',e);}}
+async function loadData(){try{const r=await fetch('data.json?v='+Date.now());const d=await r.json();document.getElementById('meta-badge').textContent='G'+d.meta.giornata_attuale+' · '+d.meta.ultimo_aggiornamento;document.getElementById('footer-meta').textContent='Fantalega 21I22 · '+d.meta.stagione+' · Agg. '+d.meta.ultimo_aggiornamento;buildClassifica(d);buildCup(d);buildAndamento(d);buildCuriosity(d);buildH2H(d);}catch(e){console.error('loadData error:',e);}}
 document.addEventListener('DOMContentLoaded',loadData);
 </script>
 <script type="module">
