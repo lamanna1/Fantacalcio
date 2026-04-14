@@ -239,20 +239,20 @@
             "giornata": 1,
             "partite": [
               {
-                "casa": "FcZeroTituli",
-                "trasferta": "I Ridartati dei Caraibi",
-                "gol_c": 1,
-                "gol_t": 4,
-                "pt_c": 66.0,
-                "pt_t": 86.5
+                "casa": "I Ridartati dei Caraibi",
+                "gol_c": 2,
+                "trasferta": "FcZeroTituli",
+                "gol_t": 1,
+                "pt_c": 76.5,
+                "pt_t": 68.0
               },
               {
-                "casa": "ac pizzo",
-                "trasferta": "fc kiricocho2puntozero",
-                "gol_c": 2,
+                "casa": "fc kiricocho2puntozero",
+                "gol_c": 3,
+                "trasferta": "ac pizzo",
                 "gol_t": 1,
-                "pt_c": 74.5,
-                "pt_t": 71.0
+                "pt_c": 81.0,
+                "pt_t": 67.5
               }
             ]
           },
@@ -260,20 +260,20 @@
             "giornata": 2,
             "partite": [
               {
-                "casa": "fc kiricocho2puntozero",
-                "trasferta": "FcZeroTituli",
+                "casa": "ac pizzo",
                 "gol_c": 2,
-                "gol_t": 2,
-                "pt_c": 76.5,
-                "pt_t": 74.0
+                "trasferta": "I Ridartati dei Caraibi",
+                "gol_t": 0,
+                "pt_c": 74.0,
+                "pt_t": 64.0
               },
               {
-                "casa": "I Ridartati dei Caraibi",
-                "trasferta": "ac pizzo",
-                "gol_c": 0,
-                "gol_t": 0,
-                "pt_c": 61.0,
-                "pt_t": 64.0
+                "casa": "FcZeroTituli",
+                "gol_c": 2,
+                "trasferta": "fc kiricocho2puntozero",
+                "gol_t": 3,
+                "pt_c": 73.5,
+                "pt_t": 79.0
               }
             ]
           },
@@ -281,20 +281,20 @@
             "giornata": 3,
             "partite": [
               {
-                "casa": "fc kiricocho2puntozero",
-                "trasferta": "I Ridartati dei Caraibi",
-                "gol_c": 1,
+                "casa": "ac pizzo",
+                "gol_c": 2,
+                "trasferta": "FcZeroTituli",
                 "gol_t": 1,
-                "pt_c": 67.5,
-                "pt_t": 68.5
+                "pt_c": 77.0,
+                "pt_t": 70.5
               },
               {
-                "casa": "ac pizzo",
-                "trasferta": "FcZeroTituli",
-                "gol_c": 2,
+                "casa": "fc kiricocho2puntozero",
+                "gol_c": 3,
+                "trasferta": "I Ridartati dei Caraibi",
                 "gol_t": 1,
-                "pt_c": 74.5,
-                "pt_t": 67.5
+                "pt_c": 82.0,
+                "pt_t": 66.0
               }
             ]
           },
@@ -302,20 +302,20 @@
             "giornata": 4,
             "partite": [
               {
-                "casa": "I Ridartati dei Caraibi",
-                "trasferta": "FcZeroTituli",
-                "gol_c": 2,
-                "gol_t": 0,
-                "pt_c": 75.0,
-                "pt_t": 64.5
+                "casa": "FcZeroTituli",
+                "gol_c": 1,
+                "trasferta": "I Ridartati dei Caraibi",
+                "gol_t": 1,
+                "pt_c": 66.5,
+                "pt_t": 70.0
               },
               {
-                "casa": "fc kiricocho2puntozero",
-                "trasferta": "ac pizzo",
-                "gol_c": 0,
-                "gol_t": 4,
-                "pt_c": 62.0,
-                "pt_t": 88.5
+                "casa": "ac pizzo",
+                "gol_c": 3,
+                "trasferta": "fc kiricocho2puntozero",
+                "gol_t": 2,
+                "pt_c": 82.5,
+                "pt_t": 72.5
               }
             ]
           },
@@ -323,19 +323,19 @@
             "giornata": 5,
             "partite": [
               {
-                "casa": "FcZeroTituli",
-                "trasferta": "fc kiricocho2puntozero",
-                "gol_c": 2,
-                "gol_t": 2,
-                "pt_c": 75.0,
-                "pt_t": 75.0
+                "casa": "I Ridartati dei Caraibi",
+                "gol_c": 1,
+                "trasferta": "ac pizzo",
+                "gol_t": 1,
+                "pt_c": 68.0,
+                "pt_t": 68.5
               },
               {
-                "casa": "ac pizzo",
-                "trasferta": "I Ridartati dei Caraibi",
-                "gol_c": 1,
+                "casa": "fc kiricocho2puntozero",
+                "gol_c": 2,
+                "trasferta": "FcZeroTituli",
                 "gol_t": 3,
-                "pt_c": 66.5,
+                "pt_c": 74.5,
                 "pt_t": 79.0
               }
             ]
