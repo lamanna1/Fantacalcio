@@ -169,13 +169,7 @@ textarea{resize:vertical;min-height:80px}
       <div class="card-header">🤖 Chiedi qualcosa alla lega</div>
       <div class="prompt-wrap">
         <div style="font-size:12px;color:var(--muted);margin-bottom:10px;line-height:1.5">Claude conosce tutta la lega — classifica, risultati, Summer Cup. Chiedile qualsiasi cosa!</div>
-        <div id="apikey-row" style="margin-bottom:10px;padding:8px 10px;background:rgba(226,75,74,.08);border:1px solid rgba(226,75,74,.2);border-radius:var(--rs);display:none">
-          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--danger);margin-bottom:5px">⚠️ API Key mancante</div>
-          <div style="display:flex;gap:6px">
-            <input type="password" id="inline-apikey" placeholder="gsk_..." style="flex:1;padding:7px 10px;font-size:12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--rs);color:var(--text);outline:none">
-            <button onclick="saveInlineKey()" style="padding:7px 12px;background:var(--accent);color:#fff;border:none;border-radius:var(--rs);font-size:11px;font-weight:700;cursor:pointer">Salva</button>
-          </div>
-        </div>
+
         <div class="prompt-presets">
           <button class="preset-btn" onclick="setPrompt('Chi sta vincendo la lega e di quanto?')">🏆 Chi sta vincendo?</button>
           <button class="preset-btn" onclick="setPrompt('Com\'è andata l\'ultima giornata? Dimmi i risultati e chi ha fatto meglio')">⚽ Ultima giornata</button>
@@ -185,13 +179,7 @@ textarea{resize:vertical;min-height:80px}
           <button class="preset-btn" onclick="setPrompt('Dimmi una cosa divertente su ogni fantallentore basandoti sui dati')">😂 Gossip di lega</button>
         </div>
         <textarea class="prompt-input" id="prompt-input" placeholder="Scrivi la tua domanda sulla lega..."></textarea>
-        <div style="margin-top:8px;padding:8px 10px;background:var(--surface);border:1px solid var(--border);border-radius:var(--rs)">
-          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:5px">🔑 API Key Anthropic</div>
-          <div style="display:flex;gap:6px">
-            <input type="password" id="inline-apikey" placeholder="gsk_..." style="flex:1;padding:7px 10px;font-size:12px;background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);color:var(--text);outline:none" oninput="saveInlineKey()">
-          </div>
-          <div style="font-size:10px;color:var(--muted);margin-top:4px">Si salva automaticamente mentre scrivi</div>
-        </div>
+
         <button class="prompt-btn" id="prompt-btn" onclick="askClaude()">Chiedi a Claude</button>
         <div class="prompt-result" id="prompt-result"></div>
       </div>
@@ -261,7 +249,7 @@ const PLAYERS = [
 
 let currentUser = null;
 let onlineRef = null;
-const API_KEY = localStorage.getItem('fantalega_api_key') || '';
+const GROQ_KEY = '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';
 
 // --- RENDER PLAYERS ---
 function renderPlayers() {
@@ -297,9 +285,7 @@ function enterApp() {
   setupOnline();
   listenChat();
   listenNews();
-  const saved = localStorage.getItem('fantalega_api_key')||'';
-  const f = document.getElementById('inline-apikey');
-  if(f) f.value = saved;
+
 }
 
 // --- ONLINE PRESENCE ---
@@ -350,15 +336,7 @@ window.sendMsg = function() {
 // --- CHIEDI A CLAUDE ---
 window.setPrompt = function(t) { document.getElementById('prompt-input').value = t; };
 
-window.saveInlineKey = function() {
-  const k = document.getElementById('inline-apikey').value.trim();
-  if (k) {
-    localStorage.setItem('fantalega_api_key', k);
-    document.getElementById('apikey-row').style.display = 'none';
-    document.getElementById('inline-apikey').value = '';
-    alert('✅ API Key salvata!');
-  }
-};
+
 
 window.askClaude = async function() {
   const q = document.getElementById('prompt-input').value.trim();
@@ -377,14 +355,8 @@ window.askClaude = async function() {
     ctx = `Classifica: ${d.classifica.map(t=>`${t.pos}. ${t.nome} (${t.pt}pt)`).join(', ')}. Giornata: ${d.meta.giornata_attuale}.`;
   } catch(e) {}
 
-  const key = localStorage.getItem('fantalega_api_key') || '';
-  if (!key) {
-    res.textContent = '⚠️ Nessuna API key configurata. Chiedi a Davide di impostarla nel generatore notizie.';
-    res.style.display = 'block';
-    btn.disabled = false;
-    btn.textContent = 'Chiedi a Claude';
-    return;
-  }
+  const key = GROQ_KEY;
+
 
   try {
     const resp = await fetch('https://api.groq.com/openai/v1/chat/completions', {
