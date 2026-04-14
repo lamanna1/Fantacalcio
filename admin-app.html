@@ -465,22 +465,32 @@ function initData() {
       : '<div style="padding:16px;text-align:center;font-size:12px;color:var(--muted)">Nessuna proposta</div>';
   });
 
-  // Voti + notizie
+  // Reactions con nomi
   fetch('data.json').then(r=>r.json()).then(d => {
     const news = d.curiosita_stagione||[];
-    onValue(ref(db,'voti'), snap => {
-      const voti = snap.val()||{};
+    onValue(ref(db,'reactions'), snap => {
+      const reactions = snap.val()||{};
       document.getElementById('voti-list').innerHTML = news.map((n,i) => {
-        const v = voti[i]||{up:0,down:0};
-        return `<div class="vote-row">
-          <div class="vote-ico">${n.icon}</div>
-          <div class="vote-title">${n.titolo}</div>
-          <div class="vote-nums">
-            <span class="vn up">👍 ${v.up||0}</span>
-            <span class="vn dn">👎 ${v.down||0}</span>
+        const rxData = reactions[i]||{};
+        const emojis = ['👍','🔥','😂','💀','🤌','😤','🫡','🍺'];
+        const rxHtml = emojis.map(e => {
+          const users = rxData[e] ? Object.values(rxData[e]) : [];
+          if (!users.length) return '';
+          return `<span style="font-size:11px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:2px 8px;display:inline-flex;align-items:center;gap:3px">
+            ${e} <strong>${users.length}</strong>
+            <span style="color:var(--muted);font-weight:400"> · ${users.join(', ')}</span>
+          </span>`;
+        }).filter(Boolean).join('');
+        const total = Object.values(rxData).reduce((s,v)=>s+Object.keys(v).length,0);
+        return `<div class="vote-row" style="flex-direction:column;align-items:flex-start;gap:6px">
+          <div style="display:flex;align-items:center;gap:8px;width:100%">
+            <div class="vote-ico">${n.icon}</div>
+            <div class="vote-title">${n.titolo}</div>
+            <span style="font-size:10px;color:var(--muted);flex-shrink:0">${total} reaction</span>
           </div>
+          ${rxHtml ? `<div style="display:flex;flex-wrap:wrap;gap:4px;padding-left:28px">${rxHtml}</div>` : '<div style="padding-left:28px;font-size:11px;color:var(--muted)">Nessuna reaction ancora</div>'}
         </div>`;
-      }).join('') || '<div style="padding:16px;text-align:center;font-size:12px;color:var(--muted)">Nessun voto</div>';
+      }).join('') || '<div style="padding:16px;text-align:center;font-size:12px;color:var(--muted)">Nessuna reaction</div>';
     });
   });
 }
